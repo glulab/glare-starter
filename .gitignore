@@ -1,0 +1,209 @@
+# ignore all files
+/*
+
+# unignore root files
+!/.gitignore
+!/*.example
+!/*.dev
+!/glare-*
+
+# unignore levels
+!/www/
+/www/*
+
+!/www/*/
+/www/*/*
+
+!/www/*/*/
+/www/*/*/*
+
+!/www/*/*/*/
+/www/*/*/*/*
+
+!/www/*/*/*/*/
+/www/*/*/*/*/*
+
+!/www/*/*/*/*/*/
+/www/*/*/*/*/*/*
+
+!/www/*/*/*/*/*/*/
+/www/*/*/*/*/*/*/*
+
+# unignore www root files
+!/www/*.dev
+!/www/dev.artisan.txt
+
+# unignore providers
+!/www/app/Providers/AppServiceProvider.php
+
+# unignore kernels
+!/www/app/Console/Kernel.php
+!/www/app/Http/Kernel.php
+
+# unignore controllers
+!/www/app/Http/Controllers/HomeController.php
+!/www/app/Http/Controllers/Page*Controller.php
+!/www/app/Http/Controllers/Site/*
+
+# unignore models and translations
+!/www/app/Models/Category.php
+!/www/app/Models/Translations/CategoryTranslation.php
+!/www/app/Models/Category.php
+!/www/app/Models/Translations/CategoryTranslation.php
+!/www/app/Models/Gallery.php
+!/www/app/Models/Translations/GalleryTranslation.php
+!/www/app/Models/Page.php
+!/www/app/Models/Translations/PageTranslation.php
+!/www/app/Models/Post.php
+!/www/app/Models/Translations/PostTranslation.php
+!/www/app/Models/Section.php
+!/www/app/Models/Translations/SectionTranslation.php
+
+# unignore view components
+!/www/app/View/Components/Site/*
+
+# unignore configs
+!/www/config/app.php
+!/www/config/debugbar.php
+!/www/config/lit.php
+!/www/config/media-library.php
+!/www/config/site.php
+!/www/config/translatable.php
+
+# unignore migrations
+!/www/database/migrations/*create_pages_table.php
+!/www/database/migrations/*update_pages_table.php
+!/www/database/migrations/*create_sections_table.php
+!/www/database/migrations/*create_posts_table.php
+!/www/database/migrations/*update_posts_table.php
+!/www/database/migrations/*create_categories_table.php
+!/www/database/migrations/*update_categories_table.php
+!/www/database/migrations/*create_categorized_table.php
+!/www/database/migrations/*create_galleries_table.php
+!/www/database/migrations/*create_page_gallery_table.php
+
+# unignore seeders
+!/www/database/seeders/DatabaseSeeder.php
+
+# unignore lit actions
+!/www/lit/app/Actions/Page/**
+!/www/lit/app/Actions/Section/**
+
+# unignore lit navigation
+!/www/lit/app/Config/NavigationConfig.php
+
+# unignore lit configs
+!/www/lit/app/Config/Crud/CategoryConfig.php
+!/www/lit/app/Config/Crud/GalleryConfig.php
+!/www/lit/app/Config/Crud/PageConfig.php
+!/www/lit/app/Config/Crud/PageExtendedConfig.php
+!/www/lit/app/Config/Crud/PageOfferConfig.php
+!/www/lit/app/Config/Crud/PagePostConfig.php
+!/www/lit/app/Config/Crud/PageSystemConfig.php
+!/www/lit/app/Config/Crud/PostConfig.php
+!/www/lit/app/Config/Crud/SectionConfig.php
+
+!/www/lit/app/Config/Form/Home/HomeBannerConfig.php
+!/www/lit/app/Config/Form/Home/HomeContentConfig.php
+!/www/lit/app/Config/Form/Home/HomeGalleryConfig.php
+!/www/lit/app/Config/Form/Home/HomePhotoLinksConfig.php
+!/www/lit/app/Config/Form/Home/HomeSeoConfig.php
+!/www/lit/app/Config/Form/Home/HomeSliderConfig.php
+!/www/lit/app/Config/Form/Home/HomeVideoConfig.php
+
+!/www/lit/app/Config/Form/Menu/MenuFooterConfig.php
+!/www/lit/app/Config/Form/Menu/MenuLangConfig.php
+!/www/lit/app/Config/Form/Menu/MenuMainConfig.php
+!/www/lit/app/Config/Form/Menu/MenuOfferConfig.php
+!/www/lit/app/Config/Form/Menu/MenuSystemConfig.php
+
+!/www/lit/app/Config/Form/Settings/ContextConfig.php
+!/www/lit/app/Config/Form/Settings/SettingsConfig.php
+!/www/lit/app/Config/Form/Settings/SiteConfig.php
+
+!/www/lit/app/Config/Form/Site/*
+#!/www/lit/app/Config/Form/Theme/ThemeConfig.php
+
+# unignore lit controllers
+!/www/lit/app/Http/Controllers/Crud/CategoryController.php
+!/www/lit/app/Http/Controllers/Crud/GalleryController.php
+!/www/lit/app/Http/Controllers/Crud/PageController.php
+!/www/lit/app/Http/Controllers/Crud/PostController.php
+!/www/lit/app/Http/Controllers/Crud/SectionController.php
+
+!/www/lit/app/Http/Controllers/Form/Home/HomeBannerController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomeContentController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomeGalleryController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomePhotoLinksController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomeSeoController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomeSliderController.php
+!/www/lit/app/Http/Controllers/Form/Home/HomeVideoController.php
+
+!/www/lit/app/Http/Controllers/Form/Menu/MenuFooterController.php
+!/www/lit/app/Http/Controllers/Form/Menu/MenuLangController.php
+!/www/lit/app/Http/Controllers/Form/Menu/MenuMainController.php
+!/www/lit/app/Http/Controllers/Form/Menu/MenuOfferController.php
+!/www/lit/app/Http/Controllers/Form/Menu/MenuSystemController.php
+
+!/www/lit/app/Http/Controllers/Form/Settings/ContextController.php
+!/www/lit/app/Http/Controllers/Form/Settings/SettingsController.php
+!/www/lit/app/Http/Controllers/Form/Settings/SiteController.php
+
+# unignore lit repeatables
+!/www/lit/app/Repeatables/ContactLinkRepeatable.php
+!/www/lit/app/Repeatables/ContentBlockColumnsTwoRepeatable.php
+!/www/lit/app/Repeatables/ContentBlockImageRepeatable.php
+!/www/lit/app/Repeatables/ContentBlockImagesRepeatable.php
+!/www/lit/app/Repeatables/HeaderExtraRepeatable.php
+!/www/lit/app/Repeatables/HeaderMetaRepeatable.php
+!/www/lit/app/Repeatables/LinkRepeatable.php
+!/www/lit/app/Repeatables/PhotoLinkRepeatable.php
+
+# unignore lit support
+!/www/lit/app/Support/**
+
+# unignore lit theme
+#!/www/lit/app/Theme/**
+
+# unignore lit resources lang
+!/www/lit/resources/lang/**
+
+# unignore lit resources views
+!/www/lit/resources/views/**
+
+# unignore public
+!/www/public/.htaccess
+!/www/public/_devtools.php
+!/www/public/_install.php
+!/www/public/_install-vendor.php
+!/www/public/robots.txt
+
+# unignore resources
+!/www/resources/images-default/**
+
+!/www/resources/resources/js/_app.js
+!/www/resources/resources/js/_app/_*.js
+!/www/resources/resources/js/_app/masonry-*.js
+!/www/resources/resources/js/_app/offer-slider.js
+!/www/resources/resources/js/app.js
+
+!/www/resources/lang-default/**
+
+!/www/resources/sass/_app-*.scss
+!/www/resources/sass/app.scss
+!/www/resources/sass/abstract/**
+!/www/resources/sass/debug/**
+!/www/resources/sass/default/**
+!/www/resources/sass/theme/**/_!.scss
+
+!/www/resources/views-default/**
+
+# unignore routes
+!/www/routes/web*
+
+# ignore folders
+/www/bootstrap
+/www/node_modules
+/www/storage
+/www/tests
+/www/vendor
