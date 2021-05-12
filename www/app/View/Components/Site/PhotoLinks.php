@@ -29,6 +29,18 @@ class PhotoLinks extends Component
      */
     public function render()
     {
+        if (empty($this->items)) {
+            return '';
+        }
+        $this->items = $this->items->map(function ($item, $key) {
+            if (!empty($item->url)) {
+                $item->href = $item->url;
+            } elseif(!empty($item->route)) {
+                $item->href = $item->route->resolve();
+            }
+            return $item;
+        });
+
         return view('components.site.photo-links')
             ->with('items', $this->items)
             ->with('class', $this->class)

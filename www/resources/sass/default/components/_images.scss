@@ -1,0 +1,151 @@
+@mixin imagesImage($n:1) {
+    max-width: percentage(1 / $n) - 1%;
+    margin-right: percentage($n / ($n - 1) / 100);
+    &:nth-child(#{$n}n + #{$n}) {
+        margin-right: 0;
+    }
+}
+
+.images {
+    &.has-1,
+    &.has-2,
+    &.has-3,
+    &.has-4,
+    &.has-5,
+    &.has-6,
+    &.has-7,
+    &.has-8,
+    &.has-9,
+    &.has-10 {
+        display: flex;
+        > * {
+            flex: 1;
+            border-radius: .25rem;
+            margin-bottom: $spacer;
+        }
+    }
+
+    &.has-1 {
+        justify-content: center;
+        > * {
+            max-width: percentage(1/1);
+        }
+    }
+
+    &.has-2 {
+        justify-content: space-between;
+        > * {
+            max-width: percentage(1/2) - 1%;
+        }
+    }
+
+    &.has-3 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(3);
+        }
+    }
+
+    &.has-4 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(4);
+        }
+    }
+
+    &.has-5 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(5);
+        }
+    }
+
+    &.has-6 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(6);
+        }
+    }
+
+    &.has-7 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(7);
+        }
+    }
+
+    &.has-8 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(8);
+        }
+    }
+
+    &.has-9 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(9);
+        }
+    }
+
+    &.has-10 {
+        justify-content: flex-start;
+        > * {
+            @include imagesImage(10);
+        }
+    }
+}
+
+
+
+// images with no spaces bewteen
+@mixin imageW($n:1, $off1: 1, $off2: 0.4%) {
+    display: inline-block;
+    max-width: percentage(1 / $n) - percentage(1 / 100);
+    margin-top: 0;
+    margin-right: percentage($n / ($n - $off1) / 100) - $off2;
+    margin-bottom: $spacer;
+    margin-left: 0;
+    border-radius: .25rem;
+    @if $n == 1 {
+        max-width: percentage(1);
+        margin-right: 0;
+    } @else {
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.image-w-1 {
+    @include imageW(1);
+}
+
+.image-w-2 {
+    @include imageW(2);
+}
+
+.image-w-3 {
+    @include imageW(3);
+}
+.image-w-4 {
+    @include imageW(4);
+}
+.image-w-5 {
+    @include imageW(5);
+}
+.image-w-6 {
+    @include imageW(6);
+}
+.image-w-7 {
+    @include imageW(7);
+}
+.image-w-8 {
+    @include imageW(8);
+}
+.image-w-9 {
+    @include imageW(9);
+}
+.image-w-10 {
+    @include imageW(10);
+}

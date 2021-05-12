@@ -1,0 +1,14 @@
+.contact-full {
+    a {
+
+    }
+}
+
+///////////////
+// in footer //
+///////////////
+.contact-full.in-footer {
+    a {
+        @include link-in-footer;
+    }
+}

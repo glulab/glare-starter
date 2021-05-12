@@ -1,0 +1,27 @@
+////////////////////////////
+// navbar-brand max-width //
+////////////////////////////
+.navbar-brand {
+    max-width: 30%;
+}
+
+@include media-breakpoint-up(xxl) {
+    .navbar-brand {
+        max-width: none;
+    }
+}
+
+//////////////////////////////
+// navbar-brand left margin //
+//////////////////////////////
+.navbar-brand {
+    margin-left: 0;
+
+    @include media-breakpoint-up(sm) {
+        margin-left: $navbar-padding-x;
+    }
+
+    @include media-breakpoint-desktop() {
+       margin-left: 0;
+    }
+}

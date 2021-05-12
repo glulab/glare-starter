@@ -69,7 +69,7 @@ class CategoryConfig extends CrudConfig
             $table->col('TYTUŁ')->value('{title}')->sortBy('title')->center();
             $table->col('URL')->value('{slug}')->sortBy('slug')->center()->class('small text-secondary');
             $table->col('POSTY')->value('{pages_count}')->sortBy('pages_count')->center();
-            $table->col('TYP')->value('type', \Facades\Lit\Support\LitCategoryHelper::typeSelectOptions())->sortBy('type')->center()->class('small');
+            $table->col('TYP')->value('type', \Facades\Lit\Support\Helpers\LitCategoryHelper::typeSelectOptions())->sortBy('type')->center()->class('small');
             $table->toggle('active')->label('AKTYWNY')->routePrefix($this->routePrefix())->sortBy('active');
 
         })
@@ -106,31 +106,31 @@ class CategoryConfig extends CrudConfig
 
         $page->card(function($form) {
 
-            $form->select('type')->title('TYP')->options(Category::typeSelectOptions())->hint('Wybierz typ katregorii')->width(1/2);
+            $form->select('type')->title('Typ')->options(Category::typeSelectOptions())->hint('Wybierz typ katregorii')->width(1/2);
             $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/2);
 
-        })->title('Opcje');
+        })->title('OPCJE');
 
         $page->card(function($form) {
 
-            $form->input('title')->title('TYTUŁ')->width(12);
-            $form->input('slug')->title('URL')->width(12);
+            $form->input('title')->title('Tytuł')->width(12);
+            $form->input('slug')->title('Adres URL')->width(12);
 
-            $form->textarea('description')->title('OPIS')->width(12);
-            $form->wysiwyg('text')->title('TREŚĆ')->width(12);
+            $form->textarea('description')->title('Opis')->width(12);
+            $form->wysiwyg('text')->title('Treść')->width(12);
 
-        })->title('Zawartość');
-
-        $page->card(function($form) {
-
-            $form->image('images')->title('FOTO')->firstBig()->maxFiles(150);
-
-        })->title('Foto');
+        })->title('ZAWARTOŚĆ');
 
         $page->card(function($form) {
 
-            $form->input('meta_title')->title('SEO TYTUŁ')->hint('Tytuł SEO pod wyszukiwarki.')->width(12);
-            $form->textarea('meta_description')->title('SEO OPIS')->hint('Opis SEO pod wyszukiwarki.')->width(12);
+            $form->image('images')->title('Foto')->firstBig()->maxFiles(150);
+
+        })->title('FOTO');
+
+        $page->card(function($form) {
+
+            $form->input('meta_title')->title('SEO Tytuł')->hint('Tytuł SEO pod wyszukiwarki.')->width(12);
+            $form->textarea('meta_description')->title('SEO Opis')->hint('Opis SEO pod wyszukiwarki.')->width(12);
 
         })->title('SEO');
 
@@ -147,6 +147,6 @@ class CategoryConfig extends CrudConfig
                 })
             ;
 
-        })->title('Relacje');
+        })->title('RELACJE');
     }
 }

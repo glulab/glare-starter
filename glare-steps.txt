@@ -1,0 +1,153 @@
+#######################################################################################################################
+# :: LARAVEL :: #######################################################################################################
+#######################################################################################################################
+
+# :: CREATE DIRECTORY
+# :: OPEN CONSOLE
+
+composer self-update
+composer global update
+laravel new www
+cd www
+
+composer require doctrine/dbal --dev
+
+
+# :: LARAVEL LANG MANAGER [IT WILL INSTALL LARAVEL LANG]
+composer require andrey-helldar/laravel-lang-publisher --dev		# :: CHECK: composer require andrey-helldar/laravel-lang-publisher --dev
+php artisan lang:add pl												# :: CHECK: https://andrey-helldar.github.io/laravel-lang-publisher/using/add.html
+
+# :: LARAVEL LANG
+composer require laravel-lang/lang									# :: CHECK: https://laravel-lang.github.io/lang/installation/composer.html
+
+# :: LARAVEL DEBUGBAR
+composer require barryvdh/laravel-debugbar --dev
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+
+================================================================================================================================================================================================================================================================================================================================
+# :: FIRST STEP:
+composer self-update; composer global update; laravel new www; cd www; composer require doctrine/dbal --dev; composer require andrey-helldar/laravel-lang-publisher --dev; php artisan lang:add pl; composer require barryvdh/laravel-debugbar --dev; php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider";
+================================================================================================================================================================================================================================================================================================================================
+
+# :: EDIT .env
+# :: CREATE DATABASE
+
+php artisan queue:table; php artisan queue:batches-table; php artisan cache:table; php artisan session:table;
+# :: CHANGE DATES OF MIGRATIONS TO 2019 ?
+# :: 2019_08_20_000000_create_jobs_table.php
+# :: 2019_08_21_000000_create_job_batches_table.php
+# :: 2019_08_22_000000_create_cache_table.php
+# :: 2019_08_23_000000_create_sessions_table.php
+php artisan migrate
+
+# :: COMMIT INIT ?
+
+composer require laravel/ui
+php artisan ui bootstrap --auth
+
+php artisan storage:link
+
+# :: EDIT: .gitignore
+
+*.bak
+*.log
+/public/css
+/public/js
+/public/fonts/
+/public/images/
+/public/mix-manifest.json
+
+/storage/media-library
+/public/_devtools.php
+
+/public/google*.html
+/public/*sitemap*.xml
+
+#######################################################################################################################
+# :: LITSTACK :: ######################################################################################################
+#######################################################################################################################
+
+composer require litstack/litstack
+php artisan lit:install
+??? :: change dates of create_media_table migration to 2020_01_01_000000_create_media_table.php ?
+### :: TRUNCATE `lit_users`
+php artisan lit:admin
+composer require litstack/lang
+
+
+#######################################################################################################################
+# :: GLARE :: #########################################################################################################
+#######################################################################################################################
+
+composer require glulab/glare
+
+### :: if from local directory
+	"require": {
+        "glulab/glare": "^1.0|dev-master",
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "D:/www/dev/packages/glulab/glare",
+            "canonical": false
+        }
+    ]
+
+### :: if from remote directory
+	"require": {
+        "glulab/glare": "^1.0",
+    },
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:glulab/glare.git"
+		}
+	]
+
+composer update
+
+#######################################################################################################################
+# :: NPM :: ###########################################################################################################
+#######################################################################################################################
+
+yarn
+
+yarn add @fortawesome/fontawesome-free
+yarn add @glulab/gl-window-resize-listener
+
+yarn add font-awesome @^4.7.0
+yarn add lightgallery@1.2.21
+yarn add lightslider@^1.1.6
+yarn add slick-carousel
+
+
+#######################################################################################################################
+# :: EDIT webpack.mix.js :: ###########################################################################################
+#######################################################################################################################
+
+const path = require('path');
+
+mix.sourceMaps(false, 'inline-source-map');
+
+mix.copyDirectory('resources/images', 'public/images');
+
+mix.webpackConfig({
+    resolve: {
+        modules: [
+            path.join('D:', 'www', 'dev', 'npm-modules'),
+            path.resolve(__dirname, 'node_modules'),
+            'node_modules',
+        ]
+    }
+});
+
+
+#######################################################################################################################
+# :: COMPARE WITH STARTER :: ##########################################################################################
+#######################################################################################################################
+
+# :: BE CAREFULL TO USE COPY INSTEAD MIRROR FOR SOME FOLDERS
+
+php artisan migrate
+
+# :: IMPORT: glare-starter.sql

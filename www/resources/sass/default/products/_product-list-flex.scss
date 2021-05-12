@@ -1,0 +1,53 @@
+@include media-breakpoint-up(xs) {
+    .product-list {
+        @include flex-wrapper-column;
+        .product-miniature {
+            @include flex-item-one;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .product-list {
+        @include flex-wrapper-row(space-between, flex-start);
+        .product-miniature {
+            @include flex-item-two($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths, 'sm') - $grid-gutter-width);
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .product-list {
+        @include flex-wrapper-row(space-between, flex-start);
+        .product-miniature {
+            @include flex-item-three($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths, 'md') - $grid-gutter-width);
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .product-list {
+        @include flex-wrapper-row(space-between, flex-start);
+        .product-miniature {
+            @include flex-item-four($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths, 'lg') - $grid-gutter-width);
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .product-list {
+        @include flex-wrapper-row(space-between, flex-start);
+        .product-miniature {
+            @include flex-item-four($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths, 'xl') - $grid-gutter-width);
+        }
+    }
+}
+
+@include media-breakpoint-up(xxl) {
+    .product-list {
+        @include flex-wrapper-row(space-between, flex-start);
+        .product-miniature {
+            @include flex-item-four($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths, 'xxl') - $grid-gutter-width);
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.navbar-main {
+
+    @include media-breakpoint-up(xs) {
+
+        // .dropdown.show,
+        .dropdown {
+
+            .dropdown-toggle {
+
+            }
+
+            .dropdown-menu {
+
+                .dropdown-item {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    font-size: 1.25rem;
+                }
+
+                .dropdown-item.active {
+
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-desktop() {
+
+        // .dropdown.show,
+        .dropdown {
+
+            .dropdown-toggle {
+
+            }
+
+            .dropdown-menu {
+                background-color: $custom-dropdown-bg;
+                .dropdown-item {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    font-size: 1.25rem;
+                    color: $custom-dropdown-link-color;
+                }
+
+                .dropdown-item:hover,
+                .dropdown-item:active,
+                .dropdown-item.active {
+                    color: $custom-dropdown-link-active-color;
+                }
+            }
+        }
+    }
+}

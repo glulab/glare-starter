@@ -24,7 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('prestaws:sync')->everyFiveMinutes();
 		$schedule->command('queue:work --stop-when-empty --tries=3')->hourlyAt(33);
         $schedule->command('queue:retry all')->hourlyAt(18);
         $schedule->command('queue:flush')->weeklyOn(1, '4:04');

@@ -51,13 +51,6 @@ class ContextConfig extends FormConfig
 
         $page->info('Ustawienia Strony');
         $page->card(function ($form) {
-            $form->checkboxes('categories_for_reazlizations')
-                ->title('Kategorie pokazywane na stronie realizacje')
-                ->options(\App\Models\Group::whereActive(true)->whereIn('id_parent', [3, 9])->pluck('name', 'id')->all() ?? [])
-                // ->hint('Wybierz kategorie pokazywane na stronie realizacje.')
-                ->stacked()
-                // ->width(12)
-            ;
 
             $form->input('pagination')->title('Paginacja')->type('number')->hint('Paginacja.');
             // $form->input('context_setting')->title('Context Setting')->hint('Context Setting Hint.');

@@ -1,0 +1,40 @@
+.pagination {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .page-item .page-link {
+        font-size: 1.5rem;
+        font-weight: 900;
+        padding-top: 1.3rem;
+    }
+
+    .page-item .page-link:hover,
+    .page-item .page-link:focus {
+        text-shadow: 0px 0px 1px $black;
+        font-size: 1.5rem;
+        font-weight: 900;
+        padding-top: 1.3rem;
+    }
+
+
+    .page-item.active .page-link {
+        text-shadow: 0px 0px 2px $black;
+        font-size: 2rem;
+        font-weight: 900;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        text-shadow: 0px 0px 2px $black;
+        font-size: 5rem;
+        line-height: 1;
+        font-weight: 900;
+        padding-top: 0;
+        color: $white;
+        &:hover,
+        &:focus {
+            color: $black;
+        }
+    }
+}

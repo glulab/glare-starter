@@ -1,0 +1,14 @@
+@include media-breakpoint-up(xl) {
+
+    .navbar {
+        > .container {
+            position: relative;
+        }
+    }
+
+    .block-contact-links.in-header {
+        position: absolute;
+        top: 0;
+        right: 16px;
+    }
+}

@@ -43,12 +43,22 @@ class PhotoLinkRepeatable extends Repeatable
      */
     public function form(RepeatableForm $form): void
     {
-        $form->boolean('active')->title('AKTYWNY')->hint('Aktywny')->width(1/3);
-        // $form->input('title')->title('TYTUŁ')->placeholder('Tytuł')->hint('Tytuł');
-        // $form->textarea('text')->title('TEKST')->placeholder('Treść')->hint('Treść');
-        $form->image('image')->title('OBRAZ')/*->crop(1612 / 600)*/->hint('Obraz.')->maxFiles(1)/*->expand()*/;
-        $form->input('label')->title('PRZYCISK')->type('text')->placeholder('Tekst na przycisku: Pierwsza liniea | druga linia.')->hint('Tekst na przycisku. Znak | powoduje rozdzielenie linii.');
-        $form->route('route')->collection('site-routes')->title('WYBIERZ STRONĘ')->hint('wybierz stronę w systemie');
-        $form->input('url')->title('URL')->type('text')->placeholder('Adres url')->hint('lub wprowadź adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(12);
+        $form->boolean('active')->title('Aktywny')->hint('Aktywny')->width(1/3);
+
+        $form->image('image')->title('Obraz')->crop(config('site.config.ratios.photo-link'))->hint('Obraz.')->maxFiles(1);
+
+        if (config('site.options.photo-link-has-title')) {
+            $form->textarea('title')->title('Tytuł')->placeholder('Tytuł')->hint('Tytuł.');
+        }
+
+        if (config('site.options.photo-link-has-text')) {
+            $form->textarea('text')->title('Tekst')->placeholder('Treść')->hint('Treść');
+        }
+
+        if (config('site.options.photo-link-has-button')) {
+            $form->textarea('label')->title('Przycisk')->placeholder('Tekst na przycisku')->hint('Tekst na przycisku.');
+            $form->route('route')->collection('site-routes')->title('Wybierz stronę')->hint('wybierz stronę w systemie');
+            $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(12);
+        }
     }
 }

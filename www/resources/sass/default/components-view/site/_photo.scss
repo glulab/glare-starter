@@ -1,0 +1,23 @@
+.photos {
+    .photo {
+
+        .photo-frame {
+            position: relative;
+            display: block;
+        }
+
+        .photo-img {
+            width: 100%;
+            border-radius: .25rem;
+        }
+
+        .photo-title {
+            position: absolute;
+            padding: .5rem;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba($white, .8);
+            text-align: center;
+        }
+    }
+}

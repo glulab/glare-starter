@@ -1,0 +1,8 @@
+@mixin page-title {
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: $custom-page-title-color;
+}

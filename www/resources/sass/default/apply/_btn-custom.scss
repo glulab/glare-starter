@@ -1,0 +1,19 @@
+@mixin btn-custom() {
+    padding: 0.5rem 2rem;
+    border: 1px solid $input-border-color;
+    background-color: $white;
+    color: $black;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all .25s;
+    border-radius: $btn-border-radius;
+
+    &:hover,
+    &:focus {
+        background-color: $input-border-color;
+        color: $white;
+        box-shadow: none;
+        outline: none;
+    }
+}

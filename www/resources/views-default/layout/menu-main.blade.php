@@ -18,7 +18,7 @@
 @endphp
 
 @if(isset($menuMain) && $menuMain->count() > 0)
-<ul class="navbar-nav navbar-main ml-auto mr-0 {!! !empty($class) ? $class : '' !!}">
+<ul class="navbar-nav navbar-main {!! !empty($class) ? $class : '' !!}">
 @foreach($menuMain as $keyLevel1 => $item1)
     {{-- @if ((bool) $item1->active === false) @continue @endif --}}
 

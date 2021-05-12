@@ -1,0 +1,10 @@
+.navbar-collapse {
+    overflow-y: auto;
+    @include scrollbars(10px, lighten($black, 50%), lighten($black, 70%));
+}
+
+@include media-breakpoint-up(xl) {
+    .navbar-collapse {
+        overflow-y: hidden;
+    }
+}

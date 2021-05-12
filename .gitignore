@@ -29,6 +29,9 @@
 !/www/*/*/*/*/*/*/
 /www/*/*/*/*/*/*/*
 
+!/www/*/*/*/*/*/*/*/
+/www/*/*/*/*/*/*/*/*/
+
 # unignore www root files
 !/www/*.dev
 !/www/dev.artisan.txt
@@ -121,7 +124,7 @@
 !/www/lit/app/Config/Form/Settings/SettingsConfig.php
 !/www/lit/app/Config/Form/Settings/SiteConfig.php
 
-!/www/lit/app/Config/Form/Site/*
+#!/www/lit/app/Config/Form/Site/SiteConfig.php
 #!/www/lit/app/Config/Form/Theme/ThemeConfig.php
 
 # unignore lit controllers

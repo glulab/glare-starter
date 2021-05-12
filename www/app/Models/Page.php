@@ -36,7 +36,7 @@ class Page extends Model implements HasMediaContract
      *
      * @var array
      */
-    protected $appends = ['image', 'images', 'url'];
+    protected $appends = ['frontimage', 'backimage', 'image', 'images', 'url'];
 
     /**
      * The relationships that should always be loaded.
@@ -71,6 +71,47 @@ class Page extends Model implements HasMediaContract
     }
 
     /**
+     * Backimage attribute.
+     *
+     * @return \Lit\Crud\Models\Media
+     */
+    public function getBackimageAttribute()
+    {
+        if($this->hasMedia('banners')) {
+            return $this->getMedia('banners')->first();
+        }
+        if($this->hasMedia('images')) {
+            return $this->getMedia('images')->first();
+        }
+    }
+
+    /**
+     * Frontimage attribute.
+     *
+     * @return \Lit\Crud\Models\Media
+     */
+    public function getFrontimageAttribute()
+    {
+        if($this->hasMedia('banners')) {
+            return $this->getMedia('banners')->first();
+        }
+        // if($this->hasMedia('images')) {
+        //     return $this->getMedia('images')->first();
+        // }
+        return null;
+    }
+
+    /**
+     * Seoimage attribute.
+     *
+     * @return \Lit\Crud\Models\Media
+     */
+    public function getSeoimageAttribute()
+    {
+        return optional($this->frontimage)->getUrl('preview');
+    }
+
+    /**
      * Image attribute.
      *
      * @return \Lit\Crud\Models\Media
@@ -88,6 +129,26 @@ class Page extends Model implements HasMediaContract
     public function getImagesAttribute()
     {
         return $this->getMedia('images')/*->all()*/;
+    }
+
+    /**
+     * Banner attribute.
+     *
+     * @return \Lit\Crud\Models\Media
+     */
+    public function getBannerAttribute()
+    {
+        return $this->getMedia('banners')->first();
+    }
+
+    /**
+     * Banners attribute.
+     *
+     * @return \Lit\Crud\Models\Media
+     */
+    public function getBannersAttribute()
+    {
+        return $this->getMedia('banners')/*->all()*/;
     }
 
     /**
@@ -152,6 +213,24 @@ class Page extends Model implements HasMediaContract
                 $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
             })
         ;
+        $this->addMediaCollection('banners')
+            ->withResponsiveImages()
+            ->registerMediaConversions(function (SpatieMedia $media) {
+                $this->setConversionsKey('none'); // override default lit conversions
+                $this->addMediaConversion('miniature')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.miniature.0'), config('lit.mediaconversions.default.miniature.1'))->nonQueued();
+                $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
+            })
+        ;
+    }
+
+    /**
+     * [content_blocks description]
+     *
+     * @return [type] [description]
+     */
+    public function content_blocks()
+    {
+        return $this->repeatables('content_blocks');
     }
 
     /**
@@ -165,21 +244,21 @@ class Page extends Model implements HasMediaContract
     }
 
     /**
-     * [groups description]
+     * [galleries description]
      *
      * @return [type] [description]
      */
-    public function groups()
+    public function galleries()
     {
         return $this->belongsToMany(
-            $related = \App\Models\Group::class,        // $instance = $this->newRelatedInstance($related);
-            $table = 'page_group',                      // $this->joiningTable($related, $instance)
+            $related = \App\Models\Gallery::class,      // $instance = $this->newRelatedInstance($related);
+            $table = 'page_gallery',                    // $this->joiningTable($related, $instance)
             $foreignPivotKey = 'page_id',               // $this->getForeignKey() tablename_primarykey
-            $relatedPivotKey = 'group_id',              // $instance->getForeignKey() tablename_primarykey
+            $relatedPivotKey = 'gallery_id',            // $instance->getForeignKey() tablename_primarykey
             $parentKey = 'id',                          // $this->getKeyName()
             $relatedKey = 'id',                         // $instance->getKeyName()
-            $relation = 'groups'                        // no need for debug_backtrace to guess relation name
-        );
+            $relation = 'galleries'                     // no need for debug_backtrace to guess relation name
+        )->withPivot('position')->orderBy('position');
     }
 
     /**

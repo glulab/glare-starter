@@ -2,7 +2,7 @@
     "devDependencies": {
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.14.0",
+        "@fortawesome/fontawesome-free": "^5.15.3",
         "@glulab/gl-window-resize-listener": "^1.0.4",
         "alpinejs": "^2.8.2",
         "font-awesome": "^4.7.0",

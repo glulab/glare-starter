@@ -1,0 +1,9 @@
+.contact-form {
+    .contact-form-title {
+        @include item-title;
+    }
+
+    textarea.form-control {
+        height: $textarea-height;
+    }
+}

@@ -1,0 +1,12 @@
+@mixin link-in-header {
+    text-decoration: none;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $body-color;
+    // .active &,
+    &:hover,
+    &:focus {
+        color: $link-color;
+    }
+}

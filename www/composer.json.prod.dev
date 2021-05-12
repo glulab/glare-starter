@@ -1,5 +1,5 @@
 {
     "require": {
-        "glulab/glare": "~1.0.0"
+        "glulab/glare": "^1.0"
     }
 }

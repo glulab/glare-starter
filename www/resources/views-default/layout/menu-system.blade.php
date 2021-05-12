@@ -1,3 +1,6 @@
+@php
+    if (!config('site.services.menu-system')) return;
+@endphp
 @if(isset($menu_system) && $menu_system->menu_system->count() > 0)
 <ul class="navbar-nav menu-system {!! $class ?? '' !!}">
 @foreach($menu_system->menu_system as $keyLevel1 => $item1)

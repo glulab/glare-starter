@@ -2,13 +2,15 @@
 
 namespace Lit\Config\Crud;
 
+use App\Models\Page;
 use Ignite\Crud\CrudShow;
 use Ignite\Crud\CrudIndex;
-use Ignite\Crud\Config\CrudConfig;
 use Illuminate\Support\Str;
-
-use App\Models\Page;
+use Ignite\Crud\Config\CrudConfig;
 use Lit\Http\Controllers\Crud\PageController;
+use Facades\Lit\Support\Config\LitConfigShow;
+use Facades\Lit\Support\Helpers\LitPageHelper;
+use Facades\Lit\Support\Config\LitConfigIndexTable;
 
 class PageSystemConfig extends CrudConfig
 {
@@ -64,23 +66,9 @@ class PageSystemConfig extends CrudConfig
 
         $page->table(function ($table) {
 
-            $table->col('ID')->value('{id}')->sortBy('id')->right()->small();
-            $table->image('FOTO')->src('{images.0.conversion_urls.thumb}')->maxWidth('50px')->maxHeight('50px');
-            $table->col('TYTUŁ')->value('{title}')->sortBy('title')->center();
-            $table->col('URL')->value('{slug}')->sortBy('slug')->center()->class('small text-secondary');
+            LitConfigIndexTable::pageBase($this, $table, '{backimage.conversion_urls.thumb}');
 
-
-
-            $table->toggle('sitemap')->label('SITEMAP')->routePrefix($this->routePrefix())->sortBy('sitemap');
-            $table->toggle('active')->label('AKTYWNY')->routePrefix($this->routePrefix())->sortBy('active');
-
-
-
-
-
-
-
-
+            LitConfigIndexTable::pageToggles($this, $table);
         })
 
         ->query(function($query) {
@@ -116,6 +104,8 @@ class PageSystemConfig extends CrudConfig
 
         $page->view('lit::forms.hide-near-items');
 
+        LitConfigShow::preview($page);
+
         $page
             ->info('Strona systemowa')
             ->text('Edycja')
@@ -124,40 +114,23 @@ class PageSystemConfig extends CrudConfig
         $page->card(function($form) {
 
 
-            // $form->input('position')->title('POZYCJA')->hint('Podczas tworzenia pozostaw puste')->width(1/3);
-            $form->boolean('active')->title('AKTYWNA')->hint('Aktywna')->width(1/2);
+            // $form->input('position')->title('Pozycja')->hint('Podczas tworzenia pozostaw puste')->width(1/3);
+            $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/2);
 
-        })->title('Opcje');
+        })->title('OPCJE');
 
-        $page->card(function($form) {
+        LitConfigShow::pageContent($page);
 
-            $form->input('title')->title('TYTUŁ')->creationRules(['required'])->width(12);
-            $form->input('slug')->title('URL')->width(12);
+        LitConfigShow::images($page);
 
-            $form->textarea('description')->title('OPIS')->width(12);
-            $form->wysiwyg('text')->title('TREŚĆ')->width(12);
+        LitConfigShow::blockPhotoLinks($page);
 
-        })->title('Zawartość');
+        LitConfigShow::relationGalleries($page);
 
-        $page->card(function($form) {
+        LitConfigShow::banners($page);
 
-            $form->image('images')->title('FOTO')/*->expand()*//*->firstBig()*/->maxFiles(150);
+        LitConfigShow::seo($page);
 
-        })->title('Foto');
-
-        $page->card(function($form) {
-
-            $form->input('meta_title')->title('SEO TYTUŁ')->hint('Tytuł SEO pod wyszukiwarki.')->width(12);
-            $form->textarea('meta_description')->title('SEO OPIS')->hint('Opis SEO pod wyszukiwarki.')->width(12);
-
-        })->title('SEO');
-
-        $page->card(function($form) {
-
-            $form->boolean('sitemap')->title('SITEMAP')->hint('Sitemap')->width(1/5);
-            $form->select('sitemap_changefreq')->title('CZĘSTOTLIWOŚĆ')->options(\Facades\Lit\Support\LitSitemapHelper::changefreq())->hint('Wybierz częstotliwość modyfikacji')->width(2/5);
-            $form->select('sitemap_priority')->title('PRIORYTET')->options(\Facades\Lit\Support\LitSitemapHelper::priority())->hint('Wybierz priorytet')->width(2/5);
-
-        })->title('Sitemap');
+        LitConfigShow::sitemap($page);
     }
 }

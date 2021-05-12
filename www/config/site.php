@@ -11,7 +11,7 @@ return [
 
     'remote-footer' => [
         'enabled' => env('SITE_REMOTE_FOOTER_ENABLED', false),
-        'cache' => env('SITE_REMOTE_FOOTER_CACHE', false),
+        'cache' => env('SITE_REMOTE_FOOTER_CACHE', true),
         'api' => env('SITE_REMOTE_FOOTER_API'),
         'basedir' => storage_path('app/public/remote-footer'),
         'filename' => 'footer.inc',
@@ -52,12 +52,10 @@ return [
     'sitemap-generators' => [
         \Glare\Support\Sitemap\HomeSitemap::class,
         \Glare\Support\Sitemap\PageSitemap::class,
-        \App\Support\Sitemap\ProductSitemap::class,
     ],
 
-    'litstack' => [
+    'config' => [
         'site-routes' => [
-
             'page' => [
                 'db-table' => 'pages',
                 'types-translations' => 'model-page',
@@ -85,6 +83,71 @@ return [
                 ]
             ],
         ],
+
+        'select-options' => [
+            'page-routes' => [
+                'contact',
+                'gallery',
+                // 'offer',
+            ],
+            'section-locations' => [
+                'top',
+                'main',
+                // 'column',
+                'bottom',
+            ],
+            'section-types' => [
+                'home',
+            ],
+        ],
+
+        'ratios' => [ // 0 to turn off
+            'home-banner' => 1920 / 1100,
+            'home-slider' => 1920 / 650,
+            'page-banner' => 1920 / 650,
+            'photo-link' => 375 / 573,
+        ],
     ],
 
+    'services' => [
+        'catalog' => false,
+        'gallery' => true,
+        'offer-controller' => false,
+        'offer-page' => true,
+
+        'settings-context' => false,
+
+        'contact-form' => true,
+
+        'home-video' => false,
+        'home-banner' => true,
+        'home-slider' => false,
+
+        'menu-lang' => true,
+        'menu-system' => false,
+        'menu-footer' => false,
+    ],
+
+    'options' => [
+        'home-video-has-responsive-sources' => false,
+        'home-video-has-title' => false,
+        'home-video-has-button' => true,
+
+        'home-banner-has-title' => false,
+        'home-banner-has-button' => true,
+
+        'home-slider-has-button' => true,
+
+        'photo-link-has-title' => true,
+        'photo-link-has-text' => true,
+        'photo-link-has-button' => true,
+
+        'contact-form-has-split-fullname' => false,
+
+        'contact-link-has-faclass' => false,
+        'contact-link-has-filename' => false,
+
+        'map-has-embed-code' => false,
+        'map-has-url' => true,
+    ],
 ];

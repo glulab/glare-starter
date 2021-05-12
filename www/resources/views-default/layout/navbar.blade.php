@@ -3,9 +3,13 @@
 
         @include('layout.navbar-brand')
 
-        @include('layout.menu-lang')
+        @include('layout.menu-lang', ['class' => 'in-header ml-0 mr-auto'])
 
-        @include('layout.block-contact-links', ['class' => 'in-header navbar-nav d-none d-lg-flex ml-0 mr-auto'])
+        <div class="navbar-top d-none d-xl-flex">
+            @include('layout.block-contact-basic', ['class' => 'in-header navbar-nav ml-0 mr-auto d-flex align-content-center'])
+            {{-- @include('layout.block-contact-links', ['class' => 'in-header navbar-nav ml-0 mr-auto']) --}}
+            {{-- @include('layout.menu-lang', ['class' => 'ml-0 mr-0']) --}}
+        </div>
 
         @include('layout.block-links', ['class' => 'in-header navbar-nav d-none d-xl-flex'])
 
@@ -23,11 +27,12 @@
             <div class="collapse navbar-collapse" id="menu-main">
 
                 <!-- Left Side Of Navbar -->
-                @include('layout.menu-main')
+                @include('layout.menu-main', ['class' => 'ml-auto mr-0'])
 
                 @include('layout.block-links', ['class' => 'in-header navbar-nav d-flex d-xl-none'])
 
-                @include('layout.block-contact-links', ['class' => 'in-header navbar-nav d-flex d-lg-none'])
+                @include('layout.block-contact-basic', ['class' => 'in-header navbar-nav d-flex d-xl-none'])
+                {{-- @include('layout.block-contact-links', ['class' => 'in-header navbar-nav d-flex d-lg-none']) --}}
 
                 {{-- @include('layout.menu-top') --}}
 

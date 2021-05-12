@@ -1,0 +1,14 @@
+@include media-breakpoint-up(xl) {
+
+    .navbar {
+        > .container {
+            position: relative;
+        }
+    }
+
+    .navbar-top {
+        position: absolute;
+        top: 0;
+        right: 16px;
+    }
+}

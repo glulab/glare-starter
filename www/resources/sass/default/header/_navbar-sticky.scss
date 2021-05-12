@@ -1,0 +1,65 @@
+body {
+    header .navbar  {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+}
+
+body.no-index.is-sticky {
+
+    @include media-breakpoint-up(xs) {
+        padding-top: 56px;
+
+        header .navbar  {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+
+        padding-top: 0;
+
+        header .navbar  {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+    }
+}
+
+body.index.is-sticky {
+
+    @include media-breakpoint-up(xs) {
+        padding-top: 56px;
+
+        header .navbar  {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+
+        padding-top: 0;
+
+        header .navbar  {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+    }
+}

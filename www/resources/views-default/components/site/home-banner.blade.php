@@ -1,27 +1,33 @@
 <div class="home-banner">
-    {{-- <img class="home-banner-image" src="{!! $homeBanner->image->url !!}" alt="{!! $homeBanner->title !!}"> --}}
-
     @if($homeBanner->hasMedia('image'))
-        {!! $homeBanner->getFirstMedia('image')()->attributes(['class' => 'home-banner-image w-100'])->lazy() !!}
+        @php
+            $image = $homeBanner->getFirstMedia('image');
+            $attrs = [];
+            $attrs['class'] = 'home-banner-image w-100';
+            if (!is_null($image->getCustomProperty('crop.width'))) {
+                $attrs['width'] = $image->getCustomProperty('crop.width');
+            }
+            if (!is_null($image->getCustomProperty('crop.height'))) {
+                $attrs['height'] = $image->getCustomProperty('crop.height');
+            }
+        @endphp
+        {!! $image()->attributes($attrs)->lazy() !!}
     @else
-        <img class="product-img empty-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <img class="empty-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
     @endif
 
     <div class="home-banner-body">
         <div class="container">
             <div class="home-banner-inner">
-                @if (isset($homeBanner->lines))
-                    <div class="home-banner-lines">
-                        @foreach($homeBanner->lines as $key => $line)
-                            <div class="home-banner-line is-{!! $key + 1 !!}">{!! $line !!}</div>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="home-banner-text">{{ $homeBanner->text }}</div>
+                @if(config('site.options.home-banner-has-title') && !empty($homeBanner->title))
+                    <div class="home-banner-title">{{ $homeBanner->title }}</div>
                 @endif
 
-                {{-- <div class="home-banner-text">{{ $homeBanner->text }}</div> --}}
-                {{-- <a class="btn btn-primary banner-button" href="{!! $homeBanner->text !!}" class="btn btn-primary">{!! $homeBanner->label !!}</a> --}}
+                <x-site.line-splitter :text="$homeBanner->text ?? ''" class="home-banner-text"/>
+
+                @if (config('site.options.home-banner-has-button') && !empty($homeBanner->label))
+                    <a class="btn btn-custom home-banner-button" href="{!! $homeBanner->href !!}">{!! $homeBanner->label !!}</a>
+                @endif
 
             </div>
         </div>

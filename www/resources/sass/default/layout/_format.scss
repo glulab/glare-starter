@@ -1,0 +1,92 @@
+.format  {
+    margin-bottom: $spacer * 4;
+
+    p {
+        text-align: inherit;
+    }
+
+    p + h1,
+    p + h2,
+    p + h3,
+    p + h4,
+    p + h5,
+    p + h6 {
+        margin-top: 0;
+    }
+
+    .format-block,
+    .format-line {
+        margin-top: 0;
+        margin-bottom: $paragraph-margin-bottom;
+        * {
+            display: inline !important;
+            font-size: 1rem !important;
+            line-height: $line-height-base !important;
+            background-color: transparent !important;
+            font-weight: 400 !important;
+            text-transform: none !important;
+            margin-bottom: $paragraph-margin-bottom !important;
+            margin-left: 0; //0.25rem;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    h1,
+    .h1 {
+        font-size: 1.625rem;
+        line-height: 1.2;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    h2,
+    .h2 {
+        font-size: 1.375rem;
+        line-height: 1.2;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    h3,
+    .h3 {
+        font-size: 1.25rem;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: none;
+        margin-bottom: 1rem;
+    }
+
+    h4,
+    .h4 {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: none;
+        margin-bottom: 0;
+    }
+
+    h5,
+    .h5 {
+        font-size: 1rem;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: none;
+        margin-bottom: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        strong {
+            font-weight: inherit;
+        }
+    }
+
+}

@@ -1,0 +1,23 @@
+.block-contact {
+    .nav-item {
+        .nav-link {
+            @include link-in-footer;
+        }
+    }
+}
+
+
+///////////////
+// in header //
+///////////////
+.block-contact.in-header {
+
+    > .nav-item {
+        margin-left: .25rem;
+        margin-right: .25rem;
+    }
+
+    .nav-link {
+        @include link-in-header;
+    }
+}

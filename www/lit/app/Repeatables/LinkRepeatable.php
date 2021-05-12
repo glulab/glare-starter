@@ -45,7 +45,7 @@ class LinkRepeatable extends Repeatable
     public function form(RepeatableForm $form): void
     {
         $form->input('name')->title('Nazwa')->hint('Prosta nazwa (bez spacji).');
-        $form->input('class')->title('Klasa')->hint('Klasa ikony font awesome.');
+        $form->input('class')->title('Klasa')->hint('Klasa ikony font awesome (zawartość atrybutu class). <a target="_blank" href="https://fontawesome.com/icons?d=gallery&m=free">[fontawesome]</a>');
         $form->input('label')->title('Etykieta');
         $form->input('url')->title('Url');
         $form->boolean('active')->title('Aktywny');

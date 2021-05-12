@@ -1,3 +1,6 @@
+@php
+    if (!config('site.services.menu-footer')) return;
+@endphp
 @if(isset($menu_footer) && $menu_footer->menu_footer->count() > 0)
 <ul class="navbar-nav menu-footer {!! $class ?? '' !!}">
 @foreach($menu_footer->menu_footer as $keyLevel1 => $item1)

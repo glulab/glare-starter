@@ -5,13 +5,13 @@
         <div class="row my-5">
 
             @if(!empty($site->contact_form_title) || !empty($site->contact_form_text))
-            <div class="col-12 col-xl-3 pb-3">
-                @if (!empty($site->contact_form_title))<div class="section-title">{{ $site->contact_form_title }}</div>@endif
-                @if (!empty($site->contact_form_text))<div class="format">{!! $site->contact_form_text !!}</div>@endif
+            <div class="col-12 col-xl-4 pb-3 contact-form-description">
+                @if (!empty($site->contact_form_title))<div class="contact-form-title">{{ $site->contact_form_title }}</div>@endif
+                @if (!empty($site->contact_form_text))<div class="contact-form-text format">{!! $site->contact_form_text !!}</div>@endif
             </div>
             @endif
-            <div class="col-12 col-xl-9">
-                <div class="contact-form">
+            <div class="col-12 col-xl-8">
+                <div class="contact-form-form">
 
                     <form class="js-contact-form d-none" action="{!! route('site.contact-form') !!}" method="POST">
 
@@ -19,24 +19,29 @@
                         @method('POST')
 
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-4">
+                            <div class="col-12 col-md-6">
 
-                                {{-- imie --}}
-                                <div class="form-group">
-                                    {{-- <label for="contact-firstname" aria-label="Imię">Imię</label> --}}
-                                    <input type="text" name="contact[firstname]" class="form-control" id="contact-firstname" placeholder="Imię" aria-label="Imię" aria-describedby="contact-firstname-help">
-                                    {{-- <small id="contact-firstname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
-                                </div>
-                                {{-- nazwisko --}}
-                                <div class="form-group">
-                                    {{-- <label for="contact-lastname" aria-label="Imię">Nazwisko</label> --}}
-                                    <input type="text" name="contact[lastname]" class="form-control" id="contact-lastname" placeholder="Nazwisko" aria-label="Nazwisko" aria-describedby="contact-lastname-help">
-                                    {{-- <small id="contact-lastname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
-                                </div>
-
-                            </div>
-
-                            <div class="col-12 col-md-6 col-lg-4">
+                                @if(config('site.options.contact-form-has-split-fullname'))
+                                    {{-- imie --}}
+                                    <div class="form-group">
+                                        {{-- <label for="contact-firstname" aria-label="Imię">Imię</label> --}}
+                                        <input type="text" name="contact[firstname]" class="form-control" id="contact-firstname" placeholder="Imię" aria-label="Imię" aria-describedby="contact-firstname-help">
+                                        {{-- <small id="contact-firstname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                    </div>
+                                    {{-- nazwisko --}}
+                                    <div class="form-group">
+                                        {{-- <label for="contact-lastname" aria-label="Imię">Nazwisko</label> --}}
+                                        <input type="text" name="contact[lastname]" class="form-control" id="contact-lastname" placeholder="Nazwisko" aria-label="Nazwisko" aria-describedby="contact-lastname-help">
+                                        {{-- <small id="contact-lastname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                    </div>
+                                @else
+                                    {{-- nazwa --}}
+                                    <div class="form-group">
+                                        {{-- <label for="contact-fullname" aria-label="Imię">Imię</label> --}}
+                                        <input type="text" name="contact[fullname]" class="form-control" id="contact-fullname" placeholder="Imię i nazwisko" aria-label="Imię i nazwisko" aria-describedby="contact-fullname-help">
+                                        {{-- <small id="contact-fullname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                    </div>
+                                @endif
 
                                 {{-- telefon --}}
                                 <div class="form-group">
@@ -53,7 +58,7 @@
 
                             </div>
 
-                            <div class="col-12 col-md-12 col-lg-4">
+                            <div class="col-12 col-md-6">
 
                                 {{-- tresc --}}
                                 <div class="form-group">
@@ -64,14 +69,14 @@
 
                             </div>
 
-                            <div class="col-12 col-md-12 col-lg-12">
+                            <div class="col-12 col-md-12">
                                 <div class="form-group custom-control custom-checkbox">
                                     <input name="contact[consent]" value="1" type="checkbox" class="form-control custom-control-input" id="contact-consent">
                                     <label class="custom-control-label" for="contact-consent">{!! \ViewHelper::parse($settings->contact_form_consent) !!}</label>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-12 col-lg-12">
+                            <div class="col-12 col-md-12">
                                 <button type="submit" class="btn-submit btn btn-custom text-nowrap ml-auto mr-0 d-block">{{-- <i class="far fa-paper-plane"></i>  --}}Wyślij</button>
                             </div>
 
@@ -107,6 +112,7 @@
                 var url = $('.js-contact-form').prop('action');
                 window.axios.post(url, {
                     'contact': {
+                        'fullname': $('[name="contact[fullname]"]').val(),
                         'firstname': $('[name="contact[firstname]"]').val(),
                         'lastname': $('[name="contact[lastname]"]').val(),
                         'phone': $('[name="contact[phone]"]').val(),

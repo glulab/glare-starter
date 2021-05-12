@@ -29,8 +29,8 @@ class HomeController extends Controller
         $sections = $sections->groupBy('location');
 
         return view('home.home')
-            ->with('homeSeo', Form::load('site', 'home_seo'))
-            ->with('homeContent', Form::load('site', 'home_content'))
+            ->with('homeSeo', Form::load('home', 'home_seo'))
+            ->with('homeContent', Form::load('home', 'home_content'))
             ->with('sections', $sections)
         ;
     }

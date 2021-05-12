@@ -62,16 +62,16 @@ class SettingsConfig extends FormConfig
         $page->info('Informacje kontaktowe');
         $page->card(function ($form) {
             $form->input('site_email')->title('E-mail');
-            $form->input('site_phone')->title('Telefon');
-            $form->input('site_phone_1')->title('Telefon Stacjonarny');
+            $form->input('site_telephone')->title('Telefon');
+            $form->input('site_telephone_1')->title('Telefon Stacjonarny');
             $form->textarea('site_contact_info')->title('Dodatkowe informacje kontaktowe');
         });
 
         $page->info('Informacje adresowe');
         $page->card(function ($form) {
-            $form->input('site_address_name')->title('Adres: Nazwa');
+            $form->textarea('site_address_name')->title('Adres: Nazwa');
             $form->textarea('site_address_description')->title('Adres: Opis');
-            $form->input('site_address_full')->title('Adres: Ulica, nr, miasto');
+            // $form->input('site_address_full')->title('Adres: Ulica, nr, miasto');
             $form->input('site_address_street')->title('Adres: Ulica i nr');
             $form->input('site_address_code')->title('Adres: Kod');
             $form->input('site_address_city')->title('Adres: Miasto');
@@ -94,11 +94,7 @@ class SettingsConfig extends FormConfig
             $form->textarea('site_copyrights_info')->title('Copyrights: informacje');
         });
 
-        $page->info('Mapa');
-        $page->card(function ($form) {
-            $form->textarea('map_iframe_src')->title('Mapa: iframe src');
-        });
-
+        if (config('site.services.contact-form')) :
         $page->info('Formularz Kontaktowy');
         $page->card(function ($form) {
             $form->input('contact_form_emails')->title('Adresy e-mail do formularza kontaktowego')->hint('Oddzielone przecinkami adresy e-mail, na które majš być sysyłane wiadomości z formularza kontaktowego.');
@@ -108,34 +104,7 @@ class SettingsConfig extends FormConfig
             $form->input('contact_form_errors')->title('Formularz Kontaktowy: Wiadomość przy błędach');
             $form->textarea('contact_form_consent')->title('Warunek')->hint('Treść warunku do zaakceptowania.');
         });
-
-        $page->info('<div class="d-flex justify-content-between"><div>Linki kontaktowe</div><div>[<a target="_blank" href="https://fontawesome.com/icons?d=gallery&m=free">fontawesome</a>]</div></div>');
-        $page->card(function ($form) {
-            $form->block('contact_links')->title('Linki Kontaktowe')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\LinkRepeatable::class)->button(__('Add')); // ->view('lit.blocks.contact_links', ['key' => 'class']);
-            });
-            /*
-            {!! Helper::getFromCollection($settings->contact_links, 'twitter', 'class', 'url') !!}
-            {!! $settings->contact_links->count() !!}
-            {!! $settings->contact_links->all() !!}
-            {!! $settings->contact_links->pluck('url', 'class')->get('twitter') !!}
-            {!! $settings->contact_links->pluck('url', 'class')->all() !!}
-             */
-        });
-
-        $page->info('<div class="d-flex justify-content-between"><div>Linki</div><div>[<a target="_blank" href="https://fontawesome.com/icons?d=gallery&m=free">fontawesome</a>]</div></div>');
-        $page->card(function ($form) {
-            $form->block('links')->title('Linki')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\LinkRepeatable::class)->button(__('Add')); // ->view('lit.blocks.links', ['key' => 'class']);
-            });
-            /*
-            {!! Helper::getFromCollection($settings->links, 'twitter', 'class', 'url') !!}
-            {!! $settings->links->count() !!}
-            {!! $settings->links->all() !!}
-            {!! $settings->links->pluck('url', 'class')->get('twitter') !!}
-            {!! $settings->links->pluck('url', 'class')->all() !!}
-             */
-        });
+        endif;
 
         $page->info('Header Extra Meta: Extra Tagi Meta.');
         $page->card(function ($form) {

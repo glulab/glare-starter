@@ -2,13 +2,15 @@
 
 namespace Lit\Config\Crud;
 
+use App\Models\Section;
 use Ignite\Crud\CrudShow;
 use Ignite\Crud\CrudIndex;
-use Ignite\Crud\Config\CrudConfig;
 use Illuminate\Support\Str;
-
-use App\Models\Section;
+use Ignite\Crud\Config\CrudConfig;
+use Facades\Lit\Support\Config\LitConfigShow;
 use Lit\Http\Controllers\Crud\SectionController;
+use Facades\Lit\Support\Helpers\LitSectionHelper;
+use Facades\Lit\Support\Config\LitConfigIndexTable;
 
 class SectionConfig extends CrudConfig
 {
@@ -64,23 +66,16 @@ class SectionConfig extends CrudConfig
 
         $page->table(function ($table) {
 
-            $table->col('ID')->value('{id}')->sortBy('id')->right()->small();
-            // $table->image('FOTO')->src('{images.0.conversion_urls.thumb}')->maxWidth('50px')->maxHeight('50px');
-            $table->col('TYTUŁ')->value('{title}')->sortBy('title')->center();
+            LitConfigIndexTable::base($this, $table, '' /*'{images.0.conversion_urls.thumb}'*/, ['id', 'title']);
+
             $table->col('TYP')->value('{type}')->sortBy('type')->center();
             $table->col('LOKACJA')->value('{location}')->sortBy('location')->center();
-            $table->col('POZYCJA')->value('{position}')->sortBy('position')->center();
 
-            $table->toggle('active')->label('AKTYWNY')->routePrefix($this->routePrefix())->sortBy('active');
+            LitConfigIndexTable::position($this, $table, true);
 
-           $table->actions([
-               '↑ PIERWSZY' => \Lit\Actions\Section\MoveUpFirst::class,
-               '↑ 10' => \Lit\Actions\Section\MoveUpTen::class,
-               '↑' => \Lit\Actions\Section\MoveUpOne::class,
-               '↓' => \Lit\Actions\Section\MoveDownOne::class,
-               '↓ 10' => \Lit\Actions\Section\MoveDownTen::class,
-               '↓ OSTATNI' => \Lit\Actions\Section\MoveDownLast::class,
-           ]);
+            LitConfigIndexTable::toggles($this, $table);
+
+           $table->actions(array_replace_recursive(LitConfigIndexTable::sectionPositionActions()));
 
         })
 
@@ -120,24 +115,15 @@ class SectionConfig extends CrudConfig
 
         $page->card(function($form) {
 
-            $form->select('type')->title('TYP')->options(\Facades\Lit\Support\LitSectionHelper::typeSelectOptions())->hint('Wybierz typ sekcji')->creationRules(['required'])->updateRules(['nullable'])->width(1/4);
-            $form->select('location')->title('Lokacja')->options(\Facades\Lit\Support\LitSectionHelper::locationSelectOptions())->hint('Wybierz lokację sekcji')->creationRules(['required'])->updateRules(['nullable'])->width(1/4);
-            $form->input('position')->title('POZYCJA')->hint('Podczas tworzenia pozostaw puste')->width(1/4);
+            $form->select('type')->title('Typ')->options(LitSectionHelper::typeSelectOptions())->hint('Wybierz typ sekcji')->creationRules(['required'])->updateRules(['nullable'])->width(1/4);
+            $form->select('location')->title('Lokacja')->options(LitSectionHelper::locationSelectOptions())->hint('Wybierz lokację sekcji')->creationRules(['required'])->updateRules(['nullable'])->width(1/4);
+            $form->input('position')->title('Pozycja')->hint('Podczas tworzenia pozostaw puste')->width(1/4);
             $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/4);
 
-        })->title('Opcje');
+        })->title('OPCJE');
 
-        $page->card(function($form) {
+        LitConfigShow::sectionContent($page);
 
-            $form->input('title')->title('TYTUŁ')->width(12);
-            $form->wysiwyg('text')->title('TREŚĆ')->width(12);
-
-        })->title('Zawartość');
-
-        $page->card(function($form) {
-
-            $form->image('images')->title('FOTO')->firstBig()->maxFiles(150);
-
-        })->title('Foto');
+        LitConfigShow::images($page);
     }
 }

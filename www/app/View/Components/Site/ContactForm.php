@@ -25,6 +25,9 @@ class ContactForm extends Component
      */
     public function render()
     {
+        if (!config('site.services.contact-form')) {
+            return '';
+        }
         return view('components.site.contact-form');
     }
 }

@@ -26,20 +26,21 @@ class HomeBanner extends Component
      */
     public function render()
     {
-        $this->homeBanner = Form::load('site', 'home_banner');
+        if (!config('site.services.home-banner')) {
+            return '';
+        }
+
+        $this->homeBanner = Form::load('home', 'home_banner');
 
         if (empty($this->homeBanner->active)) {
             return '';
         }
 
-        $exploded = explode('|', $this->homeBanner->text);
-        $trimmed = [];
-
-        foreach ($exploded as $line) {
-            $trimmed[] = trim($line);
+        if (!empty($this->homeBanner->url)) {
+            $this->homeBanner->href = $this->homeBanner->url;
+        } elseif(!empty($this->homeBanner->route)) {
+            $this->homeBanner->href = $this->homeBanner->route->resolve();
         }
-
-        $this->homeBanner->lines = $trimmed;
 
         return view('components.site.home-banner');
     }

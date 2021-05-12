@@ -1,0 +1,48 @@
+$masonry-margin: 30px;
+.container {
+    background-color: rgba(green, .2);
+}
+.product-list {
+
+    background: rgba(red, .2);
+}
+
+@include media-breakpoint-up(xs) {
+
+}
+@include media-breakpoint-up(sm) {
+    .product-list {
+        width: map-get($container-max-widths, 'sm');
+        transform: translateX(-$grid-gutter-width / 2);
+        .product-miniature {
+            width: (map-get($container-max-widths, 'sm') - $grid-gutter-width - ($masonry-margin * 1)) / 2;
+        }
+    }
+}
+@include media-breakpoint-up(md) {
+    .product-list {
+        width: map-get($container-max-widths, 'md');
+        transform: translateX(-$grid-gutter-width / 2);
+        .product-miniature {
+            width: (map-get($container-max-widths, 'md') - $grid-gutter-width - ($masonry-margin * 2)) / 3;
+        }
+    }
+}
+@include media-breakpoint-up(lg) {
+    .product-list {
+        width: map-get($container-max-widths, 'lg');
+        transform: translateX(-$grid-gutter-width / 2);
+        .product-miniature {
+            width: (map-get($container-max-widths, 'lg') - $grid-gutter-width - ($masonry-margin * 3)) / 4;
+        }
+    }
+}
+@include media-breakpoint-up(xl) {
+    .product-list {
+        width: map-get($container-max-widths, 'xl');
+        transform: translateX(-$grid-gutter-width / 2);
+        .product-miniature {
+            width: (map-get($container-max-widths, 'xl') - $grid-gutter-width - ($masonry-margin * 3)) / 4;
+        }
+    }
+}

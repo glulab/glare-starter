@@ -13,9 +13,9 @@ return [
     'categories' => 'Kategorie',
     'category'  => 'Kategoria',
 
+    'galleries' => 'Galerie',
+    'gallery'  => 'Galeria',
+
     'posts' => 'Posty',
     'post'  => 'Post',
-
-    'groups' => 'Grupa',
-    'group'  => 'Grupy',
 ];

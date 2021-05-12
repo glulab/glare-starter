@@ -26,7 +26,7 @@
 
     <link rel="icon" href="{!! asset('favicon.ico') !!}" type="image/x-icon">
 
-    @include('layout.header-meta')
+    @include('layouts.partials.head-meta')
 
     {{--  Scripts --}}
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -38,14 +38,16 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @stack('styles')
-    @include('layout.header-extra')
+    @include('layouts.partials.head-extra')
 </head>
 <body class="{!! $layout['body_classes'] !!}">
 
     <div id="app">
 
         <header>
-            @include('layout.header')
+            @includeWhen($layout['is_home'], 'layouts.body.header-home')
+            @includeUnless($layout['is_home'],'layouts.body.header')
+            @yield('header')
         </header>
 
         <main class="main">
@@ -90,8 +92,8 @@
 
             @yield('main-top')
 
-            @includeWhen($layout['is_home'], 'layouts.app-page-on-home')
-            @includeUnless($layout['is_home'],'layouts.app-page')
+            @includeWhen($layout['is_home'], 'layouts.body.page-home')
+            @includeUnless($layout['is_home'],'layouts.body.page')
 
             @yield('main-bottom')
 
@@ -119,7 +121,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    @include('layouts.app-bottom-scripts')
+    @include('layouts.partials.bottom-scripts')
 
     @stack('scripts')
 

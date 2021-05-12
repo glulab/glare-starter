@@ -1,0 +1,13 @@
+.menu-footer {
+    margin: 0;
+    padding: 0;
+
+    .nav-item {
+
+    }
+
+    .nav-link {
+        padding: 0 0;
+        @include link-in-menu;
+    }
+}

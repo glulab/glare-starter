@@ -32,7 +32,7 @@ class DeveloperFooter extends Component
         $this->config = config('site.remote-footer');
 
         $this->footerEnabled = $this->config['enabled'] ?? null;
-        $this->footerCache = $this->config['cache'] ?? false;
+        $this->footerCache = $this->config['cache'] ?? true;
         $this->footerApi = $this->config['api'] ?? null;
     }
 

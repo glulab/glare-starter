@@ -2,13 +2,14 @@
 
 namespace Lit\Config\Crud;
 
+use App\Models\Post;
 use Ignite\Crud\CrudShow;
 use Ignite\Crud\CrudIndex;
-use Ignite\Crud\Config\CrudConfig;
 use Illuminate\Support\Str;
-
-use App\Models\Post;
+use Ignite\Crud\Config\CrudConfig;
 use Lit\Http\Controllers\Crud\PostController;
+use Facades\Lit\Support\Config\LitConfigShow;
+use Facades\Lit\Support\Config\LitConfigIndexTable;
 
 class PostConfig extends CrudConfig
 {
@@ -64,11 +65,9 @@ class PostConfig extends CrudConfig
 
         $page->table(function ($table) {
 
-            $table->col('ID')->value('{id}')->sortBy('id');
-            $table->image('FOTO')->src('{images.0.conversion_urls.thumb}')->maxWidth('50px')->maxHeight('50px');
-            $table->col('TYTUŁ')->value('{title}')->sortBy('title');
-            $table->col('URL')->value('{slug}')->sortBy('slug');
-            $table->toggle('active')->label('AKTYWNY')->routePrefix($this->routePrefix())->sortBy('active');
+            LitConfigIndexTable::pageBase($this, $table, '{images.0.conversion_urls.thumb}');
+
+            LitConfigIndexTable::pageToggles($this, $table);
 
         })
 
@@ -104,46 +103,24 @@ class PostConfig extends CrudConfig
 
         $page->card(function($form) {
 
-            $form->input('title')->title('TYTUŁ')->width(12);
-            $form->input('slug')->title('URL')->width(12);
 
-            $form->textarea('description')->title('OPIS')->width(12);
-            $form->wysiwyg('text')->title('TREŚĆ')->width(12);
+            $form->input('position')->title('Pozycja')->hint('Podczas tworzenia pozostaw puste')->width(1/3);
+            $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/3);
 
-        })->title('Zawartość');
+        })->title('OPCJE');
 
-        $page->card(function($form) {
+        LitConfigShow::pageContent($page);
 
-            $form->image('images')->title('FOTO')->firstBig()->maxFiles(150);
+        LitConfigShow::images($page);
 
-        })->title('Foto');
+        LitConfigShow::blockPhotoLinks($page);
 
-        $page->card(function($form) {
+        LitConfigShow::relationGalleries($page);
 
-            $form->input('meta_title')->title('SEO TYTUŁ')->hint('Tytuł SEO pod wyszukiwarki.')->width(12);
-            $form->textarea('meta_description')->title('SEO OPIS')->hint('Opis SEO pod wyszukiwarki.')->width(12);
+        LitConfigShow::seo($page);
 
-        })->title('SEO');
+        LitConfigShow::sitemap($page);
 
-        $page->card(function($form) {
-
-            $form->relation('categories')
-                ->title('Kategorie')
-                ->filter(function($query) {
-                    $query->where('type', 'post');
-                })
-                ->preview(function ($table) {
-                    $table->col('{id}');
-                    $table->col('{title}');
-                })
-            ;
-
-        })->title('Relacje');
-
-        $page->card(function($form) {
-
-            $form->boolean('active')->title('Aktywna')->hint('Aktywna.')->width(12);
-
-        })->title('Opcje');
+        LitConfigShow::relationCategories($page, 'post');
     }
 }

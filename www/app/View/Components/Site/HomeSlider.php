@@ -27,10 +27,25 @@ class HomeSlider extends Component
      */
     public function render()
     {
-        $this->homeSlider = Form::load('site', 'home_slider');
+        if (!config('site.services.home-slider')) {
+            return '';
+        }
+
+        $this->homeSlider = Form::load('home', 'home_slider');
+
         if (empty($this->homeSlider)) {
             return '';
         }
+
+        $this->homeSlider->slider = $this->homeSlider->slider->map(function ($item, $key) {
+            if (!empty($item->url)) {
+                $item->href = $item->url;
+            } elseif(!empty($item->route)) {
+                $item->href = $item->route->resolve();
+            }
+            return $item;
+        });
+
         return view('components.site.home-slider');
     }
 }

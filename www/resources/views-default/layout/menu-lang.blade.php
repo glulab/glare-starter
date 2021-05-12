@@ -1,5 +1,8 @@
+@php
+    if (!config('site.services.menu-lang')) return;
+@endphp
 @if(isset($menu_lang) && $menu_lang->menu_lang->count() > 0)
-<ul class="navbar-nav ml-0 mr-auto menu-lang {!! $class ?? '' !!}">
+<ul class="navbar-nav menu-lang {!! $class ?? '' !!}">
 @foreach($menu_lang->menu_lang as $keyLevel1 => $item1)
     {{-- check if level1 is active --}}
     @php($active1 = false)

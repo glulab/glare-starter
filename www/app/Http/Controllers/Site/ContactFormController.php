@@ -20,21 +20,42 @@ class ContactFormController extends Controller
     public function send(Request $request)
     {
         $rules = [
-            'contact.firstname' => 'required',
-            'contact.lastname' => 'required',
             'contact.phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7',
             'contact.email' => 'required|email:rfc,dns',
             'contact.content' => 'required',
             'contact.consent' => 'accepted',
         ];
         $customAttributes = [
-            'contact.firstname' => __('validation.attributes.contact.firstname'),
-            'contact.lastname' => __('validation.attributes.contact.lastname'),
             'contact.phone' => __('validation.attributes.contact.phone'),
             'contact.email' => __('validation.attributes.contact.email'),
             'contact.content' => __('validation.attributes.contact.content'),
             'contact.consent' => __('validation.attributes.contact.consent'),
         ];
+
+        $splitFullnameRules = [
+            'contact.firstname' => 'required',
+            'contact.lastname' => 'required',
+        ];
+        $splitFullnameCustomAttributes = [
+            'contact.firstname' => __('validation.attributes.contact.firstname'),
+            'contact.lastname' => __('validation.attributes.contact.lastname'),
+        ];
+
+        $fullnameRules = [
+            'contact.fullname' => 'required',
+        ];
+        $fullnameCustomAttributes = [
+            'contact.fullname' => __('validation.attributes.contact.fullname'),
+        ];
+
+        if (config('site.options.contact-form-has-split-fullname')) {
+            $rules = array_merge($splitFullnameRules, $rules);
+            $customAttributes = array_unshift($splitFullnameCustomAttributes, $customAttributes);
+        } else {
+            $rules = array_merge($fullnameRules, $rules);
+            $customAttributes = array_merge($fullnameCustomAttributes, $customAttributes);
+        }
+
         try {
             $validated = $request->validate($rules, [], $customAttributes);
         } catch (\Exception $e) {
@@ -53,10 +74,10 @@ class ContactFormController extends Controller
 
     public function sendContactFormMail($mailData)
     {
-        $mailToName = !empty($mailData['name']) ? $mailData['name'] : $mailData['firstname'] . ' ' .  $mailData['lastname'];
+        $mailToFullname = !empty($mailData['fullname']) ? $mailData['fullname'] : $mailData['firstname'] . ' ' .  $mailData['lastname'];
         $mailMessage = !empty($mailData['message']) ? $mailData['message'] : (!empty($mailData['content']) ? $mailData['content'] : '-');
         $content = [];
-        $content[] = 'Od: ' . $mailToName;
+        $content[] = 'Od: ' . $mailToFullname;
         $content[] = 'Telefon: ' . $mailData['phone'];
         $content[] = 'E-mail: ' . $mailData['email'];
         $content[] =  '';

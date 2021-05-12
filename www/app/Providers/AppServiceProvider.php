@@ -32,11 +32,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \Glare\Glare::addService(\Glare\Glare::SERVICE_BLOG);
-        // \Glare\Glare::addService(\Glare\Glare::SERVICE_CATALOG);
-        \Glare\Glare::addService(\Glare\Glare::SERVICE_OFFER_PAGE);
-		// \Glare\Glare::addService(\Glare\Glare::SERVICE_OFFER_CONTROLLER);
-
         $this->alias();
         $this->providers();
     }

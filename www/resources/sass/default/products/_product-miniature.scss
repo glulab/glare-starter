@@ -1,0 +1,28 @@
+.product-miniature {
+
+    .product-img {
+        margin-bottom: 0.5rem;
+    }
+
+    .product-link {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            color: $link-color;
+        }
+    }
+
+    .product-title {
+        color: black;
+        font-weight: 700;
+        text-decoration: none;
+        text-align: left;
+    }
+
+    .product-description {
+        color: black;
+        font-weight: 400;
+        text-decoration: none;
+        text-align: justify;
+    }
+}

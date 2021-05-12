@@ -26,15 +26,16 @@ class NavigationConfig extends Config
             $nav->preset('permissions'),
         ]);
 
-        $nav->section([
-            $nav->title(__lit('navigation.settings')),
+        $settings = [];
+        $settings[] = $nav->title(__lit('navigation.settings'));
+        $settings[] = $nav->preset('form.settings.settings')->title('Ustawienia')->icon(fa('cog'));
+        $settings[] = $nav->preset('form.settings.site')->title('Ustawienia Strony')->icon(fa('cog'));
+        if (config('site.services.settings-context')) :
+            $settings[] = $nav->preset('form.settings.context')->title('Ustawienia: Specyficzne')->icon(fa('cog'));
+        endif;
+        $settings[] = $nav->preset('crud.page_system')->title('Strony Systemowe')->icon(fa('file-code'));
 
-            $nav->preset('form.settings.settings')->title('Ustawienia')->icon(fa('cog')),
-
-            $nav->preset('form.settings.site')->title('Ustawienia: Treści')->icon(fa('cog')),
-
-            $nav->preset('form.settings.context')->title('Ustawienia: Specyficzne')->icon(fa('cog')),
-        ]);
+        $nav->section($settings);
     }
 
     /**
@@ -57,65 +58,103 @@ class NavigationConfig extends Config
         //     $nav->preset('form.site.site')->title('Ogólne')->icon(fa('globe')),
         // ]);
 
-        $nav->section([
-            // $nav->title('Strony'),
-
-            $nav->group([
-                'title' => 'Strona Główna',
-                'icon'  => fa('home'),
-            ], [
-                $nav->preset('form.site.home_seo')->title('Seo')->icon(fa('fab', 'searchengin')),
-                $nav->preset('form.site.home_banner')->title('Banner')->icon(fa('image')),
-                // $nav->preset('form.site.home_slider')->title('Slider')->icon(fa('images')),
-                $nav->preset('form.site.home_video')->title('Video')->icon(fa('video')),
-                $nav->preset('form.site.home_photo_links')->title('Przyciski')->icon(fa('fas', 'link')),
-                $nav->preset('form.site.home_content')->title('Dodatki')->icon(fa('file')),
-                $nav->preset('crud.section')->title('Sekcje')->icon(fa('file')),
-            ]),
-
-            $nav->preset('crud.page_system')->title('Systemowe')->icon(fa('file-code')),
-            // $nav->preset('crud.page')->title('Strony')->icon(fa('file-alt')),
-            $nav->preset('crud.page_default')->title('Strony')->icon(fa('file-alt')),
-            $nav->preset('crud.page_extended')->title('Strony Rzoszerzone')->icon(fa('file-alt')),
-        ]);
-
-        if (\Glare\Glare::hasService(\Glare\Glare::SERVICE_OFFER_PAGE)) :
-            $nav->section([
-                // $nav->title('Offer'),
-                $nav->preset('crud.page_offer')->title('Oferta')->icon(fa('file-alt')),
-            ]);
+        $home = [];
+        if (config('site.services.home-video')) :
+            $home[] = $nav->preset('form.home.home_video')->title('Video')->icon(fa('video'));
         endif;
+        if (config('site.services.home-banner')) :
+            $home[] = $nav->preset('form.home.home_banner')->title('Banner')->icon(fa('image'));
+        endif;
+        if (config('site.services.home-slider')) :
+            $home[] = $nav->preset('form.home.home_slider')->title('Slider')->icon(fa('images'));
+        endif;
+        $home[] = $nav->preset('form.home.home_photo_links')->title('Przyciski')->icon(fa('fas', 'link'));
+        if (config('site.services.gallery')) :
+            $home[] = $nav->preset('form.home.home_gallery')->title('Galeria')->icon(fa('far', 'images'));
+        endif;
+        $home[] = $nav->preset('crud.section')->title('Sekcje')->icon(fa('file'));
+        $home[] = $nav->preset('form.home.home_content')->title('Dodatki')->icon(fa('file'));
+        $home[] = $nav->preset('form.home.home_seo')->title('Seo')->icon(fa('fab', 'searchengin'));
 
-        if (\Glare\Glare::hasService(\Glare\Glare::SERVICE_OFFER_CONTROLLER)) :
+        $pages = [];
+        if (config('site.services.offer-page')) :
+            $pages[] = $nav->preset('crud.page_offer')->title('Strony Ofertowe')->icon(fa('file-alt'));
+        endif;
+        $pages[] = $nav->preset('crud.page')->title('Strony')->icon(fa('file-alt'));
+        // $pages[] = $nav->preset('crud.page_default')->title('Strony')->icon(fa('file-alt'));
+        // $pages[] = $nav->preset('crud.page_extended')->title('Strony Rzoszerzone')->icon(fa('file-alt'));
+
+        $nav->section(
+            array_merge(
+               [
+                    // $nav->title('Strony'),
+
+                    $nav->group([
+                        'title' => 'Strona Główna',
+                        'icon'  => fa('home'),
+                    ], $home),
+                ],
+                $pages,
+            )
+        );
+
+        // ============================================================================================================
+
+        if (config('site.services.offer-controller')) :
             $nav->section([
                 // $nav->title('Offer'),
                 $nav->preset('crud.offer')->title('Oferta')->icon(fa('file-alt')),
             ]);
         endif;
 
-        if (\Glare\Glare::hasService(\Glare\Glare::SERVICE_BLOG)) :
+        // ============================================================================================================
+
+        $blog = [];
+        $blog[] = $nav->preset('crud.category')->title('Kategorie')->icon(fa('far', 'object-group'));
+        $blog[] = $nav->preset('crud.page_post')->title('Posty')->icon(fa('far', 'file'));
+        // $blog[] = $nav->preset('crud.post')->title('Posty')->icon(fa('far', 'file'));
+
+        if (config('site.services.blog')) :
         $nav->section([
             // $nav->title('Blog'),
 
             $nav->group([
                 'title' => 'Blog',
                 'icon'  => fa('fab', 'blogger-b'),
-            ], [
-                $nav->preset('crud.category')->title('Kategorie')->icon(fa('far', 'object-group')),
-                $nav->preset('crud.page_post')->title('Posty')->icon(fa('far', 'file')),
-                // $nav->preset('crud.post')->title('Posty')->icon(fa('far', 'file')),
-            ]),
+            ], $blog),
 
         ]);
         endif;
 
-        $menuTypes = [
-            $nav->preset('form.menu.menu_main')->title('Menu Główne')->icon(fa('bars')),
-            $nav->preset('form.menu.menu_lang')->title('Menu Języki')->icon(fa('bars')),
-            $nav->preset('form.menu.menu_footer')->title('Menu Stopka')->icon(fa('bars')),
-            $nav->preset('form.menu.menu_system')->title('Menu System')->icon(fa('bars')),
-            // $nav->preset('form.menu.menu_offer')->title('Menu Ofertowe')->icon(fa('bars'));
-        ];
+        // ============================================================================================================
+
+        $media = [];
+        if (config('site.services.gallery')) :
+            $media[] = $nav->preset('crud.gallery')->title('Galeria')->icon(fa('far', 'images'));
+        endif;
+        $nav->section([
+            // $nav->title('Media'),
+
+            $nav->group([
+                'title' => 'Media',
+                'icon'  => fa('fas', 'photo-video'),
+            ], $media),
+        ]);
+
+        // ============================================================================================================
+
+        $menuTypes = [];
+        $menuTypes[] = $nav->preset('form.menu.menu_main')->title('Menu Główne')->icon(fa('bars'));
+        if (config('site.services.menu-lang')) :
+            $menuTypes[] = $nav->preset('form.menu.menu_lang')->title('Menu Języki')->icon(fa('bars'));
+        endif;
+        if (config('site.services.menu-footer')) :
+            $menuTypes[] = $nav->preset('form.menu.menu_footer')->title('Menu Stopka')->icon(fa('bars'));
+        endif;
+        if (config('site.services.menu-system')) :
+            $menuTypes[] = $nav->preset('form.menu.menu_system')->title('Menu System')->icon(fa('bars'));
+        endif;
+        // $menuTypes[] = $nav->preset('form.menu.menu_offer')->title('Menu Ofertowe')->icon(fa('bars'));
 
         $nav->section([
             // $nav->title('Menu'),
@@ -124,27 +163,6 @@ class NavigationConfig extends Config
                 'title' => 'Menu',
                 'icon'  => fa('bars'),
             ], $menuTypes),
-
-        ]);
-
-
-        $nav->section([
-            // $nav->title('Podgląd'),
-
-            $nav->group([
-                'title' => 'Inne',
-                'icon'  => fa('fas',  'circle'),
-            ], [
-                $nav->preset('form.context.topic')->title('Tematy zapytania')->icon(fa('far', 'question-circle')),
-            ]),
-
-            $nav->group([
-                'title' => 'Podgląd Importu',
-                'icon'  => fa('fas',  'file-import'),
-            ], [
-                $nav->preset('crud.group')->title('Grupy')->icon(fa('object-group')),
-                $nav->preset('crud.product')->title('Produkty')->icon(fa('object-group')),
-            ]),
 
         ]);
     }

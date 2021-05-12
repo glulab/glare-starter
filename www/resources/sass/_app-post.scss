@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DEBUG ----------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// @import "_debug/debug";
+// @import "debug/debug";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,99 +30,131 @@
 // @import "~lightslider/src/css/lightslider.css";
 @import "~lightgallery/src/css/lightgallery.css";
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // APPLY ----------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./apply/breakpoint";
-@import "./apply/text-outline";
-@import "./apply/scrollbars";
+@import "./default/apply/breakpoint";
+@import "./default/apply/scrollbars";
+@import "./default/apply/text-outline";
+@import "./default/apply/section";
+
+@import "./default/apply/btn-custom";
+@import "./default/apply/link-in-header";
+@import "./default/apply/link-in-footer";
+@import "./default/apply/link-in-menu";
+@import "./default/apply/page-title";
+@import "./default/apply/section-title";
+@import "./default/apply/item-title";
+
+@import "./theme/theme-apply";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BASE ------------------------------------------------------------------------------------------------------------ //
+// BASE ? ---------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./base/utilities";
+@import "./default/base/utilities";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ELEMENTS -------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./elements/btn-custom";
-@import "./elements/form-control";
-@import "./elements/link-menu";
-@import "./elements/page-title";
-@import "./elements/section-title";
+@import "./default/elements/btn-custom";
+@import "./default/elements/form-control";
+@import "./default/elements/link-in-header";
+@import "./default/elements/link-in-footer";
+@import "./default/elements/link-in-menu";
+@import "./default/elements/page-title";
+@import "./default/elements/section-title";
+@import "./default/elements/item-title";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // VIEW-COMPONENTS --------------------------------------------------------------------------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./components-view/site/home-banner";
-@import "./components-view/site/home-banner-responsive"; // RESPONSIVE
-// @import "./components-view/site/home-slider";
-@import "./components-view/site/home-video";
-@import "./components-view/site/info-bottom-cookie";
-@import "./components-view/site/photo-links";
-@import "./components-view/offer-list";
-@import "./components-view/developer-footer";
+@import "./default/components-view/site/contact-form";
+@import "./default/components-view/site/contact-full";
+@import "./default/components-view/site/home-banner";
+@import "./default/components-view/site/home-slider";
+@import "./default/components-view/site/home-video";
+@import "./default/components-view/site/info-bottom-cookie";
+@import "./default/components-view/site/frontimage";
+@import "./default/components-view/site/photo-links";
+@import "./default/components-view/site/galleries";
+@import "./default/components-view/site/gallery";
+@import "./default/components-view/site/photos";
+@import "./default/components-view/site/photo";
+@import "./default/components-view/offer-list";
+@import "./default/components-view/developer-footer";
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// REPETABLES -------------------------------------------------------------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@import "./default/rep/content-block";
+@import "./default/rep/content-block-columns-two";
+@import "./default/rep/content-block-images";
+@import "./default/rep/content-block-image";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // COMPONENTS ------------------------------------------------------------------------------------------------------ //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./components/gallery";
-@import "./components/images";
+@import "./default/components/images";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BLOCKS ---------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./blocks/block-contact";
-@import "./blocks/block-contact-links";
-@import "./blocks/block-contact-links-absolute"; // OPTIONAL
-@import "./blocks/block-links";
+@import "./default/blocks/block-contact";
+@import "./default/blocks/block-contact-links";
+// @import "./default/blocks/block-contact-links-absolute"; // OPTIONAL -> navbar-top
+@import "./default/blocks/block-links";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LAYOUT ---------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./layout/base";
-@import "./layout/format";
-@import "./layout/pagination";
-@import "./layout/section";
+@import "./default/layout/base";
+@import "./default/layout/page";
+@import "./default/layout/format";
+@import "./default/layout/pagination";
+@import "./default/layout/section";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // HEADER ---------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./header/base";
-@import "./header/menu-main";
-// @import "./header/menu-main-in-footer";
-@import "./header/menu-lang";
-@import "./header/navbar-base";
-@import "./header/navbar-collapse";
-// @import "./header/navbar-collapse-scroll"; // OPTIONAL
-@import "./header/navbar-toggler";
-@import "./header/navbar-brand";
-@import "./header/navbar-fixed"; // OPTIONAL
-@import "./header/responsive";
+@import "./default/header/base";
+@import "./default/header/menu-main";
+@import "./default/header/menu-main-in-footer";
+@import "./default/header/menu-lang";
+@import "./default/header/navbar-base";
+@import "./default/header/navbar-dropdown";
+@import "./default/header/navbar-top"; // absolute navbar top
+@import "./default/header/navbar-collapse";
+// @import "./default/header/navbar-collapse-scroll"; // OPTIONAL
+@import "./default/header/navbar-toggler";
+@import "./default/header/navbar-brand";
+@import "./default/header/navbar-sticky"; // OPTIONAL
+@import "./default/header/navbar-sticked"; // OPTIONAL
+@import "./default/header/responsive";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FOOTER ---------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./footer/footer-base";
-@import "./footer/footer-copy";
-@import "./footer/menu-footer";
-@import "./footer/menu-system";
-@import "./footer/responsive";
+@import "./default/footer/footer-base";
+@import "./default/footer/footer-copy";
+@import "./default/footer/menu-footer";
+@import "./default/footer/menu-system";
+@import "./default/footer/responsive";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // HOME ------------------------------------------------------------------------------------------------------------ //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./home/home";
-@import "./home/responsive";
+@import "./default/home/home";
+@import "./default/home/responsive";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,12 +165,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PRODUCTS -------------------------------------------------------------------------------------------------------- //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-@import "./products/product-list";
-@import "./products/product-list-flex"; // OPTION 0
-// @import "./products/product-list-masonry-magic-grid"; // OPTION 1
-@import "./products/product-list-masonry-colcade"; // OPTION 2
-@import "./products/product-miniature";
-@import "./products/product";
+// @import "./default/products/product-list";
+// @import "./default/products/product-list-flex"; // OPTION 0
+// @import "./default/products/product-list-masonry-magic-grid"; // OPTION 1
+// @import "./default/products/product-list-masonry-colcade"; // OPTION 2
+// @import "./default/products/product-miniature";
+// @import "./default/products/product";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

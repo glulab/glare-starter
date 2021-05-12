@@ -7,23 +7,32 @@ $seoUrl = route('home');
 $seoImage = optional(optional($homeSeo)->seo_image)->getUrl('preview');
 @endphp
 
-@section('full-width')
+@section('header')
+    <x-site.home-video/>
+    <x-site.home-banner/>
+@endsection
+
+@section('top-fluid')
     <x-site.home-slider class=""/>
-    {{-- <x-site.home-banner/> --}}
 @endsection
 
 @section('top')
-    <x-site.photo-links :items="optional(\Form::load('site', 'home_photo_links'))->photo_links" class="on-home" containerClass="mb-5"/>
     @includeWhen(isset($sections['top']), 'home.home-sections', ['location' => 'top'])
+    <x-site.photo-links :items="optional(\Form::load('home', 'home_photo_links'))->photo_links" class="on-home" containerClass="mb-5"/>
     {{-- <x-offer class="" on="home"/> --}}
 @endsection
 
 @section('side')
+    {{-- @include('home.home-sections', ['location' => 'column']) --}}
+@endsection
 
+@section('content-fluid')
+    {{-- <x-home-content/> --}}
 @endsection
 
 @section('content')
     @include('home.home-sections', ['location' => 'main'])
+    <x-site.galleries :feed="optional(\Form::load('home', 'home_gallery'))->galleries"/>
 @endsection
 
 @section('bottom')
