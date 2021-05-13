@@ -158,7 +158,7 @@ class Page extends Model implements HasMediaContract
      */
     public function getUrlAttribute()
     {
-        return url($this->slug . '.html');
+        return $this->getUrlByTypeAttribute(); // return url($this->slug . '.html');
     }
 
     /**
@@ -168,13 +168,15 @@ class Page extends Model implements HasMediaContract
      */
     public function getUrlByTypeAttribute()
     {
-        $typePrefix = '';
-        $typePrefixLang = __('model-page.prefix_by_type.' . $this->type);
-        if (strpos($typePrefixLang, 'routes') !== false) {
+        $translationKey = 'site/models/page.route_prefix_by_type';
+
+        $typePrefixLang = __($translationKey . '.' . $this->type);
+
+        // check if there is a route prefix translation
+        if (strpos($typePrefixLang, $translationKey) !== false) {
             $typePrefixLang = '';
-        } else {
-            $typePrefixLang = $typePrefixLang . '/';
         }
+
         return url($typePrefixLang . $this->slug . '.html');
     }
 

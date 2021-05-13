@@ -17,9 +17,9 @@ class LitPageHelper extends LitHelper
         ];
         foreach ((array) config('site.config.select-options.page-routes') as $option) {
             if (!is_null($decorate)) {
-                $options[$option] = str_replace('{option}', __("routes.$option"), $decorate);
+                $options[$option] = str_replace('{option}', __("site/routes.$option"), $decorate);
             } else {
-                $options[$option] = __("routes.$option");
+                $options[$option] = __("site/routes.$option");
             }
         }
         return $options;

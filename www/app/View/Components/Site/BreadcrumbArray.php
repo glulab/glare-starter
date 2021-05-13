@@ -53,7 +53,7 @@ class BreadcrumbArray extends Component
     public function resolveHome($segment)
     {
         return [
-            'label' => trans("breadcrumb.home"),
+            'label' => trans("site/breadcrumb.home"),
             'href' => url('/'),
             'active' => request()->path() === '/',
         ];
@@ -77,7 +77,7 @@ class BreadcrumbArray extends Component
         $routeName = $segment[1] ?? '';
         $routeLabel = $segment[2] ?? '';
         if (empty($routeLabel) && isset($segment[3])) {
-            $routeLabel = trans("breadcrumb.$segment[3]");
+            $routeLabel = trans("site/breadcrumb.$segment[3]");
         }
         return [
             'label' => $routeLabel,

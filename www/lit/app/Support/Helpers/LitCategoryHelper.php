@@ -13,7 +13,7 @@ class LitCategoryHelper extends LitHelper
     {
         return [
             // null => '-',
-            'post' => '<span class="badge badge-secondary">' . __('model-category.types.post') . '</span>',
+            'post' => '<span class="badge badge-secondary">' . __('site/models/category.types.post') . '</span>',
         ];
     }
 }

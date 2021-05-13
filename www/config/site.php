@@ -58,7 +58,7 @@ return [
         'site-routes' => [
             'page' => [
                 'db-table' => 'pages',
-                'types-translations' => 'model-page',
+                'types-translations' => 'site/models/page',
                 'types' => [
                     'page' => [
                         'type' => 'page', // field in model db
