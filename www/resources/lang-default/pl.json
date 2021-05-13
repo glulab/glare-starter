@@ -6,5 +6,6 @@
     "validation.attributes.contact.email": "e-mail",
     "validation.attributes.contact.content": "treść",
     "validation.attributes.contact.message": "wiadomość",
-    "validation.attributes.contact.consent": "warunek"
+    "validation.attributes.contact.consent": "warunek",
+    "contact": "kontakt"
 }
