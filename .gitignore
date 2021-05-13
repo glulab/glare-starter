@@ -187,6 +187,7 @@
 !/www/resources/resources/js/_app/offer-slider.js
 !/www/resources/resources/js/app.js
 
+!/www/resources/lang/*/site/**
 !/www/resources/lang-default/**
 
 !/www/resources/sass/_app-*.scss

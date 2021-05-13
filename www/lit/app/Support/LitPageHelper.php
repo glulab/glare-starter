@@ -13,18 +13,18 @@ class LitPageHelper extends LitHelper
     {
         return [
             null => '-',
-            'contact' => '<span class="badge badge-secondary">' . __('routes.contact') . '</span>',
-            'offer' => '<span class="badge badge-secondary">' . __('routes.offer') . '</span>',
-            'realizations' => '<span class="badge badge-secondary">' . __('routes.realizations') . '</span>',
+            'contact' => '<span class="badge badge-secondary">' . __('site/routes.contact') . '</span>',
+            'offer' => '<span class="badge badge-secondary">' . __('site/routes.offer') . '</span>',
+            'realizations' => '<span class="badge badge-secondary">' . __('site/routes.realizations') . '</span>',
         ];
     }
     public function routeSelectOptions()
     {
         return [
             null => '-',
-            'contact' => __('routes.contact'),
-            'offer' => __('routes.offer'),
-            'realizations' => __('routes.realizations'),
+            'contact' => __('site/routes.contact'),
+            'offer' => __('site/routes.offer'),
+            'realizations' => __('site/routes.realizations'),
         ];
     }
 }

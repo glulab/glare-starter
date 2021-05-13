@@ -18,5 +18,5 @@ Route::prefix('site')->group(function () {
 });
 
 //
-Route::get('/'.__('routes.contact').'.html', 'App\Http\Controllers\ContactController@contact')->name('contact');
+Route::get('/'.__('site/routes.contact').'.html', 'App\Http\Controllers\ContactController@contact')->name('contact');
 Route::get('/{slug}.html', 'App\Http\Controllers\PageController@show')->name('page.show')->where(['slug' => '^(?:(?!admin).)*$',]);

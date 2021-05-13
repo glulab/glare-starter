@@ -12,17 +12,17 @@ class LitSectionHelper extends LitHelper
     public function typeSelectOptions()
     {
         return [
-            'home' => __('model-section.types.home'),
+            'home' => __('site/models/section.types.home'),
         ];
     }
 
     public function locationSelectOptions()
     {
         return [
-            'top' => __('model-section.locations.top'),
-            'main' => __('model-section.locations.main'),
-            'column' => __('model-section.locations.column'),
-            'bottom' => __('model-section.locations.bottom'),
+            'top' => __('site/models/section.locations.top'),
+            'main' => __('site/models/section.locations.main'),
+            'column' => __('site/models/section.locations.column'),
+            'bottom' => __('site/models/section.locations.bottom'),
         ];
     }
 }

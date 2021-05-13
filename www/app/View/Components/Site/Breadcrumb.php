@@ -43,7 +43,7 @@ class Breadcrumb extends Component
     public function resolveHome()
     {
         return [
-            'label' => trans("breadcrumb.home"),
+            'label' => trans("site/breadcrumb.home"),
             'href' => url('/'),
             'active' => request()->path() === '/',
         ];
@@ -65,7 +65,7 @@ class Breadcrumb extends Component
         $segment = request()->segment($number);
         $b = [
             $number => [
-                'label' => trans("breadcrumb.$segment"),
+                'label' => trans("site/breadcrumb.$segment"),
                 'href' => url("$segment"),
                 'active' => url()->full() === url("$segment"),
             ],
