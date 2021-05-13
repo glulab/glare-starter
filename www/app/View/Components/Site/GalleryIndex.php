@@ -59,48 +59,6 @@ class GalleryIndex extends Component
             }
         });
 
-        $galleries->each(function ($item, $key) use (&$images) {
-            if (!empty($item->image)) {
-
-                $cp = $item->image->custom_properties;
-                $cp['alt'] = $item->title;
-                $cp['title'] = $item->title;
-                $item->image->custom_properties = $cp;
-
-                $item->image->slug = $item->slug;
-
-                $images[] = $item->image;
-            }
-        });
-
-        $galleries->each(function ($item, $key) use (&$images) {
-            if (!empty($item->image)) {
-
-                $cp = $item->image->custom_properties;
-                $cp['alt'] = $item->title;
-                $cp['title'] = $item->title;
-                $item->image->custom_properties = $cp;
-
-                $item->image->slug = $item->slug;
-
-                $images[] = $item->image;
-            }
-        });
-
-        $galleries->each(function ($item, $key) use (&$images) {
-            if (!empty($item->image)) {
-
-                $cp = $item->image->custom_properties;
-                $cp['alt'] = $item->title;
-                $cp['title'] = $item->title;
-                $item->image->custom_properties = $cp;
-
-                $item->image->slug = $item->slug;
-
-                $images[] = $item->image;
-            }
-        });
-
         $this->gallery->imagesCollection = collect($images);
 
         // return app()->make(\App\View\Components\Site\Gallery::class, ['gallery' => $this->gallery]);
