@@ -40,12 +40,18 @@ class PageController extends CrudController
      *
      * @return array
      */
-    public function getTypeBasedOnPrefix()
+    public function getTypeBasedOnPrefix($defaultType = 'page')
     {
         if (strpos($this->config->routePrefix(), '-') === false) {
-            return null;
+            return $defaultType;
         }
 
-        return explode('-', $this->config->routePrefix())[0] ?? null;
+        $pageType = explode('-', $this->config->routePrefix())[0] ?? $defaultType;
+
+        if ($pageType === 'default') {
+            $pageType = $defaultType;
+        }
+
+        return $pageType;
     }
 }
