@@ -13,6 +13,6 @@ return [
     ],
 
     'route_prefix_by_type' => [
-        'offer' => 'oferta/',
+        'offer' => __('site/routes.offer.show'),
     ],
 ];

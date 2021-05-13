@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'route_prefix' => 'realizacja/',
+    'route_prefix' => __('site/routes.realization.show'),
 ];
