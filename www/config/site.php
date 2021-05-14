@@ -144,8 +144,15 @@ return [
 
         'contact-form-has-split-fullname' => false,
 
-        'contact-link-has-faclass' => false,
-        'contact-link-has-filename' => false,
+        'link-has-class' => false,
+        'link-has-itemprop' => false,
+        'link-has-icon' => true,
+        'link-has-filename' => false,
+
+        'contact-link-has-class' => true,
+        'contact-link-has-itemprop' => true,
+        'contact-link-has-icon' => false,
+        'contact-link-has-filename' => true,
 
         'map-has-embed-code' => false,
         'map-has-url' => true,

@@ -33,6 +33,10 @@ class Links extends Component
             return '';
         }
 
-        return view('components.site.links');
+        return view('components.site.links')
+            ->with('links', $this->links)
+            ->with('class', $this->class)
+            ->with('dir', $this->dir)
+        ;
     }
 }

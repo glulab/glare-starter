@@ -1,6 +1,7 @@
 @php
     $hasFilename = config('site.options.contact-link-has-filename', false);
-    $hasFaclass = config('site.options.contact-link-has-faclass', false);
+    $hasIcon = config('site.options.contact-link-has-icon', false);
+    $hasItemprop = config('site.options.contact-link-has-itemprop', false);
 @endphp
 <ul class="{!! $class !!}">
     @foreach ($links->all() as $key => $link)
@@ -8,10 +9,10 @@
             @continue
         @endif
         @php
-            $linkClass = \Str::slug($link->name);
+            $fp = null;
+            $linkClass = \Str::slug($link->name) . (!empty($link->class) ? ' ' . $link->class : '');
             $filename = trim($link->filename);
             if($hasFilename && !empty($filename)) :
-                $fp = null;
                 $iconFilePath1 = "images/{$dir}/{$filename}.png";
                 $iconFilePath2 = "images/{$dir}/{$filename}";
                 if (is_file(public_path($iconFilePath1))) {
@@ -22,7 +23,7 @@
                 }
             endif;
             $attrs = [];
-            if (!empty($link->itemprop)) {
+            if ($hasItemprop && !empty($link->itemprop)) {
                 $attrs['itemprop'] = $link->itemprop;
             }
             $attrs = \Helper::attributesToString($attrs);
@@ -31,8 +32,8 @@
             <a class="nav-link" href="{!! str_replace([' '], '', $link->url) !!}">
                 @if($hasFilename && !empty($fp))
                     <img class="item-img item-key" src="{!! asset($fp) !!}" alt="{!! (string) $link->label !!}">
-                @elseif($hasFaclass && !empty($link->faclass))
-                    <i class="item-icon item-key {!! $link->faclass !!}"></i>
+                @elseif($hasIcon && !empty($link->icon))
+                    {!! str_replace('class="', 'class="item-key ', $link->icon) !!}
                 @else
                     <span class="item-name item-key">{!! $link->name !!}:</span>
                 @endif

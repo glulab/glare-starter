@@ -32,14 +32,17 @@ class ContactLinkRepeatable extends Repeatable
     public function preview(ColumnBuilder $preview): void
     {
         $preview->col('{name}');
-        if (config('site.options.contact-link-has-faclass')) {
-            $preview->col('{faclass}');
+        if (config('site.options.contact-link-has-class')) {
+            $preview->col('{class}');
         }
         if (config('site.options.contact-link-has-filename')) {
             $preview->col('{filename}');
         }
+        if (config('site.options.contact-link-has-icon')) {
+            $preview->col('{icon}');
+        }
         $preview->col('{text}');
-        $preview->col('{url}');
+        // $preview->col('{url}');
     }
 
     /**
@@ -50,18 +53,26 @@ class ContactLinkRepeatable extends Repeatable
      */
     public function form(RepeatableForm $form): void
     {
+        $hasClass = config('site.options.contact-link-has-class');
+        $hasIcon = config('site.options.contact-link-has-icon');
+        $hasFilename = config('site.options.contact-link-has-filename');
+        $hasItemprop = config('site.options.contact-link-has-itemprop');
         $form->boolean('active')->title('Aktywny');
-        $form->input('name')->title('Nazwa')->hint('Nazwa linku.')->width(1/2);
-        $form->select('itemprop')->title('Funkcja')->options(LitHelper::itempropContactLinkSelectOptions())->hint('Funkcja (opcjonalnie).')->width(1/2);;
-        if (config('site.options.contact-link-has-faclass')) {
-            $form->input('faclass')->title('Klasa ikony')->hint('Klasa ikony font awesome (zawartość atrybutu class). <a target="_blank" href="https://fontawesome.com/icons?d=gallery&m=free">[fontawesome]</a>');
+        $form->input('name')->title('Nazwa')->hint('Nazwa linku.')->width($hasClass ? 6 : 12);
+        if ($hasClass) {
+            $form->input('class')->title('Klasa ikony')->hint('Klasa ikony (opcjonalnie).')->width(6);
         }
-        if (config('site.options.contact-link-has-filename')) {
-            $form->select('filename')->title('Nazwa pliku ikony')->options(LitHelper::iconsSelectOptions('icons/contact'))->hint('Nazwa pliku ikony (jeżeli istnieje).');
+        if ($hasItemprop) {
+            $form->select('itemprop')->title('Funkcja')->options(LitHelper::itempropContactLinkSelectOptions())->hint('Funkcja (opcjonalnie).')->width(6);
+        }
+        if ($hasIcon) {
+            $form->icon('icon')->title('Ikona')->hint('Ikona (opcjonalnie).')->width(6);
+        }
+        if ($hasFilename) {
+            $form->select('filename')->title('Nazwa pliku ikony')->options(LitHelper::iconsSelectOptions('icons/contact'))->hint('Nazwa pliku ikony (jeżeli istnieje).')->width(6);
         }
 
-        $form->input('text')->title('Treść')->hint('Treść linku')->width(1/2);;
-        $form->input('url')->title('Url')->hint('Adres URL linku.')->width(1/2);;
-
+        $form->input('text')->title('Treść')->hint('Treść linku')->width(6);
+        $form->input('url')->title('Url')->hint('Adres URL linku.')->width(6);
     }
 }
