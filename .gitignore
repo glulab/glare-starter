@@ -195,7 +195,8 @@
 
 !/www/resources/sass/_app-*.scss
 !/www/resources/sass/app.scss
-!/www/resources/sass/abstract/**
+!/www/resources/sass/abstract/*example*
+!/www/resources/sass/abstract/*original*
 !/www/resources/sass/debug/**
 !/www/resources/sass/default/**
 !/www/resources/sass/theme/**/_!.scss
@@ -211,3 +212,4 @@
 /www/storage
 /www/tests
 /www/vendor
+

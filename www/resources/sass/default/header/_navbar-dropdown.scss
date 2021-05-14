@@ -34,18 +34,18 @@
             }
 
             .dropdown-menu {
-                background-color: $custom-dropdown-bg;
+                background-color: $theme-dropdown-bg;
                 .dropdown-item {
                     text-transform: uppercase;
                     font-weight: 700;
                     font-size: 1.25rem;
-                    color: $custom-dropdown-link-color;
+                    color: $theme-dropdown-link-color;
                 }
 
                 .dropdown-item:hover,
                 .dropdown-item:active,
                 .dropdown-item.active {
-                    color: $custom-dropdown-link-active-color;
+                    color: $theme-dropdown-link-active-color;
                 }
             }
         }
