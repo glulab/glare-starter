@@ -4,16 +4,16 @@ namespace Lit\Config\Form\Settings;
 
 use Ignite\Crud\Config\FormConfig;
 use Ignite\Crud\CrudShow;
-use Lit\Http\Controllers\Form\Settings\ContextController;
+use Lit\Http\Controllers\Form\Settings\ThemeController;
 
-class ContextConfig extends FormConfig
+class ThemeConfig extends FormConfig
 {
     /**
      * Controller class.
      *
      * @var string
      */
-    public $controller = ContextController::class;
+    public $controller = ThemeController::class;
 
     /**
      * Form route prefix.
@@ -22,7 +22,7 @@ class ContextConfig extends FormConfig
      */
     public function routePrefix()
     {
-        return "settings/context";
+        return "settings/theme";
     }
 
     /**
@@ -33,7 +33,7 @@ class ContextConfig extends FormConfig
     public function names()
     {
         return [
-            'singular' => 'Context',
+            'singular' => 'Theme',
         ];
     }
 
@@ -51,10 +51,9 @@ class ContextConfig extends FormConfig
 
         $page->info('Ustawienia Strony');
         $page->card(function ($form) {
-
-            $form->input('pagination')->title('Paginacja')->type('number')->hint('Paginacja.');
-            // $form->input('context_setting')->title('Context Setting')->hint('Context Setting Hint.');
-            // $form->markdown(\Illuminate\Support\Facades\File::get(lit_resource_path('docs/form-loader-example.md')));
+            
+            // $form->input('theme_setting')->title('Theme Setting')->hint('Theme Setting Hint.');
+            
         });
 
     }

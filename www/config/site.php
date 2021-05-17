@@ -115,7 +115,7 @@ return [
         'offer-controller' => false,
         'offer-page' => true,
 
-        'settings-context' => false,
+        'settings-theme' => false,
 
         'contact-form' => true,
 

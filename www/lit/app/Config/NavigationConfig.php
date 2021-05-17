@@ -30,8 +30,8 @@ class NavigationConfig extends Config
         $settings[] = $nav->title(__lit('navigation.settings'));
         $settings[] = $nav->preset('form.settings.settings')->title('Ustawienia')->icon(fa('cog'));
         $settings[] = $nav->preset('form.settings.site')->title('Ustawienia Strony')->icon(fa('cog'));
-        if (config('site.services.settings-context')) :
-            $settings[] = $nav->preset('form.settings.context')->title('Ustawienia: Specyficzne')->icon(fa('cog'));
+        if (config('site.services.settings-theme')) :
+            $settings[] = $nav->preset('form.settings.theme')->title('Ustawienia Szablonu')->icon(fa('cog'));
         endif;
         $settings[] = $nav->preset('crud.page_system')->title('Strony Systemowe')->icon(fa('file-code'));
 

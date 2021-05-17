@@ -5,7 +5,7 @@ namespace Lit\Http\Controllers\Form\Settings;
 use Ignite\Crud\Controllers\FormController;
 use Illuminate\Contracts\Auth\Access\Authorizable;
 
-class ContextController extends FormController
+class ThemeController extends FormController
 {
     /**
      * Authorize request for authenticated lit-user and permission operation.

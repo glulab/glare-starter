@@ -131,9 +131,7 @@
 !/www/lit/app/Config/Form/Menu/MenuOfferConfig.php
 !/www/lit/app/Config/Form/Menu/MenuSystemConfig.php
 
-!/www/lit/app/Config/Form/Settings/ContextConfig.php
-!/www/lit/app/Config/Form/Settings/SettingsConfig.php
-!/www/lit/app/Config/Form/Settings/SiteConfig.php
+!/www/lit/app/Config/Form/Settings/**
 
 #!/www/lit/app/Config/Form/Site/SiteConfig.php
 #!/www/lit/app/Config/Form/Theme/ThemeConfig.php
@@ -159,9 +157,7 @@
 !/www/lit/app/Http/Controllers/Form/Menu/MenuOfferController.php
 !/www/lit/app/Http/Controllers/Form/Menu/MenuSystemController.php
 
-!/www/lit/app/Http/Controllers/Form/Settings/ContextController.php
-!/www/lit/app/Http/Controllers/Form/Settings/SettingsController.php
-!/www/lit/app/Http/Controllers/Form/Settings/SiteController.php
+!/www/lit/app/Http/Controllers/Form/Settings/**
 
 # unignore lit repeatables
 !/www/lit/app/Repeatables/ContactLinkRepeatable.php
