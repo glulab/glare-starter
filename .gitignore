@@ -70,8 +70,11 @@
 !/www/app/Models/Section.php
 !/www/app/Models/Translations/SectionTranslation.php
 
+# unignore app support
+!/www/app/Support/**
+
 # unignore view components
-!/www/app/View/Components/Site/*
+!/www/app/View/Components/Site/**
 
 # unignore configs
 !/www/config/app.php
@@ -174,7 +177,7 @@
 !/www/lit/app/Support/**
 
 # unignore lit theme
-#!/www/lit/app/Theme/**
+!/www/lit/app/Theme/**
 
 # unignore lit resources lang
 !/www/lit/resources/lang/**
