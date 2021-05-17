@@ -5,6 +5,7 @@
 !/.gitignore
 !/*.example
 !/*.dev
+!/_archive*
 !/glare-*
 
 # unignore levels
@@ -33,8 +34,15 @@
 /www/*/*/*/*/*/*/*/*/
 
 # unignore www root files
+!/www/.env
+!/www/.gitignore
+!/www/.htaccess
+!/www/.user.ini
+!/www/dev.*
+!/www/composer.json*
+!/www/package.json*
+!/www/webpack.mix.js
 !/www/*.dev
-!/www/dev.artisan.txt
 
 # unignore providers
 !/www/app/Providers/AppServiceProvider.php
@@ -212,4 +220,5 @@
 /www/storage
 /www/tests
 /www/vendor
+
 
