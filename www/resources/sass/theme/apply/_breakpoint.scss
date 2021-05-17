@@ -1,0 +1,11 @@
+@mixin media-breakpoint-desktop() {
+    @include media-breakpoint-up(xl) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-mobile() {
+    @include media-breakpoint-down(lg) {
+        @content;
+    }
+}

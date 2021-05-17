@@ -211,7 +211,7 @@
 !/www/resources/sass/abstract/*original*
 !/www/resources/sass/debug/**
 !/www/resources/sass/default/**
-!/www/resources/sass/theme/**/_!.scss
+!/www/resources/sass/theme/**
 
 !/www/resources/views-default/**
 
