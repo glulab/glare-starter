@@ -190,7 +190,7 @@
 !/www/public/robots.txt
 
 # unignore resources
-!/www/resources/images-default/**
+!/www/resources/images/**
 
 !/www/resources/resources/js/_app.js
 !/www/resources/resources/js/_app/_*.js
