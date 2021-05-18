@@ -10,44 +10,88 @@ composer global update
 laravel new www
 cd www
 
+# :: DOCTRINE/DBAL
 composer require doctrine/dbal --dev
 
-
-# :: LARAVEL LANG MANAGER [IT WILL INSTALL LARAVEL LANG]
-composer require andrey-helldar/laravel-lang-publisher --dev		# :: CHECK: composer require andrey-helldar/laravel-lang-publisher --dev
-php artisan lang:add pl												# :: CHECK: https://andrey-helldar.github.io/laravel-lang-publisher/using/add.html
-
-# :: LARAVEL LANG
-composer require laravel-lang/lang									# :: CHECK: https://laravel-lang.github.io/lang/installation/composer.html
-
-# :: LARAVEL DEBUGBAR
+# :: BARRYVDH/LARAVEL-DEBUGBAR
 composer require barryvdh/laravel-debugbar --dev
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
-================================================================================================================================================================================================================================================================================================================================
-# :: FIRST STEP:
-composer self-update; composer global update; laravel new www; cd www; composer require doctrine/dbal --dev; composer require andrey-helldar/laravel-lang-publisher --dev; php artisan lang:add pl; composer require barryvdh/laravel-debugbar --dev; php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider";
-================================================================================================================================================================================================================================================================================================================================
+#######################################################################################################################
+# :: FIRST STEPS
+composer self-update; `
+composer global update; `
+laravel new www; `
+cd www; `
+composer require doctrine/dbal --dev; `
+composer require barryvdh/laravel-debugbar --dev; `
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"; `
+#######################################################################################################################
+
+#######################################################################################################################
+# :: LARAVEL LANG MANAGER:: # INSTALL ONE OF THEM #####################################################################
+#######################################################################################################################
+
+#1 :: ARCANEDEV/LARAVELLANG [IT WILL INSTALL LARAVEL LANG] # :: https://github.com/ARCANEDEV/LaravelLang
+composer require --dev arcanedev/laravel-lang
+php artisan trans:publish pl {--force}
+
+#2 :: OVERTRUE/LARAVEL-LANG [IT WILL INSTALL LARAVEL LANG] # :: https://github.com/overtrue/laravel-lang
+composer require overtrue/laravel-lang
+php artisan lang:publish pl {--force}
+
+#3 :: ANDREY-HELLDAR/LARAVEL-LANG-PUBLISHER [IT WILL INSTALL LARAVEL LANG] # :: https://github.com/andrey-helldar/laravel-lang-publisher
+composer require andrey-helldar/laravel-lang-publisher --dev
+php artisan lang:add pl {--force}
+
+#######################################################################################################################
+# :: LARAVEL LANG:: # NOT NEEDED TO INSTALL IF ONE OF LANG MANAGERS INSTALLED #########################################
+#######################################################################################################################
+
+# :: LARAVEL LANG # :: https://laravel-lang.github.io/lang/installation/composer.html
+composer require laravel-lang/lang
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
 
 # :: EDIT .env
 # :: CREATE DATABASE
 
-php artisan queue:table; php artisan queue:batches-table; php artisan cache:table; php artisan session:table;
+# :: GNERATE MIGRATIONS
+
+php artisan queue:table; `
+php artisan queue:batches-table; `
+php artisan cache:table; `
+php artisan session:table; `
+
 # :: CHANGE DATES OF MIGRATIONS TO 2019 ?
 # :: 2019_08_20_000000_create_jobs_table.php
 # :: 2019_08_21_000000_create_job_batches_table.php
 # :: 2019_08_22_000000_create_cache_table.php
 # :: 2019_08_23_000000_create_sessions_table.php
+
 php artisan migrate
 
-# :: COMMIT INIT ?
+#######################################################################################################################
+# :: COMMIT INIT ######################################################################################################
+#######################################################################################################################
+
+
+#######################################################################################################################
+# :: LARAVEL UI #######################################################################################################
+#######################################################################################################################
 
 composer require laravel/ui
 php artisan ui bootstrap --auth
 
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
 php artisan storage:link
 
-# :: EDIT: .gitignore
+# :: EDIT: .gitignore OR COMPARE AND SYNC WITH GLARE-STARTER
 
 *.bak
 *.log
@@ -69,11 +113,11 @@ php artisan storage:link
 
 composer require litstack/litstack
 php artisan lit:install
-??? :: change dates of create_media_table migration to 2020_01_01_000000_create_media_table.php ?
+??? :: change dates of create_media_table migration to 2020_01_01_000000_create_media_table.php ? # DEPRECATED
 ### :: TRUNCATE `lit_users`
 php artisan lit:admin
-composer require litstack/lang
 
+composer require litstack/lang
 
 #######################################################################################################################
 # :: GLARE :: #########################################################################################################
@@ -110,16 +154,19 @@ composer update
 # :: NPM :: ###########################################################################################################
 #######################################################################################################################
 
-yarn
+yarn install
 
 yarn add @fortawesome/fontawesome-free
 yarn add @glulab/gl-window-resize-listener
-
-yarn add font-awesome @^4.7.0
+yarn add alpinejs
+yarn add font-awesome@^4.7.0
 yarn add lightgallery@1.2.21
-yarn add lightslider@^1.1.6
+yarn add lightslider
 yarn add slick-carousel
 
+yarn add @fortawesome/fontawesome-free @glulab/gl-window-resize-listener alpinejs font-awesome@^4.7.0 lightgallery@1.2.21 lightslider slick-carousel
+
+yarn upgrade-interactive
 
 #######################################################################################################################
 # :: EDIT webpack.mix.js :: ###########################################################################################

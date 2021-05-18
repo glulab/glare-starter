@@ -1,0 +1,8 @@
+@mixin section-title {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: $theme-section-title-color;
+}

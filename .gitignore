@@ -5,6 +5,7 @@
 !/.gitignore
 !/*.example
 !/*.dev
+!/_archive*
 !/glare-*
 
 # unignore levels
@@ -33,8 +34,15 @@
 /www/*/*/*/*/*/*/*/*/
 
 # unignore www root files
+!/www/.env
+!/www/.gitignore
+!/www/.htaccess
+!/www/.user.ini
+!/www/dev.*
+!/www/composer.json*
+!/www/package.json*
+!/www/webpack.mix.js
 !/www/*.dev
-!/www/dev.artisan.txt
 
 # unignore providers
 !/www/app/Providers/AppServiceProvider.php
@@ -62,8 +70,11 @@
 !/www/app/Models/Section.php
 !/www/app/Models/Translations/SectionTranslation.php
 
+# unignore app support
+!/www/app/Support/**
+
 # unignore view components
-!/www/app/View/Components/Site/*
+!/www/app/View/Components/Site/**
 
 # unignore configs
 !/www/config/app.php
@@ -120,9 +131,7 @@
 !/www/lit/app/Config/Form/Menu/MenuOfferConfig.php
 !/www/lit/app/Config/Form/Menu/MenuSystemConfig.php
 
-!/www/lit/app/Config/Form/Settings/ContextConfig.php
-!/www/lit/app/Config/Form/Settings/SettingsConfig.php
-!/www/lit/app/Config/Form/Settings/SiteConfig.php
+!/www/lit/app/Config/Form/Settings/**
 
 #!/www/lit/app/Config/Form/Site/SiteConfig.php
 #!/www/lit/app/Config/Form/Theme/ThemeConfig.php
@@ -148,9 +157,7 @@
 !/www/lit/app/Http/Controllers/Form/Menu/MenuOfferController.php
 !/www/lit/app/Http/Controllers/Form/Menu/MenuSystemController.php
 
-!/www/lit/app/Http/Controllers/Form/Settings/ContextController.php
-!/www/lit/app/Http/Controllers/Form/Settings/SettingsController.php
-!/www/lit/app/Http/Controllers/Form/Settings/SiteController.php
+!/www/lit/app/Http/Controllers/Form/Settings/**
 
 # unignore lit repeatables
 !/www/lit/app/Repeatables/ContactLinkRepeatable.php
@@ -166,7 +173,7 @@
 !/www/lit/app/Support/**
 
 # unignore lit theme
-#!/www/lit/app/Theme/**
+!/www/lit/app/Theme/**
 
 # unignore lit resources lang
 !/www/lit/resources/lang/**
@@ -182,7 +189,7 @@
 !/www/public/robots.txt
 
 # unignore resources
-!/www/resources/images-default/**
+!/www/resources/images/**
 
 !/www/resources/resources/js/_app.js
 !/www/resources/resources/js/_app/_*.js
@@ -196,10 +203,11 @@
 !/www/resources/sass/_app-*.scss
 !/www/resources/sass/app.scss
 !/www/resources/sass/abstract/*example*
+!/www/resources/sass/abstract/*theme*
 !/www/resources/sass/abstract/*original*
 !/www/resources/sass/debug/**
 !/www/resources/sass/default/**
-!/www/resources/sass/theme/**/_!.scss
+!/www/resources/sass/theme/**
 
 !/www/resources/views-default/**
 
