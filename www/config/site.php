@@ -126,6 +126,7 @@ return [
         'menu-lang' => true,
         'menu-system' => false,
         'menu-footer' => false,
+        'menu-offer' => false,
     ],
 
     'options' => [

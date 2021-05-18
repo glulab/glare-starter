@@ -154,7 +154,9 @@ class NavigationConfig extends Config
         if (config('site.services.menu-system')) :
             $menuTypes[] = $nav->preset('form.menu.menu_system')->title('Menu System')->icon(fa('bars'));
         endif;
-        // $menuTypes[] = $nav->preset('form.menu.menu_offer')->title('Menu Ofertowe')->icon(fa('bars'));
+        if (config('site.services.menu-offer')) :
+            $menuTypes[] = $nav->preset('form.menu.menu_offer')->title('Menu Ofertowe')->icon(fa('bars'));
+        endif;
 
         $nav->section([
             // $nav->title('Menu'),
