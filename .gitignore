@@ -34,7 +34,7 @@
 /www/*/*/*/*/*/*/*/*/
 
 # unignore www root files
-!/www/.env
+!/www/.env*
 !/www/.gitignore
 !/www/.htaccess
 !/www/.user.ini
