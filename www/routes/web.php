@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes(['register' => false, 'login' => false, 'logout' => false, 'reset' => false, 'confirm' => false, 'verify' => false]);
 
-\Glare::routes();
+\Glare::routes(['context', 'site']);
