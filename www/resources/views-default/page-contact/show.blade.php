@@ -10,6 +10,6 @@
 
 @endsection
 
-@section('bottom')
+@section('bottom-fluid')
     <x-site.contact-form/>
 @endsection
