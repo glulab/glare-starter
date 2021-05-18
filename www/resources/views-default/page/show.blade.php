@@ -20,4 +20,12 @@ $seoImage = $page->seoimage;
 
 @endsection
 
+@section('bottom')
+
+@endsection
+
+@section('bottom-fluid')
+    <x-site.contact-form/>
+@endsection
+
 <x-site.page-is-active :page="$page"/>

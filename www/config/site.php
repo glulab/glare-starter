@@ -142,6 +142,8 @@ return [
         'photo-link-has-text' => true,
         'photo-link-has-button' => true,
 
+        'contact-form-show-on-routes' => ['*'], // ['home', 'page.*','contact']
+        'contact-form-exclude-from-routes' => [], // ['home'],
         'contact-form-has-split-fullname' => false,
 
         'link-has-class' => false,

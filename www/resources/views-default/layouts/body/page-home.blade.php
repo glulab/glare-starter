@@ -48,6 +48,5 @@
     </div>
     @endif
 
-    {{-- <x-site.contact-form container-class="container"/> --}}
 
 </div>

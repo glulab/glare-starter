@@ -1,6 +1,6 @@
 <div class="contact-form">
 
-    <div class="{!! $containerClass ?? 'container-fluid px-0' !!}">
+    <div class="{!! $containerClass ?? 'container' !!}">
 
         <div class="row my-5">
 

@@ -19,8 +19,6 @@
 
         @yield('bottom')
 
-        {{-- <x-site.contact-form/> --}}
-
     </div>
 
 </div>

@@ -39,3 +39,7 @@ $seoImage = optional(optional($homeSeo)->seo_image)->getUrl('preview');
     @include('home.home-sections', ['location' => 'bottom'])
     <x-site.map container-class=""/>
 @endsection
+
+@section('bottom-fluid')
+    <x-site.contact-form/>
+@endsection
