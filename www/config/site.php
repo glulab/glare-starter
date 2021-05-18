@@ -102,10 +102,10 @@ return [
         ],
 
         'ratios' => [ // 0 to turn off
-            'home-banner' => 1920 / 1100,
-            'home-slider' => 1920 / 650,
-            'page-banner' => 1920 / 650,
-            'photo-link' => 375 / 573,
+            'home-banner' => env('SITE_CONFIG_RATIOS_HOME_BANNER_WIDTH', 0) / env('SITE_CONFIG_RATIOS_HOME_BANNER_HEIGHT', 1),
+            'home-slider' => env('SITE_CONFIG_RATIOS_HOME_SLIDER_WIDTH', 0) / env('SITE_CONFIG_RATIOS_HOME_SLIDER_HEIGHT', 1),
+            'page-banner' => env('SITE_CONFIG_RATIOS_PAGE_BANNER_WIDTH', 0) / env('SITE_CONFIG_RATIOS_PAGE_BANNER_HEIGHT', 1),
+            'photo-link' => env('SITE_CONFIG_RATIOS_PHOTO_LINK_WIDTH', 0) / env('SITE_CONFIG_RATIOS_PHOTO_LINK_HEIGHT', 1),
         ],
     ],
 
