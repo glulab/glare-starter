@@ -56,6 +56,9 @@ class ContactBasic extends Component
                 unset($this->entries[$key]);
                 continue;
             }
+            if (empty($this->dir)) {
+                continue;
+            }
             $filePath = "images/{$this->dir}/{$key}.png";
             if (is_file(public_path($filePath))) {
                 $this->entries[$key]['keyType'] = 'img';
