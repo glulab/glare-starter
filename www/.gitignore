@@ -25,3 +25,9 @@ yarn-error.log
 
 /public/google*.html
 /public/*sitemap*.xml
+
+# #########################
+# glare-starter overrides
+# delete lines below
+# #########################
+!.env
