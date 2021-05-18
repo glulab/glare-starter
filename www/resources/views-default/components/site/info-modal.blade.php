@@ -5,10 +5,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title h5" id="SiteInfoModalLabel">{!! $title !!}</div>
-                    <button type="button" class="close btn btn-link" data-dismiss="modal" aria-label="Zamknij"><i class="far fa-window-close"></i></button>
-                </div>
+                <button type="button" class="close btn btn-link" data-dismiss="modal" aria-label="Zamknij"><i class="far fa-window-close"></i></button>
+            </div>
             <div class="modal-body text-justify">
-                {!! $text !!}
+                <x-site.format-text :text="$text"/>
             </div>
             {{-- <div class="modal-footer">
                 <button type="button" class="btn btn-link" data-dismiss="modal"><i class="far fa-window-close"></i></button>

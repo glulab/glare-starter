@@ -5,10 +5,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title h5" id="SiteInfoModalCookieLabel">{!! $title !!}</div>
-                    <button type="button" class="close btn btn-link" data-dismiss="modal" aria-label="{!! $accept !!}"><i class="far fa-window-close"></i></button>
-                </div>
+                <button type="button" class="close btn btn-link" data-dismiss="modal" aria-label="{!! $accept !!}"><i class="far fa-window-close"></i></button>
+            </div>
             <div class="modal-body text-justify">
-                {!! $text !!}
+                <x-site.format-text :text="$text"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary js-accept" data-dismiss="modal" aria-label="Rozumiem">{!! $accept !!}</button>

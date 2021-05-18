@@ -5,7 +5,7 @@
             <div class="h5">{!! $title !!}</div>
             <button type="button" class="close btn btn-link" data-dismiss="alert" aria-label="{!! $accept !!}"><i class="far fa-window-close"></i></button>
         </div>
-        <div class="mb-1 text-justify">{!! $text !!}</div>
+        <x-site.format-text :text="$text" class="mb-1 text-justify"/>
     </div>
     <button type="button" class="btn btn-primary js-accept w-auto" data-dismiss="alert" aria-label="{!! $accept !!}">{!! $accept !!}</button>
     </div>
