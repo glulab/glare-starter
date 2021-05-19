@@ -1,6 +1,9 @@
+@php
+    $contactLogoUrl = is_file(public_path('images/logo/contact/logo.png')) ? asset('images/logo/contact/logo.png') : asset('images/logo.png');
+@endphp
 <div class="contact-full {!! $class !!}" itemscope itemtype="https://schema.org/Organization">
     <div class="address">
-        <div class="logo in-address"><img itemprop="image" src="{!! asset('images/logo.png') !!}" alt="logo" /></div>
+        <div class="logo in-address"><img itemprop="image" src="{!! $contactLogoUrl !!}" alt="logo" /></div>
         @if(!empty($settings->site_address_name))<div itemprop="name" class="site-address-name">{!! nl2br($settings->site_address_name) !!}</div>@endif
         @if(!empty($settings->site_address_description))<div class="site-address-description" itemprop="description">{!! nl2br($settings->site_address_description) !!}</div>@endif
         <div class="site-address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">

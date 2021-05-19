@@ -1,0 +1,16 @@
+@include media-breakpoint-desktop() {
+
+    body.no-index.is-sticky {
+        .navbar > .container {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+    }
+
+    body.no-index.is-sticked {
+        .navbar > .container {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/////////////////////////
+// navbar-brand sticky //
+/////////////////////////
+.navbar-brand.is-sticky {
+    display: none;
+}
+
+body.is-sticky.is-sticked {
+    .navbar-brand {
+        display: none;
+    }
+    .navbar-brand.is-sticky {
+        display: block;
+    }
+}
