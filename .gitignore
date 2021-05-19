@@ -191,11 +191,7 @@
 # unignore resources
 !/www/resources/images/**
 
-!/www/resources/resources/js/_app.js
-!/www/resources/resources/js/_app/_*.js
-!/www/resources/resources/js/_app/masonry-*.js
-!/www/resources/resources/js/_app/offer-slider.js
-!/www/resources/resources/js/app.js
+!/www/resources/js/**
 
 !/www/resources/lang/*/site/**
 !/www/resources/lang-default/**
@@ -220,5 +216,6 @@
 /www/storage
 /www/tests
 /www/vendor
+
 
 
