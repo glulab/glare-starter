@@ -56,7 +56,7 @@ class ContactBasic extends Component
                 unset($this->entries[$key]);
                 continue;
             }
-            if (empty($this->dir)) {
+            if (!config('site.options.contact-basic-has-fileicons') || empty($this->dir)) {
                 continue;
             }
             $filePath = "images/{$this->dir}/{$key}.png";

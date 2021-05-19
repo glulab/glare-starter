@@ -20,7 +20,7 @@
     </div>
     <div class="contact">
         @if(!empty($site->contact_links) && $site->contact_links->filter->active->count() > 0)
-            <x-site.contact-links :links="$site->contact_links" :class="'block-contact-links '.($class ?? '')" :dir="'icons/contact'"/>
+            <x-site.contact-links :links="$site->contact_links" :class="'block-contact-links '.($class ?? '')" :dir="$dir ?? 'icons/contact'"/>
         @else
             @if(!empty($settings->site_telephone))<div class="site-telephone"><span class="item-key">tel.:</span>&nbsp;<a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone) !!}">{!! $settings->site_telephone !!}</a></div>@endif
             @if(!empty($settings->site_telephone_1))<div class="site-telephone-1"><span class="item-key">tel.:</span> <a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone_1) !!}">{!! $settings->site_telephone_1 !!}</a></div>@endif
