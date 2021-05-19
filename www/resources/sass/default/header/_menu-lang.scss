@@ -16,3 +16,36 @@
         }
     }
 }
+
+///////////////
+// in footer //
+///////////////
+
+.footer {
+
+    .navbar-nav.menu-lang.in-footer {
+
+        flex-direction: row;
+
+        .nav-item {
+            //
+        }
+
+        .nav-link {
+            @include link-in-footer;
+            padding-right: .5rem;
+        }
+    }
+}
+
+@include media-breakpoint-desktop {
+    .footer {
+        .navbar-nav.menu-lang.in-footer {
+            flex-direction: column;
+        }
+
+        .nav-link {
+            padding-right: 0;
+        }
+    }
+}

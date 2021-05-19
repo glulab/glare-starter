@@ -10,8 +10,8 @@
                 @include('layout.menu-lang', ['class' => 'in-footer'])
             </div>
             <div class="col-12 col-md-3 mb-4 footer-contact-links">
-                @include('layout.block-links', ['class' => 'in-footer'])
-                {{-- @include('layout.block-contact-links', ['class' => 'in-footer']) --}}
+                @include('layout.block-links', ['class' => 'in-footer navbar-nav'])
+                {{-- @include('layout.block-contact-links', ['class' => 'in-footer navbar-nav']) --}}
             </div>
             <div class="col-12 col-md-3 mb-4 footer-contact">
                 @include('layout.footer-contact')
