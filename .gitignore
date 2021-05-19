@@ -194,7 +194,7 @@
 !/www/resources/js/**
 
 !/www/resources/lang/*/site/**
-!/www/resources/lang-default/**
+!/www/resources/langs/**
 
 !/www/resources/sass/_app-*.scss
 !/www/resources/sass/app.scss
