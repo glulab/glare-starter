@@ -14,7 +14,7 @@
                 {{-- @include('layout.block-contact-links', ['class' => 'in-footer']) --}}
             </div>
             <div class="col-12 col-md-3 mb-4 footer-contact">
-                @include('layout.block-contact-full', ['class' => 'in-footer'])
+                @include('layout.footer-contact')
             </div>
         </div>
     </div>
