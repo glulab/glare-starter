@@ -22,10 +22,10 @@
         @if(!empty($site->contact_links) && $site->contact_links->filter->active->count() > 0)
             <x-site.contact-links :links="$site->contact_links" :class="'block-contact-links '.($class ?? '')" :dir="$dir ?? 'icons/contact'"/>
         @else
-            @if(!empty($settings->site_telephone))<div class="site-telephone"><span class="item-key">tel.:</span>&nbsp;<a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone) !!}">{!! $settings->site_telephone !!}</a></div>@endif
-            @if(!empty($settings->site_telephone_1))<div class="site-telephone-1"><span class="item-key">tel.:</span> <a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone_1) !!}">{!! $settings->site_telephone_1 !!}</a></div>@endif
-            @if(!empty($settings->site_email))<div class="site-email"><span class="item-key">e-mail:</span> <a class="item-value" itemprop="email" href="mailto:{!! $settings->site_email !!}">{!! $settings->site_email !!}</a></div>@endif
-            @if(!empty($settings->site_domain))<div class="site-domain"><span class="item-key">www:</span> <a class="item-value" itemprop="url" href="{!! url('/') !!}">{!! $settings->site_domain !!}</a></div>@endif
+            @if(!empty($settings->site_telephone))<div class="site-telephone"><span class="item-key">{!! __('keys.telephone') !!}:</span>&nbsp;<a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone) !!}">{!! $settings->site_telephone !!}</a></div>@endif
+            @if(!empty($settings->site_telephone_1))<div class="site-telephone-1"><span class="item-key">{!! __('keys.telephone-1') !!}.:</span> <a class="item-value" itemprop="telephone" href="tel:{!! str_replace(' ', '', $settings->site_telephone_1) !!}">{!! $settings->site_telephone_1 !!}</a></div>@endif
+            @if(!empty($settings->site_email))<div class="site-email"><span class="item-key">{!! __('keys.email') !!}:</span> <a class="item-value" itemprop="email" href="mailto:{!! $settings->site_email !!}">{!! $settings->site_email !!}</a></div>@endif
+            @if(!empty($settings->site_domain))<div class="site-domain"><span class="item-key">{!! __('keys.www') !!}:</span> <a class="item-value" itemprop="url" href="{!! url('/') !!}">{!! $settings->site_domain !!}</a></div>@endif
         @endif
         @if(!empty($settings->site_contact_info))<div class="site-contact-info">{!! nl2br($settings->site_contact_info) !!}</div>@endif
     </div>
