@@ -85,16 +85,7 @@
 !/www/config/translatable.php
 
 # unignore migrations
-!/www/database/migrations/*create_pages_table.php
-!/www/database/migrations/*update_pages_table.php
-!/www/database/migrations/*create_sections_table.php
-!/www/database/migrations/*create_posts_table.php
-!/www/database/migrations/*update_posts_table.php
-!/www/database/migrations/*create_categories_table.php
-!/www/database/migrations/*update_categories_table.php
-!/www/database/migrations/*create_categorized_table.php
-!/www/database/migrations/*create_galleries_table.php
-!/www/database/migrations/*create_page_gallery_table.php
+!/www/database/migrations/*
 
 # unignore seeders
 !/www/database/seeders/DatabaseSeeder.php
@@ -216,6 +207,7 @@
 /www/storage
 /www/tests
 /www/vendor
+
 
 
 
