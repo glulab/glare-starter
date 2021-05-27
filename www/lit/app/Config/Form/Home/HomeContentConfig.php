@@ -53,22 +53,7 @@ class HomeContentConfig extends FormConfig
         $page->card(function ($form) {
             // $form->title('title')->title('Tekst')->placeholder('Treść')->hint('Treść');
             $form->textarea('text')->title('Tekst')->placeholder('Treść')->hint('Treść');
-
-            $form->block('facts')
-                ->title('Fakty')
-                ->repeatables(function($repeatables) {
-
-                    // Add as many repeatables as you want.
-                    $repeatables->add('fact', function($form, $preview) {
-                        // The block preview.
-                        $preview->col('{title}');
-                        $preview->col('{text}');
-
-                        // Containing as many form fields as you want.
-                        $form->input('title')->title('Tytuł')->hint('Tytuł');
-                        $form->textarea('text')->title('Tekst')->placeholder('Treść')->hint('Treść');
-                    })->button(__('Add'));;
-                });
+            //
         });
 
         // $page->info('');

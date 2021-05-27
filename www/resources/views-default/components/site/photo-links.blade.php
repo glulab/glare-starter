@@ -1,27 +1,46 @@
 @if(!empty($items) && $items->count() > 0)
 <div class="{!! $containerClass ?? '' !!}">
     <ul class="photo-links  {!! $class !!}">
+    @php
+        $hasImage = config('site.options.photo-link-has-image');
+    @endphp
     @foreach ($items->all() as $key => $item)
         @php
-            if (empty($item->active) || !$item->hasMedia('image')) {
+            if (empty($item->active)) {
                 continue;
             }
-            $image = $item->getFirstMedia('image');
+
+            $hasMedia = $item->hasMedia('image');
+
+            if ($hasImage && !$hasMedia) {
+                continue;
+            }
+
+            $image = null;
+            if ($hasImage) {
+                $image = $item->getFirstMedia('image');
+            }
+
             $attrs = [];
             $attrs['class'] = 'photo-link-img';
             $attrs['alt'] = !empty($item->title) ? $item->title : ($item->label ? $item->label : '');
-            if (!is_null($image->getCustomProperty('crop.width'))) {
-                $attrs['width'] = $image->getCustomProperty('crop.width');
-            }
-            if (!is_null($image->getCustomProperty('crop.height'))) {
-                $attrs['height'] = $image->getCustomProperty('crop.height');
+
+            if (!empty($image)) {
+                if (!is_null($image->getCustomProperty('crop.width'))) {
+                    $attrs['width'] = $image->getCustomProperty('crop.width');
+                }
+                if (!is_null($image->getCustomProperty('crop.height'))) {
+                    $attrs['height'] = $image->getCustomProperty('crop.height');
+                }
             }
         @endphp
         <li class="photo-link photo-link-{!! $key !!}">
             @if(!config('site.options.photo-link-has-button'))
                 <a class="photo-link-link" href="{!! $item->href !!}">
             @endif
+            @if($hasImage && !empty($image))
                 <div class="photo-link-image">{!! $image()->attributes($attrs)->lazy() !!}</div>
+            @endif
             @if(config('site.options.photo-link-has-title') && !empty($item->title))
                 <div class="photo-link-title">{!! nl2br(trim($item->title)) !!}</div>
             @endif

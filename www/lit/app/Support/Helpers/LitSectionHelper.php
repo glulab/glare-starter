@@ -11,8 +11,8 @@ class LitSectionHelper extends LitHelper
 
     public function typeSelectOptions($decorate = null)
     {
-        $collection = config('site.config.select-options.section-types');
-        $translatePrefix = 'site/models/section.types';
+        $collection = config('site.config.section-types');
+        $translatePrefix = 'site::models/section.types';
 
         // $decorate = '<span class="badge badge-secondary">{option}</span>';
         $options = [
@@ -30,8 +30,8 @@ class LitSectionHelper extends LitHelper
 
     public function locationSelectOptions($decorate = null)
     {
-        $collection = config('site.config.select-options.section-locations');
-        $translatePrefix = 'site/models/section.locations';
+        $collection = config('site.config.section-locations');
+        $translatePrefix = 'site::models/section.locations';
 
         // $decorate = '<span class="badge badge-secondary">{option}</span>';
         $options = [

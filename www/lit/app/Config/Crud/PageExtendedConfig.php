@@ -127,11 +127,13 @@ class PageExtendedConfig extends CrudConfig
 
         $page->card(function($form) {
 
-            // $form->select('route')->title('Funkcja')->options(LitPageHelper::routeSelectOptions())->hint('Wybierz funkcję strony lub pozostaw puste jeżeli to zwykła strona')->width(1/2);
+            // $form->select('action')->title('Akcja')->options(LitPageHelper::actionSelectOptions())->hint('Wybierz akcję strony lub pozostaw puste jeżeli to zwykła strona.')->width(1/2);
             // $form->input('position')->title('Pozycja')->hint('Podczas tworzenia pozostaw puste')->width(1/3);
             $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/2);
 
         })->title('OPCJE');
+
+        LitConfigShow::pageDescription($page);
 
         LitConfigShow::pageContent($page);
 

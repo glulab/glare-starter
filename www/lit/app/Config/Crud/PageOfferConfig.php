@@ -127,6 +127,8 @@ class PageOfferConfig extends CrudConfig
 
         })->title('OPCJE');
 
+        LitConfigShow::pageDescription($page);
+
         LitConfigShow::pageContent($page);
 
         LitConfigShow::images($page);

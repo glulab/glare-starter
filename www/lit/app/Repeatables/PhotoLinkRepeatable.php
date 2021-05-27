@@ -45,8 +45,9 @@ class PhotoLinkRepeatable extends Repeatable
     {
         $form->boolean('active')->title('Aktywny')->hint('Aktywny')->width(1/3);
 
-        $form->image('image')->title('Obraz')->crop(config('site.config.ratios.photo-link'))->hint('Obraz.')->maxFiles(1);
-
+        if (config('site.options.photo-link-has-image')) {
+            $form->image('image')->title('Obraz')->crop(config('site.config.ratios.photo-link'))->hint('Obraz.')->maxFiles(1);
+        }
         if (config('site.options.photo-link-has-title')) {
             $form->textarea('title')->title('Tytuł')->placeholder('Tytuł')->hint('Tytuł.');
         }
@@ -57,8 +58,8 @@ class PhotoLinkRepeatable extends Repeatable
 
         if (config('site.options.photo-link-has-button')) {
             $form->textarea('label')->title('Przycisk')->placeholder('Tekst na przycisku')->hint('Tekst na przycisku.');
-            $form->route('route')->collection('site-routes')->title('Wybierz stronę')->hint('wybierz stronę w systemie');
-            $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(12);
+            $form->route('route')->collection('site-routes')->title('Wybierz stronę')->hint('wybierz stronę w systemie')->width(6);
+            $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(6);
         }
     }
 }

@@ -22,61 +22,70 @@
                             <div class="col-12 col-md-6">
 
                                 @if(config('site.options.contact-form-has-split-fullname'))
-                                    {{-- imie --}}
                                     <div class="form-group">
-                                        {{-- <label for="contact-firstname" aria-label="Imię">Imię</label> --}}
-                                        <input type="text" name="contact[firstname]" class="form-control" id="contact-firstname" placeholder="Imię" aria-label="Imię" aria-describedby="contact-firstname-help">
-                                        {{-- <small id="contact-firstname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                        <label for="contact-firstname" aria-label="{!! __('validation.attributes.contact.firstname') !!}">{!! __('validation.attributes.contact.firstname') !!}</label>
+                                        <input type="text" name="contact[firstname]" class="form-control" id="contact-firstname" placeholder="{!! __('validation.attributes.contact.firstname') !!}" aria-label="{!! __('validation.attributes.contact.firstname') !!}" aria-describedby="contact-firstname-help">
+                                        <small id="contact-firstname-help" class="form-text text-muted">{!! __('contact-form.help.firstname') !!}</small>
                                     </div>
-                                    {{-- nazwisko --}}
                                     <div class="form-group">
-                                        {{-- <label for="contact-lastname" aria-label="Imię">Nazwisko</label> --}}
-                                        <input type="text" name="contact[lastname]" class="form-control" id="contact-lastname" placeholder="Nazwisko" aria-label="Nazwisko" aria-describedby="contact-lastname-help">
-                                        {{-- <small id="contact-lastname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                        <label for="contact-lastname" aria-label="{!! __('validation.attributes.contact.lastname') !!}">{!! __('validation.attributes.contact.lastname') !!}</label>
+                                        <input type="text" name="contact[lastname]" class="form-control" id="contact-lastname" placeholder="{!! __('validation.attributes.contact.lastname') !!}" aria-label="{!! __('validation.attributes.contact.lastname') !!}" aria-describedby="contact-lastname-help">
+                                        <small id="contact-lastname-help" class="form-text text-muted">{!! __('contact-form.help.lastname') !!}</small>
                                     </div>
                                 @else
-                                    {{-- nazwa --}}
                                     <div class="form-group">
-                                        {{-- <label for="contact-fullname" aria-label="Imię">Imię</label> --}}
-                                        <input type="text" name="contact[fullname]" class="form-control" id="contact-fullname" placeholder="Imię i nazwisko" aria-label="Imię i nazwisko" aria-describedby="contact-fullname-help">
-                                        {{-- <small id="contact-fullname-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                        <label for="contact-fullname" aria-label="{!! __('validation.attributes.contact.name') !!}">{!! __('validation.attributes.contact.name') !!}</label>
+                                        <input type="text" name="contact[fullname]" class="form-control" id="contact-fullname" placeholder="{!! __('validation.attributes.contact.name') !!}" aria-label="{!! __('validation.attributes.contact.name') !!}" aria-describedby="contact-fullname-help">
+                                        <small id="contact-fullname-help" class="form-text text-muted">{!! __('contact-form.help.name') !!}</small>
                                     </div>
                                 @endif
 
-                                {{-- telefon --}}
                                 <div class="form-group">
-                                    {{-- <label for="contact-phone" aria-label="Imię">Telefon</label> --}}
-                                    <input type="text" name="contact[phone]" class="form-control" id="contact-phone" placeholder="Telefon" aria-label="Telefon" aria-describedby="contact-phone-help">
-                                    {{-- <small id="contact-phone-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                    <label for="contact-phone" aria-label="{!! __('validation.attributes.contact.phone') !!}">{!! __('validation.attributes.contact.phone') !!}</label>
+                                    <input type="text" name="contact[phone]" class="form-control" id="contact-phone" placeholder="{!! __('validation.attributes.contact.phone') !!}" aria-label="{!! __('validation.attributes.contact.phone') !!}" aria-describedby="contact-phone-help">
+                                    <small id="contact-phone-help" class="form-text text-muted">{!! __('contact-form.help.phone') !!}</small>
                                 </div>
-                                {{-- e-mail --}}
+
                                 <div class="form-group">
-                                    {{-- <label for="contact-email" aria-label="Imię">E-mail</label> --}}
-                                    <input type="contact-email" name="contact[email]" class="form-control" id="contact-email" placeholder="E-mail" aria-label="E-mail" aria-describedby="contact-email-help">
-                                    {{-- <small id="contact-email-help" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                                    <label for="contact-email" aria-label="{!! __('validation.attributes.contact.email') !!}">{!! __('validation.attributes.contact.email') !!}</label>
+                                    <input type="contact-email" name="contact[email]" class="form-control" id="contact-email" placeholder="{!! __('validation.attributes.contact.email') !!}" aria-label="{!! __('validation.attributes.contact.email') !!}" aria-describedby="contact-email-help">
+                                    <small id="contact-email-help" class="form-text text-muted">{!! __('contact-form.help.email') !!}</small>
                                 </div>
 
                             </div>
 
                             <div class="col-12 col-md-6">
 
-                                {{-- tresc --}}
+                                @if(\Site::contactFormHasSubjects())
+                                    <div class="form-group">
+                                        <label for="contact-subject" aria-label="{!! __('validation.attributes.contact.subject') !!}">{!! __('validation.attributes.contact.subject') !!}</label>
+                                        {{-- <input type="text" name="contact[subject]" class="form-control" id="contact-subject" placeholder="{!! __('validation.attributes.contact.subject') !!}" aria-label="{!! __('validation.attributes.contact.subject') !!}" aria-describedby="contact-subject-help"> --}}
+                                        <select name="contact[subject]" class="form-control custom-select" id="contact-subject" aria-label="{!! __('validation.attributes.contact.subject') !!}" aria-describedby="contact-subject-help">
+                                            {{-- <option selected>{!! __('validation.attributes.contact.subject') !!}</option> --}}
+                                            @foreach ($site->contact_form_subjects->all() as $item)
+                                                <option value="{!! $item->id !!}">{!! $item->subject !!}</option>
+                                            @endforeach
+                                        </select>
+                                        <small id="contact-subject-help" class="form-text text-muted">{!! __('contact-form.help.subject') !!}</small>
+                                    </div>
+                                @endif
+
                                 <div class="form-group">
-                                    {{-- <label for="contact-content" aria-label="Imię">Treść</label> --}}
-                                    <textarea class="form-control" name="contact[content]" id="contact-content" rows="3" placeholder="Treść" aria-label="Treść" aria-describedby="contact-content-help"></textarea>
-                                    {{-- <small id="contact-content-help" class="form-text text-muted">We'll never share your text with anyone else.</small> --}}
+                                    <label for="contact-content" aria-label="{!! __('validation.attributes.contact.content') !!}">{!! __('validation.attributes.contact.content') !!}</label>
+                                    <textarea class="form-control" name="contact[content]" id="contact-content" rows="3" placeholder="{!! __('validation.attributes.contact.content') !!}" aria-label="{!! __('validation.attributes.contact.content') !!}" aria-describedby="contact-content-help"></textarea>
+                                    <small id="contact-content-help" class="form-text text-muted">{!! __('contact-form.help.content') !!}</small>
                                 </div>
 
                             </div>
 
                             <div class="col-12 col-md-12">
-                                <div class="form-group custom-control custom-checkbox">
+                                <div class="form-group custom-control custom-checkbox contact-consent">
                                     <input name="contact[consent]" value="1" type="checkbox" class="form-control custom-control-input" id="contact-consent">
                                     <label class="custom-control-label" for="contact-consent">{!! \ViewHelper::parse($settings->contact_form_consent) !!}</label>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-12">
+                            <div class="col-12 col-md-12 alert-placeholder">
                                 <button type="submit" class="btn-submit btn btn-custom text-nowrap ml-auto mr-0 d-block">{{-- <i class="far fa-paper-plane"></i>  --}}Wyślij</button>
                             </div>
 
@@ -117,6 +126,7 @@
                         'lastname': $('[name="contact[lastname]"]').val(),
                         'phone': $('[name="contact[phone]"]').val(),
                         'email': $('[name="contact[email]"]').val(),
+                        'subject': $('[name="contact[subject]"]').val(),
                         'content': $('[name="contact[content]"]').val(),
                         'consent': $('[name="contact[consent]"]').is(':checked'),
                     }
@@ -135,7 +145,7 @@
                     // console.log(error.response.data);
 
                     if (!jQuery.isEmptyObject(error.response.data)) {
-                        $form.find('.btn-submit').before('<div class="alert alert-warning" role="alert">{!! $settings->contact_form_errors !!}</div>');
+                        $form.find('.alert-placeholder').prepend('<div class="alert alert-warning" role="alert">{!! $settings->contact_form_errors !!}</div>');
                     }
 
                     for (var i in error.response.data) {

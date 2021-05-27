@@ -9,20 +9,29 @@ class LitPageHelper extends LitHelper
 
     }
 
-    public function routeSelectOptions($decorate = null)
+    public function actionSelectOptions($decorate = null)
     {
         // $decorate = '<span class="badge badge-secondary">{option}</span>';
         $options = [
             null => '-',
         ];
-        foreach ((array) config('site.config.select-options.page-routes') as $option) {
+        foreach ((array) config('site.config.page-actions') as $action => $route) {
             if (!is_null($decorate)) {
-                $options[$option] = str_replace('{option}', __("site/routes.$option"), $decorate);
+                $options[$action] = str_replace('{option}', __("site::routes.$route"), $decorate);
             } else {
-                $options[$option] = __("site/routes.$option");
+                $options[$action] = __("site::routes.$route");
             }
         }
         return $options;
+    }
+
+    public function titleTagSelectOptions()
+    {
+        return [
+            'div' => 'tytuł',
+            'h1' => 'tytuł jako tag h1',
+            '-' => 'ukryty',
+        ];
     }
 
     public function textHint()
@@ -65,7 +74,7 @@ class LitPageHelper extends LitHelper
         ];
     }
 
-    public function imagesHint()
+    public function imagesHelp()
     {
         return [
             'title' => 'KODY WYWOŁANIA',

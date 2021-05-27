@@ -1,19 +1,19 @@
 <div class="home-video">
 
     @if($availableVideos['video']['url'] !== false)
-        <video loop="" muted="" autoplay="" class="home-video-video">
+        <video loop="" muted="" autoplay="" class="home-video-video" poster="{!! asset('images/video.jpg') !!}">
             <source src="{!! $availableVideos['video']['url'] !!}" type="{!! $availableVideos['video']['type'] !!}">
         </video>
     @endif
 
     @if(config('site.options.home-video-has-responsive-sources'))
         @if($availableVideos['video-mobile']['url'] !== false)
-            <video loop="" muted="" autoplay="" class="home-video-video is-mobile d-xl-none">
+            <video loop="" muted="" autoplay="" class="home-video-video is-mobile d-xl-none" poster="{!! asset('images/video.jpg') !!}">
                 <source src="{!! $availableVideos['video']['url'] !!}" type="{!! $availableVideos['video']['type'] !!}">
             </video>
         @endif
         @if($availableVideos['video-desktop']['url'] !== false)
-            <video loop="" muted="" autoplay="" class="home-video-video is-desktop d-none d-xl-block">
+            <video loop="" muted="" autoplay="" class="home-video-video is-desktop d-none d-xl-block" poster="{!! asset('images/video.jpg') !!}">
                 <source src="{!! $availableVideos['video']['url'] !!}" type="{!! $availableVideos['video']['type'] !!}">
             </video>
         @endif

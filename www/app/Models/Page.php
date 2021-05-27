@@ -168,7 +168,7 @@ class Page extends Model implements HasMediaContract
      */
     public function getUrlByTypeAttribute()
     {
-        $translationKey = 'site/models/page.route_prefix_by_type';
+        $translationKey = 'site::models/page.route_prefix_by_type';
 
         $typePrefixLang = __($translationKey . '.' . $this->type);
 

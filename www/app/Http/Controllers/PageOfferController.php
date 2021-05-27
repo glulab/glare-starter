@@ -26,7 +26,21 @@ class PageOfferController extends Controller
     public function index()
     {
         try {
-            $page = \App\Models\Page::whereActive(true)->whereRoute('offer')->firstOrFail();
+            $q = \App\Models\Page::query();
+
+            $q->with('photo_links');
+            $q->with('galleries');
+
+            $q->whereAction('offer');
+
+            if (!Auth::guard('lit')->check()) {
+                $q->whereActive(true);
+            }
+
+            $page = $q->firstOrFail();
+
+            session(['last_viewed_page' => ['label' => $page->title, 'url' => request()->fullurl()]]);
+
         } catch (\Exception $e) {
             // explode suffix '.html'
             $slug = explode('.', request()->path());
@@ -48,16 +62,14 @@ class PageOfferController extends Controller
         $q = \App\Models\Page::query();
 
         $q->with('photo_links');
-
         $q->with('galleries');
 
+        $q->whereType('offer');
         $q->whereSlug($slug);
 
         if (!Auth::guard('lit')->check()) {
             $q->whereActive(true);
         }
-
-        $q->whereType('offer');
 
         $page = $q->firstOrFail();
 

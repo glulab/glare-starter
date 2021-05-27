@@ -33,7 +33,7 @@ class HomeVideo extends Component
 
         $this->homeVideo = Form::load('home', 'home_video');
 
-        if (!config('site.services.home-video') || empty($this->homeVideo->active)) {
+        if (empty($this->homeVideo->active)) {
             return '';
         }
 
@@ -58,7 +58,7 @@ class HomeVideo extends Component
                     $this->availableVideos['video-mobile']['url'] = $this->homeVideo->getFirstMedia('video_mobile')->originalUrl;
                     $this->availableVideos['video-mobile']['type'] = $this->homeVideo->getFirstMedia('video-mobile')->mime_type;
                 }
-            } elseif (is_file(base_path('storage/video/video-mobile.mp4'))) {
+            } elseif (is_file(storage_path('app/public/video/video-mobile.mp4'))) {
                 $this->availableVideos['video-mobile']['url'] = asset('storage/video/video-mobile.mp4');
                 $this->availableVideos['video-mobile']['type'] = 'video/mp4';
             }
@@ -68,7 +68,7 @@ class HomeVideo extends Component
                     $this->availableVideos['video-desktop']['url'] = $this->homeVideo->getFirstMedia('video_desktop')->originalUrl;
                     $this->availableVideos['video-desktop']['type'] = $this->homeVideo->getFirstMedia('video-desktop')->mime_type;
                 }
-            } elseif (is_file(base_path('storage/video/video-desktop.mp4'))) {
+            } elseif (is_file(storage_path('app/public/video/video-desktop.mp4'))) {
                 $this->availableVideos['video-desktop']['url'] = asset('storage/video/video-desktop.mp4');
                 $this->availableVideos['video-desktop']['type'] = 'video/mp4';
             }
@@ -78,12 +78,11 @@ class HomeVideo extends Component
                     $this->availableVideos['video']['url'] = $this->homeVideo->getFirstMedia('video')->originalUrl;
                     $this->availableVideos['video']['type'] = $this->homeVideo->getFirstMedia('video')->mime_type;
                 }
-            } elseif (is_file(base_path('storage/video/video.mp4'))) {
+            } elseif (is_file(storage_path('app/public/video/video.mp4'))) {
                 $this->availableVideos['video']['url'] = asset('storage/video/video.mp4');
                 $this->availableVideos['video']['type'] = 'video/mp4';
             }
         }
-
         if (!empty($this->homeVideo->url)) {
             $this->homeVideo->href = $this->homeVideo->url;
         } elseif(!empty($this->homeVideo->route)) {

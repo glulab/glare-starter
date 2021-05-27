@@ -56,6 +56,7 @@ class SiteConfig extends FormConfig
         })->title('Banner');
 
 
+        if (config('site.options.map-has-embed-code') || config('site.options.map-has-url')) :
         $page->info('Mapa');
         $page->card(function ($form) {
             if (config('site.options.map-has-embed-code')) :
@@ -65,6 +66,7 @@ class SiteConfig extends FormConfig
                 $form->input('map_url')->title('Mapa: adres url')->hint('Udostępnij -> Wysyłanie linku -> Link do udostępnienia: Kopiuj link.');
             endif;
         });
+        endif;
 
         $page->info('Linki kontaktowe');
         $page->card(function ($form) {
@@ -99,6 +101,11 @@ class SiteConfig extends FormConfig
         $page->card(function ($form) {
             $form->input('contact_form_title')->title('Formularz Kontaktowy: Tytuł');
             $form->textarea('contact_form_text')->title('Formularz Kontaktowy: Treść');
+            if(config('site.options.contact-form-has-subject')) :
+              $form->block('contact_form_subjects')->title('Tematy')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
+                  $repeatables->add(\Lit\Repeatables\ContactFormSubjectRepeatable::class)->button(__('Add'));
+              });
+            endif;
         });
         endif;
 

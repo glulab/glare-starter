@@ -1,6 +1,6 @@
 {
     "require": {
-        "glulab/glare": "^1.1|dev-master",
+        "glulab/glare": "^2.0|dev-master",
     },
     "repositories": [
         {

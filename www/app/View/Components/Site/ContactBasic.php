@@ -17,7 +17,7 @@ class ContactBasic extends Component
      */
     public function __construct($class = '', $dir = 'icons/contact')
     {
-        $data = app('lit-shared')['settings'];
+        $data = app('site-shared')['settings'];
 
         $this->class = $class;
         $this->dir = $dir;

@@ -7,16 +7,42 @@
     align-items: baseline;
     list-style-type: none;
 
+    @include media-breakpoint-up(sm) {
+        justify-content: space-between;
+    }
+
+    @include media-breakpoint-up(md) {
+        justify-content: flex-start;
+    }
+
     .photo-link {
         margin-bottom: 2rem;
         text-align: center;
+        // max-width: 315px;
+        $margin-width: 5%;
         flex: 0 0 percentage(1/1);
         @include media-breakpoint-up(sm) {
-            flex: 0 0 percentage(1/2);
+            flex: 0 0 percentage(1/2) - $margin-width;
         }
         @include media-breakpoint-up(md) {
-            flex: 0 0 percentage(1/3);
+            flex: 0 0 percentage(1/3) - $margin-width;
+            $margin-right:  (100% - (3 * (percentage(1/3) - $margin-width))) / 3;
+            margin-right: $margin-right;
+            &:nth-child(3n + 3) {
+                margin-right: 0;
+            }
         }
+        // @include media-breakpoint-up(lg) {
+        //     flex: 0 0 percentage(1/4) - $margin-width;
+        //     $margin-right: (100% - (4 * (percentage(1/4) - $margin-width))) / 4;
+        //     margin-right: $margin-right;
+        //     &:nth-child(3n + 3) {
+        //         margin-right: $margin-right;
+        //     }
+        //     &:nth-child(4n + 4) {
+        //         margin-right: 0;
+        //     }
+        // }
 
         display: flex;
         flex-direction: column;

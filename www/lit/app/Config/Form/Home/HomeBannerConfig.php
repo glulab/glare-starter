@@ -54,8 +54,8 @@ class HomeBannerConfig extends FormConfig
             $form->textarea('text')->title('Tekst')->placeholder('Treść')->hint('Treść');
             if (config('site.options.home-banner-has-button')) {
                 $form->input('label')->title('Przycisk')->type('text')->placeholder('Tekst na przycisku')->hint('Tekst na przycisku');
-                $form->route('route')->collection('site-routes')->title('Wybierz stronę')->hint('wybierz stronę w systemie');
-                $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(12);
+                $form->route('route')->collection('site-routes')->title('Wybierz stronę')->hint('wybierz stronę w systemie')->width(6);
+                $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(6);
             }
         });
     }

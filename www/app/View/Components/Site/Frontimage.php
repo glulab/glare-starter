@@ -17,7 +17,7 @@ class Frontimage extends Component
     {
         $this->image = $image;
         if (empty($this->image)) {
-            $site = app('lit-shared')['site'];
+            $site = app('site-shared')['site'];
             $this->image = $site->banner;
         }
     }

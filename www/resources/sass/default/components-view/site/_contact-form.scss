@@ -3,6 +3,26 @@
         @include item-title;
     }
 
+    .form-group {
+        .form-text {
+            display: none;
+        }
+
+        .custom-select {
+            color: $input-placeholder-color;
+        }
+
+        label:not([for="contact-consent"]) {
+            display: none;
+        }
+    }
+
+    #contact-subject,
+    #contact-subject option,
+    ::placeholder {
+        text-transform: uppercase;
+    }
+
     textarea.form-control {
         height: $textarea-height;
     }

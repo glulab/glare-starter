@@ -20,8 +20,28 @@ class PageContactController extends Controller
 
     public function show()
     {
+        try {
+            $q = \App\Models\Page::query();
+
+            $q->with('photo_links');
+            $q->with('galleries');
+
+            $q->whereAction('contact');
+
+            if (!Auth::guard('lit')->check()) {
+                $q->whereActive(true);
+            }
+
+            $page = $q->firstOrFail();
+
+        } catch (\Exception $e) {
+            // explode suffix '.html'
+            $slug = explode('.', request()->path());
+            return app()->call('App\Http\Controllers\PageController@show', ['slug' => $slug[0]]);
+        }
+
         return view('page-contact.show')
-            ->with('page', \App\Models\Page::whereActive(true)->whereRoute('contact')->firstOrNew())
+            ->with('page', $page)
         ;
     }
 }

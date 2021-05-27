@@ -66,7 +66,7 @@ class LitConfigIndexTable
 
     public function pageRoute($config, $table, $options = [])
     {
-        $table->col('FUNKCJA')->value('route', LitPageHelper::routeSelectOptions('<span class="badge badge-secondary">{option}</span>'))->sortBy('route')->center()->class('small');
+        $table->col('AKCJA')->value('action', LitPageHelper::actionSelectOptions('<span class="badge badge-secondary">{option}</span>'))->sortBy('action')->center()->class('small');
     }
 
     public function relationManyBadges($config, $table, $name, $value, $badgeClass = 'secondary', $iterate = 10)

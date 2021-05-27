@@ -19,7 +19,10 @@ class LitConfigShow
                 $form->input('name')->title('Nazwa')->width(12);
             }
             if (in_array('title', $options)) {
-                $form->input('title')->title('Tytuł')->max(255)->width(12);
+                $form->input('title')->title('Tytuł')->max(255)->creationRules(['required'])->width(9);
+            }
+            if (in_array('title_tag', $options)) {
+                $form->select('title_tag')->title('Wyświetlanie')->options(\Facades\Lit\Support\Helpers\LitPageHelper::titleTagSelectOptions())->hint('Wybierz opcję pokazywania tytułu.')->width(3);
             }
             if (in_array('titlearea', $options)) {
                 $form->textarea('title')->title('Tytuł')->hint('Max: 255 znaków.')->width(12);
@@ -50,7 +53,7 @@ class LitConfigShow
 
     public function pageDescription(CrudShow $page)
     {
-        $this->content($page, ['title', 'slug', 'description'], 'TYTUŁ I OPIS');
+        $this->content($page, ['title', 'title_tag', 'slug', 'description'], 'TYTUŁ I OPIS');
     }
 
     public function pageContent(CrudShow $page)
@@ -68,19 +71,25 @@ class LitConfigShow
         })->title('BANNER');
     }
 
-    public function images(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = 0, $hint = null)
+    public function images(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = null, $hint = null, $help = null)
     {
-        $page->card(function($form) use ($name, $maxFiles, $ratio, $hint) {
+        $page->card(function($form) use ($name, $maxFiles, $ratio, $hint, $help) {
 
-            $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->crop($ratio)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
-            $form->view('lit::forms.collapse', LitPageHelper::imagesHint());
+            if (is_null($ratio)) {
+                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
+            } else {
+                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->crop($ratio)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
+            }
+            if ($help !== false) {
+                $form->view('lit::forms.collapse', LitPageHelper::imagesHelp());
+            }
 
         })->title('ZDJĘCIA');
     }
 
-    public function galleryImages(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = 0, $hint = false)
+    public function galleryImages(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = null, $hint = null, $help = false)
     {
-        $this->images($page, $name, $maxFiles, $ratio, $hint);
+        $this->images($page, $name, $maxFiles, $ratio, $hint, $help);
     }
 
     public function blockPhotoLinks(CrudShow $page)

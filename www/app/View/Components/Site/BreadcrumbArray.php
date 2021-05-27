@@ -5,11 +5,15 @@ namespace App\View\Components\Site;
 use Illuminate\View\Component;
 
 /**
- * <x-site.breadcrumb-array :segments="['home', 'route|offer.index||offer', 'session|last_viewed_offer', ['App\Support\View\Breadcrumb\ProductBreadcrumb', ['product' => $page]], 'simple|' . $page->name . '|' . $page->url]" />
+ * <x-site.breadcrumb-array :segments="['home', 'route|offer.index||offer', 'session|last_viewed_offer', ['App\Support\View\Breadcrumb\ProductBreadcrumb', ['product' => $page]], 'basic|' . $page->name . '|' . $page->url]" />
+ * <x-site.breadcrumb-array :segments="['home', 'route|offer.index', 'session|last_viewed_offer']" />
+ * <x-site.breadcrumb-array :segments="['home', 'route|offer.index', 'basic|' . $page->name . '|' . $page->url]" />
+ * <x-site.breadcrumb-array :segments="['home', 'route|offer.index', 'page']" :page="$page" />
  */
 class BreadcrumbArray extends Component
 {
     public $breadcrumb = [];
+    protected $page;
 
     protected $segments;
 
@@ -18,9 +22,10 @@ class BreadcrumbArray extends Component
      *
      * @return void
      */
-    public function __construct($segments = [])
+    public function __construct($segments = [], $page = null)
     {
         $this->segments = $segments;
+        $this->page = $page;
     }
 
     /**
@@ -53,9 +58,18 @@ class BreadcrumbArray extends Component
     public function resolveHome($segment)
     {
         return [
-            'label' => trans("site/breadcrumb.home"),
+            'label' => trans("site::breadcrumbs.home"),
             'href' => url('/'),
             'active' => request()->path() === '/',
+        ];
+    }
+
+    public function resolveBasic($segment)
+    {
+        return [
+            'label' => $segment[1] ?? '',
+            'href' => $segment[2] ?? request()->url(),
+            'active' => request()->url() === ($segment[2] ?? ''),
         ];
     }
 
@@ -72,12 +86,19 @@ class BreadcrumbArray extends Component
         ];
     }
 
+    /**
+     * route|route-name|overridden-label
+     *
+     * @param [type] $segment [description]
+     *
+     * @return [type] [description]
+     */
     public function resolveRoute($segment)
     {
         $routeName = $segment[1] ?? '';
         $routeLabel = $segment[2] ?? '';
-        if (empty($routeLabel) && isset($segment[3])) {
-            $routeLabel = trans("site/breadcrumb.$segment[3]");
+        if (empty($routeLabel)) {
+            $routeLabel = trans("site::breadcrumbs.$segment[1]");
         }
         return [
             'label' => $routeLabel,
@@ -86,12 +107,12 @@ class BreadcrumbArray extends Component
         ];
     }
 
-    public function resolveSimple($segment)
+    public function resolvePage($segment)
     {
         return [
-            'label' => $segment[1] ?? '',
-            'href' => $segment[2] ?? '#',
-            'active' => request()->url() === $segment[2] ?? '',
+            'label' => $this->page->title ?? '',
+            'href' => $this->page->url ?? '#',
+            'active' => request()->url() === $this->page->url ?? '',
         ];
     }
 }

@@ -58,7 +58,7 @@ return [
         'site-routes' => [
             'page' => [
                 'db-table' => 'pages',
-                'types-translations' => 'site/models/page',
+                'types-translations' => 'site::models/page',
                 'types' => [
                     'page' => [
                         'type' => 'page', // field in model db
@@ -84,21 +84,20 @@ return [
             ],
         ],
 
-        'select-options' => [
-            'page-routes' => [
-                'contact',
-                'gallery',
-                // 'offer',
-            ],
-            'section-locations' => [
-                'top',
-                'main',
-                // 'column',
-                'bottom',
-            ],
-            'section-types' => [
-                'home',
-            ],
+        'page-actions' => [
+            'contact' => 'contact',
+            'gallery' => 'gallery.index',
+            // 'offer' => 'offer.index',
+        ],
+
+        'section-locations' => [
+            'top',
+            'main',
+            // 'column',
+            'bottom',
+        ],
+        'section-types' => [
+            'home',
         ],
 
         'ratios' => [ // 0 to turn off
@@ -139,6 +138,7 @@ return [
 
         'home-slider-has-button' => true,
 
+        'photo-link-has-image' => true,
         'photo-link-has-title' => true,
         'photo-link-has-text' => true,
         'photo-link-has-button' => true,
@@ -148,6 +148,7 @@ return [
         'contact-form-show-on-routes' => ['*'], // ['home', 'page.*','contact']
         'contact-form-exclude-from-routes' => [], // ['home'],
         'contact-form-has-split-fullname' => false,
+        'contact-form-has-subject' => false,
 
         'link-has-class' => false,
         'link-has-itemprop' => false,
@@ -157,9 +158,40 @@ return [
         'contact-link-has-class' => true,
         'contact-link-has-itemprop' => true,
         'contact-link-has-icon' => false,
-        'contact-link-has-filename' => true,
+        'contact-link-has-filename' => false,
 
-        'map-has-embed-code' => false,
-        'map-has-url' => true,
+        'map-has-embed-code' => true,
+        'map-has-url' => false,
+    ],
+
+    'resources' => [
+        'lang' => [
+            'glare/resources/lang' => 'site',
+        ],
+        'json-lang' => [
+            'glare/resources/lang-json',
+            'resources/lang-json',
+        ],
+        'views' => [
+            'glare/resources/views' => 'site',
+        ],
+        'view-paths' => [
+            'resources/views-default',
+        ],
+    ],
+
+    'commands-in-console' => [
+        \Glare\Console\Commands\GlareCleanupCommand::class,
+        \Glare\Console\Commands\GlareSchedulerTestCommand::class,
+    ],
+    'commands' => [
+        \Glare\Console\Commands\GlareSitemapCommand::class,
+    ],
+
+    'routes' => [
+        'routes/web-context.php' => ['web'],
+        'glare/routes/web-site-prefixed.php' => ['web'],
+        'glare/routes/web-site.php' => ['web'],
+        'routes/web-theme.php' => ['web'],
     ],
 ];

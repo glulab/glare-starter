@@ -37,7 +37,7 @@
 
 @include media-breakpoint-up(md) {
     .photos {
-        @include flex-wrapper-row(flex-start);
+        @include flex-wrapper-row(space-between);
         .photo {
             @include flex-item-three;
         }
@@ -46,9 +46,18 @@
 
 @include media-breakpoint-up(lg) {
     .photos {
-        @include flex-wrapper-row(flex-start);
+        @include flex-wrapper-row(space-between);
         .photo {
             @include flex-item-four;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .photos {
+        @include flex-wrapper-row(space-between);
+        .photo {
+            @include flex-item-five;
         }
     }
 }

@@ -48,12 +48,24 @@ class ContactFormController extends Controller
             'contact.fullname' => __('validation.attributes.contact.fullname'),
         ];
 
+        $hasSubjectRules = [
+            'contact.subject' => 'required',
+        ];
+        $hasSubjectCustomAttributes = [
+            'contact.subject' => __('validation.attributes.contact.subject'),
+        ];
+
         if (config('site.options.contact-form-has-split-fullname')) {
             $rules = array_merge($splitFullnameRules, $rules);
             $customAttributes = array_unshift($splitFullnameCustomAttributes, $customAttributes);
         } else {
             $rules = array_merge($fullnameRules, $rules);
             $customAttributes = array_merge($fullnameCustomAttributes, $customAttributes);
+        }
+
+        if (\Site::contactFormHasSubjects()) {
+            $rules = array_merge($hasSubjectRules, $rules);
+            $customAttributes = array_merge($hasSubjectCustomAttributes, $customAttributes);
         }
 
         try {
@@ -83,12 +95,21 @@ class ContactFormController extends Controller
         $content[] =  '';
         $content[] =  $mailMessage;
 
-        $emailsToSend = \LitSettings::get('contact_form_emails', null, 'settings');
+        $subject = \LitSettings::get('contact_form_subject', 'Wiadomość z formularza kontaktowego: ' . config('app.name'), 'settings');
+
+        if(\Site::contactFormHasSubjects() && !empty($mailData['subject'])) :
+            $site = \Site::shared('site');
+            $subjectId = $mailData['subject'];
+            $subject .= ' : ' . $site->contact_form_subjects->pluck('subject', 'id')->get($subjectId);
+            $emailsToSend = $site->contact_form_subjects->pluck('email', 'id')->get($subjectId);
+        else :
+            $emailsToSend = \LitSettings::get('contact_form_emails', null, 'settings');
+        endif;
         $emailsToSendArray = explode(',', $emailsToSend) ?? [\LitSettings::get('site_email', null, 'settings')];
 
         $mail = [
             'content' => implode("<br>\n\r", $content),
-            'subject' => \LitSettings::get('contact_form_subject', 'Wiadomość z formularza kontaktowego: ' . config('app.name'), 'settings'),
+            'subject' => $subject,
             'to' => $emailsToSendArray,
             'cc' => $mailData['email'],
         ];
