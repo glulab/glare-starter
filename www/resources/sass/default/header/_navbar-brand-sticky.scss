@@ -1,0 +1,20 @@
+////////////////////////
+// hide sticky navbar //
+////////////////////////
+body {
+    .navbar-brand.is-sticky {
+        display: none;
+    }
+}
+
+///////////////////////////////////////////////////
+// hide navbar and show sticky navbar if sticked //
+///////////////////////////////////////////////////
+body.is-sticky.is-sticked {
+    .navbar-brand {
+        display: none;
+    }
+    .navbar-brand.is-sticky {
+        display: block;
+    }
+}

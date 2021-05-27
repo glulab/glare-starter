@@ -1,0 +1,16 @@
+.is-page-title-prefixed,
+.page-title-prefixed {
+
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(lg) {
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .is-prefix,
+    .page-title-prefix {
+        @include page-title-prefix;
+    }
+}
