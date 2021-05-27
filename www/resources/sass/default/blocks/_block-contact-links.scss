@@ -16,10 +16,10 @@
         &:focus {
             //
         }
-
         > .nav-link {
             display: block;
             white-space: nowrap;
+            @include link-in-footer;
         }
     }
 }
@@ -43,11 +43,6 @@
 // in footer //
 ///////////////
 .block-contact-links.in-footer {
-
-    .nav-link {
-        @include link-in-footer;
-    }
-
     .nav-item {
         margin: 0;
         padding: 0;

@@ -2,19 +2,21 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 mb-4 footer-menu-main">
-                @include('layout.menu-main', ['class' => 'in-footer'])
+                @include('layout.footer-menu-main')
             </div>
+            {{-- <div class="col-12 col-md-3 mb-4 footer-offer">
+                @include('layout.footer-offer')
+            </div> --}}
             <div class="col-12 col-md-3 mb-4 footer-menu">
-                @include('layout.menu-offer', ['class' => 'in-footer'])
-                @include('layout.menu-footer', ['class' => 'in-footer'])
-                @include('layout.menu-lang', ['class' => 'in-footer'])
+                @include('layout.menu-footer')
             </div>
             <div class="col-12 col-md-3 mb-4 footer-contact-links">
-                @include('layout.block-links', ['class' => 'in-footer navbar-nav'])
-                {{-- @include('layout.block-contact-links', ['class' => 'in-footer navbar-nav']) --}}
+                {{-- @include('layout.block-contact-links', ['class' => 'in-footer']) --}}
+                {{-- @include('layout.block-links', ['class' => 'in-footer']) --}}
+                @include('layout.block-links', ['class' => 'navbar-nav in-footer'])
             </div>
             <div class="col-12 col-md-3 mb-4 footer-contact">
-                @include('layout.footer-contact')
+                @include('layout.block-contact-full')
             </div>
         </div>
     </div>

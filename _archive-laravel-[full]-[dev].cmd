@@ -16,6 +16,9 @@ set dbCredentials=-h localhost -u root -proot
 mkdir "%bakPath%/!bak/sql"
 mkdir "%bakPath%/!bak/www"
 
+cd www
+php artisan glare:cleanup
+cd ..
 mysqldump %dbParams% %dbCredentials% %dbName% > %dbSqlPath%
 "C:\Program Files\7-Zip\7z.exe" a -tzip %zipPath% %zipPack% -mx0 %zipExcludes%
 

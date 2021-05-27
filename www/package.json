@@ -4,6 +4,9 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
         "@glulab/gl-window-resize-listener": "^1.0.4",
+        "@glulab/gl-sticky": "^1.0.3",
+        "@glulab/gl-web-framework": "^1.0.0",
+        "@glulab/gl-gallery-wrapper": "^1.0.0",
         "alpinejs": "^2.8.2",
         "font-awesome": "^4.7.0",
         "lightgallery": "1.2.21",

@@ -16,11 +16,11 @@
         &:focus {
             //
         }
-
-        > .nav-link {
-            display: block;
-            white-space: nowrap;
-        }
+    }
+    .nav-link {
+        display: block;
+        white-space: nowrap;
+        @include link-in-footer;
     }
 }
 
@@ -47,13 +47,12 @@
     }
 }
 
+
 ///////////////
 // in footer //
 ///////////////
-.block-links.in-footer {
-
-    .nav-link {
-        @include link-in-footer;
-    }
-
-}
+// .block-links.in-footer {
+//     @include media-breakpoint-up(md) {
+//         padding-top: .5rem;
+//     }
+// }

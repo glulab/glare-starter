@@ -1,25 +1,21 @@
-.footer {
+.navbar-nav.navbar-main.in-footer {
 
-    .navbar-nav.navbar-main.in-footer {
+    .nav-item {
 
-        .nav-item {
+    }
 
+    .nav-link {
+        text-transform: none;
+        font-weight: 400;
+        font-size: 1rem;
+        color: $body-color;
+        &:hover,
+        &:focus {
+            color: $link-color;
         }
+    }
 
-        .nav-link {
-            @include link-in-footer;
-            text-transform: none;
-            font-weight: 400;
-            font-size: 1rem;
-            color: $body-color;
-            &:hover,
-            &:focus {
-                color: $link-color;
-            }
-        }
+    .dropdown-menu {
 
-        .dropdown-menu {
-
-        }
     }
 }

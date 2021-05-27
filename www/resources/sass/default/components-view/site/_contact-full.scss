@@ -1,11 +1,5 @@
 .contact-full {
-    .logo {
-        margin-bottom: 1rem;
-    }
-}
-
-.contact-full {
-    .nav-link {
+    a {
 
     }
 }
@@ -14,7 +8,7 @@
 // in footer //
 ///////////////
 .contact-full.in-footer {
-    .nav-link {
+    a {
         @include link-in-footer;
     }
 }

@@ -1,24 +1,3 @@
-/////////////////
-// home navbar //
-/////////////////
-body.index {
-    .navbar-brand {
-        display: block;
-    }
-    .navbar-brand.is-desktop {
-        display: none;
-    }
-
-    @include media-breakpoint-desktop() {
-        .navbar-brand {
-            display: none;
-        }
-        .navbar-brand.is-desktop {
-            display: block;
-        }
-    }
-}
-
 ////////////////////////////
 // navbar-brand max-width //
 ////////////////////////////
@@ -26,7 +5,7 @@ body.index {
     max-width: 30%;
 }
 
-@include media-breakpoint-desktop() {
+@include media-breakpoint-up(xxl) {
     .navbar-brand {
         max-width: none;
     }

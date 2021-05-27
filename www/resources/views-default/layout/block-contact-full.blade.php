@@ -1,1 +1,1 @@
-<x-site.contact-full :class="'block-contact is-full ' . ($class ?? '') . ''" :dir="$dir ?? 'icons/contact'"/>
+<x-site.contact-full :class="'block-contact is-full ' . ($class ?? 'in-footer') . ''"/>
