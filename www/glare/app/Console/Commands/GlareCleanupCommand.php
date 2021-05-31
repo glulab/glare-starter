@@ -57,7 +57,9 @@ class GlareCleanupCommand extends Command
             'debugbar:clear' => [],
             'media-library:clean' => ['--force' => $force],
             'logClear' => [],
-            'emptyStorageDir' => ['media-library/temp'],
+            'sessionClear' => [],
+            'emptyStorageDir' => [['media-library/temp']],
+            'cachedFacadesClear' => [],
         ];
 
         $compileCommands = [
@@ -135,10 +137,35 @@ class GlareCleanupCommand extends Command
         return true;
     }
 
-    public function emptyStorageDir($pathInStorage = '')
+    public function sessionClear()
     {
-        $storageToCleanPath = storage_path($pathInStorage);
-        return \DiskHelper::deleteDirectory($storageToCleanPath, false);
+        $files = glob(storage_path('framework/sessions') . '/*');
+        foreach ($files as $file) {
+            @unlink($file);
+        }
+        return true;
+    }
+
+    public function cachedFacadesClear()
+    {
+        $files = glob(storage_path('framework/cache') . '/facade-*');
+        foreach ($files as $file) {
+            @unlink($file);
+        }
+        return true;
+    }
+
+    public function emptyStorageDir($pathsInStorage = [])
+    {
+        foreach ($pathsInStorage as $pathInStorage) {
+            $pathInStorageToClean = storage_path($pathInStorage);
+            if (!is_dir($pathInStorageToClean)) {
+                $this->info('Path does not exist: ' . $pathInStorageToClean);
+                continue;
+            }
+            \DiskHelper::deleteDirectory($pathInStorageToClean, false);
+        }
+        return true;
         // $allFiles = glob($storageToCleanPath . '/**/**/*/*');
         // dd($allFiles);
         // $disk = Storage::disk('base');
