@@ -73,6 +73,8 @@ php artisan session:table; `
 
 php artisan migrate
 
+php artisan storage:link
+
 #######################################################################################################################
 # :: COMMIT INIT ######################################################################################################
 #######################################################################################################################
@@ -88,24 +90,6 @@ php artisan ui bootstrap --auth
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
-
-php artisan storage:link
-
-# :: EDIT: .gitignore OR COMPARE AND SYNC WITH GLARE-STARTER
-
-*.bak
-*.log
-/public/css
-/public/js
-/public/fonts/
-/public/images/
-/public/mix-manifest.json
-
-/storage/media-library
-/public/_devtools.php
-
-/public/google*.html
-/public/*sitemap*.xml
 
 #######################################################################################################################
 # :: LITSTACK :: ######################################################################################################
@@ -125,69 +109,13 @@ composer require litstack/lang
 
 composer require glulab/glare
 
-### :: if from local directory
-	"require": {
-        "glulab/glare": "^1.0|dev-master",
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "D:/www/dev/packages/glulab/glare",
-            "canonical": false
-        }
-    ]
-
-### :: if from remote directory
-	"require": {
-        "glulab/glare": "^1.0",
-    },
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@github.com:glulab/glare.git"
-		}
-	]
+php artisan vendor:publish --tag=glare:base
+php artisan glare:install
+php artisan glare:switch dev [dev, vcs, prod]
 
 composer update
-
-#######################################################################################################################
-# :: NPM :: ###########################################################################################################
-#######################################################################################################################
-
 yarn install
-
-yarn add @fortawesome/fontawesome-free
-yarn add @glulab/gl-window-resize-listener
-yarn add alpinejs
-yarn add font-awesome@^4.7.0
-yarn add lightgallery@1.2.21
-yarn add lightslider
-yarn add slick-carousel
-
-yarn add @fortawesome/fontawesome-free @glulab/gl-window-resize-listener alpinejs font-awesome@^4.7.0 lightgallery@1.2.21 lightslider slick-carousel
-
 yarn upgrade-interactive
-
-#######################################################################################################################
-# :: EDIT webpack.mix.js :: ###########################################################################################
-#######################################################################################################################
-
-const path = require('path');
-
-mix.sourceMaps(false, 'inline-source-map');
-
-mix.copyDirectory('resources/images', 'public/images');
-
-mix.webpackConfig({
-    resolve: {
-        modules: [
-            path.join('D:', 'www', 'dev', 'npm-modules'),
-            path.resolve(__dirname, 'node_modules'),
-            'node_modules',
-        ]
-    }
-});
-
 
 #######################################################################################################################
 # :: COMPARE WITH STARTER :: ##########################################################################################
