@@ -6,7 +6,7 @@ set bakPath={PROJECT_DIR}/{PROJECT_NAME}
 
 set zipPack=www\
 set zipPath=%bakPath%/!bak/www/www-%ldt%-[full].zip
-set zipExcludes=-xr!node_modules -xr!www/bootstrap/cache/** -xr!www/public/storage
+set zipExcludes=-xr!node_modules -xr!www/bootstrap/cache/*.php -xr!www/public/storage
 
 set dbName=cre_{DB_NAME}
 set dbSqlPath=%bakPath%/!bak/sql/%ldt%--LC--%dbName%--[dev].sql
