@@ -118,13 +118,13 @@ return [
 
         'contact-form' => true,
 
-        'home-video' => false,
+        'home-video' => true,
         'home-banner' => true,
         'home-slider' => false,
 
         'menu-lang' => true,
-        'menu-system' => false,
-        'menu-footer' => false,
+        'menu-system' => true,
+        'menu-footer' => true,
         'menu-offer' => false,
     ],
 
