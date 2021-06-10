@@ -20,6 +20,9 @@ class Frontimage extends Component
             $site = app('site-shared')['site'];
             $this->image = $site->banner;
         }
+        if (empty($this->image) && is_file(public_path('images/page/banner.jpg'))) {
+            $this->image = asset('images/page/banner.jpg');
+        }
     }
 
     /**
@@ -29,7 +32,7 @@ class Frontimage extends Component
      */
     public function render()
     {
-        if (!is_callable($this->image)) {
+        if (empty($this->image)) {
             return '';
         }
 
