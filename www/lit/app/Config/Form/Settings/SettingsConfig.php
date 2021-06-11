@@ -109,14 +109,14 @@ class SettingsConfig extends FormConfig
         $page->info('Header Extra Meta: Extra Tagi Meta.');
         $page->card(function ($form) {
             $form->block('header_metas')->title('Header Meta')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\HeaderMetaRepeatable::class)->button(__('Add'));
+                $repeatables->add(\Lit\Repeatables\HeaderMetaRepeatable::class)->button(__lit('base.item_add', ['item' => '']));
             });
         });
 
         $page->info('Header Extra Script: Extra Skrypty.');
         $page->card(function ($form) {
             $form->block('header_extras')->title('Header Extra')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\HeaderExtraRepeatable::class)->button(__('Add'));
+                $repeatables->add(\Lit\Repeatables\HeaderExtraRepeatable::class)->button(__lit('base.item_add', ['item' => '']));
             });
         });
     }

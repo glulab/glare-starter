@@ -56,7 +56,7 @@ class HomePhotoLinksConfig extends FormConfig
                 ->title('Przyciski')
                 ->repeatables(
                     function ($repeatables) {
-                        $repeatables->add(\Lit\Repeatables\PhotoLinkRepeatable::class)->button(__('Add'));
+                        $repeatables->add(\Lit\Repeatables\PhotoLinkRepeatable::class)->button(__lit('base.item_add', ['item' => '']));
                     }
                 );
         });

@@ -14,8 +14,8 @@ class LitThemeConfigShow
             ->title('Bloki Treści')
             ->repeatables(
                 function ($repeatables) {
-                    $repeatables->add(ContentBlockColumnsTwoRepeatable::class)->button(__('Add') . ' ' . __lit('forms.content_block_columns_two'));
-                    $repeatables->add(ContentBlockImageRepeatable::class)->button(__('Add') . ' ' . __lit('forms.content_block_image'));
+                    $repeatables->add(ContentBlockColumnsTwoRepeatable::class)->button(__lit('base.item_add', ['item' => '']) . ' ' . __lit('forms.content_block_columns_two'));
+                    $repeatables->add(ContentBlockImageRepeatable::class)->button(__lit('base.item_add', ['item' => '']) . ' ' . __lit('forms.content_block_image'));
                 }
             );
     }

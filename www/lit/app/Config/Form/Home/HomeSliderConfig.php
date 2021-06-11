@@ -74,7 +74,7 @@ class HomeSliderConfig extends FormConfig
                                     $form->input('url')->type('text')->title('Adres URL')->placeholder('Adres url')->hint('lub wpisz adres url')->prepend('<i class="fas fa-link"></i>')->append('link')->width(12);
                                 }
                             }
-                        )->button(__('Add'));
+                        )->button(__lit('base.item_add', ['item' => '']));
                     }
                 );
             /*

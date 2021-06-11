@@ -71,7 +71,7 @@ class SiteConfig extends FormConfig
         $page->info('Linki kontaktowe');
         $page->card(function ($form) {
             $form->block('contact_links')->title('Linki Kontaktowe')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\ContactLinkRepeatable::class)->button(__('Add')); // ->view('lit.blocks.contact_links', ['key' => 'class']);
+                $repeatables->add(\Lit\Repeatables\ContactLinkRepeatable::class)->button(__lit('base.item_add', ['item' => ''])); // ->view('lit.blocks.contact_links', ['key' => 'class']);
             });
             /*
             {!! Helper::getFromCollection($site->contact_links, 'twitter', 'class', 'url') !!}
@@ -85,7 +85,7 @@ class SiteConfig extends FormConfig
         $page->info('Linki');
         $page->card(function ($form) {
             $form->block('links')->title('Linki')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                $repeatables->add(\Lit\Repeatables\LinkRepeatable::class)->button(__('Add')); // ->view('lit.blocks.links', ['key' => 'class']);
+                $repeatables->add(\Lit\Repeatables\LinkRepeatable::class)->button(__lit('base.item_add', ['item' => ''])); // ->view('lit.blocks.links', ['key' => 'class']);
             });
             /*
             {!! Helper::getFromCollection($site->links, 'twitter', 'class', 'url') !!}
@@ -103,7 +103,7 @@ class SiteConfig extends FormConfig
             $form->textarea('contact_form_text')->title('Formularz Kontaktowy: Treść');
             if(config('site.options.contact-form-has-subject')) :
               $form->block('contact_form_subjects')->title('Tematy')->hint('Po stworzeniu każdej pozycji naciśnij: Zapisz')->repeatables(function ($repeatables) {
-                  $repeatables->add(\Lit\Repeatables\ContactFormSubjectRepeatable::class)->button(__('Add'));
+                  $repeatables->add(\Lit\Repeatables\ContactFormSubjectRepeatable::class)->button(__lit('base.item_add', ['item' => '']));
               });
             endif;
         });

@@ -100,7 +100,7 @@ class LitConfigShow
                 ->title('Przyciski')
                 ->repeatables(
                     function ($repeatables) {
-                        $repeatables->add(PhotoLinkRepeatable::class)->button(__('Add'));
+                        $repeatables->add(PhotoLinkRepeatable::class)->button(__lit('base.item_add', ['item' => '']));
                     }
                 );
             $form->view('lit::forms.collapse', LitPageHelper::photoLinksHint());
