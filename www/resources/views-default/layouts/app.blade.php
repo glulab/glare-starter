@@ -40,7 +40,7 @@
     @stack('styles')
     @include('layouts.partials.head-extra')
 </head>
-<body class="{!! $layout['body_classes'] !!}">
+<body class="{!! $layout['body_classes'] !!} page page-type-{!! $page->type ?? 'default' !!} page-action-{!! $page->action ?? 'default' !!} page-id-{!! $page->id ?? '0' !!} page-{!! !empty($page->active) ? 'active' : 'inactive' !!}">
 
     <div id="app">
 

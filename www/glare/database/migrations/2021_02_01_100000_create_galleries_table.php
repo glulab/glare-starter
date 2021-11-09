@@ -24,6 +24,8 @@ class CreateGalleriesTable extends Migration
 
             // $table->bigInteger('position')->nullable();
 
+            $table->boolean('show')->default(false);
+            
             $table->boolean('active')->default(false);
 
             $table->timestamps();

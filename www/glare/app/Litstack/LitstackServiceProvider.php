@@ -65,7 +65,8 @@ class LitstackServiceProvider extends ServiceProvider
     {
         // Glare/Boot is called earlier than Litstack/Boot so we need to share views in a global middleware
         // $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->pushMiddleware(\Glare\Litstack\Middleware\ShareViews::class);
-        $this->app->make('router')->pushMiddlewareToGroup('web', \Glare\Litstack\Middleware\ShareViews::class);
+        $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->appendMiddlewareToGroup('web', \Glare\Litstack\Middleware\ShareViews::class);
+        // $this->app->make('router')->pushMiddlewareToGroup('web', \Glare\Litstack\Middleware\ShareViews::class);
     }
 
     /**

@@ -26,6 +26,7 @@ class Gallery extends Model implements HasMediaContract
      * @var array
      */
     protected $casts = [
+        'show' => 'boolean',
         'active' => 'boolean',
     ];
 
@@ -95,13 +96,14 @@ class Gallery extends Model implements HasMediaContract
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')
-            ->withResponsiveImages()
-            ->registerMediaConversions(function (SpatieMedia $media) {
-                $this->setConversionsKey('none'); // override default lit conversions
-                // $this->addMediaConversion('main')->width(1280)->height(720)->queued()/*->withResponsiveImages()*/;
-                $this->addMediaConversion('miniature')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.miniature.0'), config('lit.mediaconversions.default.miniature.1'))->nonQueued();
-                $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
-            })
+            // ->withResponsiveImages()
+            // ->registerMediaConversions(function (SpatieMedia $media) {
+            //     $this->setConversionsKey('none'); // override default lit conversions
+            //     // $this->addMediaConversion('main')->width(1280)->height(720)->queued()/*->withResponsiveImages()*/;
+            //     $this->addMediaConversion('preview')->fit(Manipulations::FIT_FILL, config('lit.mediaconversions.default.preview.0'), config('lit.mediaconversions.default.preview.1'))->nonQueued();
+            //     $this->addMediaConversion('miniature')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.miniature.0'), config('lit.mediaconversions.default.miniature.1'))->nonQueued();
+            //     $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
+            // })
         ;
     }
 

@@ -33,6 +33,10 @@ class LitConfigIndexTable
             $table->toggle('sitemap')->label('SITEMAP')->routePrefix($config->routePrefix())->sortBy('sitemap');
         }
 
+        if (in_array('show', $options)) {
+            $table->toggle('show')->label('WIDOCZNY')->routePrefix($config->routePrefix())->sortBy('show');
+        }
+
         if (in_array('active', $options)) {
             $table->toggle('active')->label('AKTYWNY')->routePrefix($config->routePrefix())->sortBy('active');
         }

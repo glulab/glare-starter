@@ -35,11 +35,12 @@ class GalleryIndex extends Component
      */
     public function render()
     {
-        $galleries = \App\Models\Gallery::whereActive(true)->get();
+        $galleries = \App\Models\Gallery::whereActive(true)->whereShow(true)->get();
 
         $this->gallery = new \App\Models\Gallery([
             'title' => $this->title,
             'description' => '',
+            'show' => true,
             'active' => true,
         ]);
 

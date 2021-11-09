@@ -4,11 +4,17 @@
             $image = $homeBanner->getFirstMedia('image');
             $attrs = [];
             $attrs['class'] = 'home-banner-image w-100';
-            if (!is_null($image->getCustomProperty('crop.width'))) {
+            $attrs['alt'] = $image->getCustomProperty('alt') ?? '';
+            $attrs['title'] = $image->getCustomProperty('title') ?? $attrs['alt'];
+            if ($image->hasCustomProperty('crop.width')) {
                 $attrs['width'] = $image->getCustomProperty('crop.width');
+            } elseif ($image->hasCustomProperty('original_dimensions.width')) {
+                $attrs['width'] = $image->getCustomProperty('original_dimensions.width');
             }
-            if (!is_null($image->getCustomProperty('crop.height'))) {
+            if ($image->hasCustomProperty('crop.height')) {
                 $attrs['height'] = $image->getCustomProperty('crop.height');
+            } elseif ($image->hasCustomProperty('original_dimensions.height')) {
+                $attrs['height'] = $image->getCustomProperty('original_dimensions.height');
             }
         @endphp
         {!! $image()->attributes($attrs)->lazy() !!}

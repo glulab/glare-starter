@@ -112,11 +112,12 @@ class ContactFormController extends Controller
             'subject' => $subject,
             'to' => $emailsToSendArray,
             'cc' => $mailData['email'],
+            'reply_to' => ['name' => $mailData['firstname'] . ' ' .  $mailData['lastname'], 'address' => $mailData['email']],
         ];
 
         try {
             \Mail::html($mail['content'], function($message) use ($mail) {
-               $message->subject($mail['subject'])->to($mail['to'])->cc($mail['cc']);
+               $message->subject($mail['subject'])->to($mail['to'])->cc($mail['cc'])->replyTo($mail['reply_to']['address'], $mail['reply_to']['name']);
             });
         } catch(\Exception $e) {
             return config('app.debug') === true ? ['status' => 'danger', 'message' => $e->getMessage()] : ['status' => 'danger', 'message' => \LitSettings::get('contact_form_danger', 'Error', 'settings')];

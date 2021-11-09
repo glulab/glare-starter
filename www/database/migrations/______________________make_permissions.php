@@ -101,7 +101,6 @@ class MakePermissions extends Migration
         $this->combineOperationsAndGroups(
             ['create', 'read', 'update', 'delete'], $this->down
         );
-        $this->buildPermissions();
         $this->downPermissions();
     }
 }

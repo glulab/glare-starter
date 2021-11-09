@@ -16,6 +16,18 @@ foreach ($symlinks as $target => $link) {
 
     $fullTarget = $basePath . '/' . $target;
     $fullLink = $basePath . '/' . $link;
+    if (is_link($fullLink)) {
+        $res[$target] = 'link already exists and is a link';
+        continue;
+    }
+    if (is_dir($fullLink)) {
+        $res[$target] = 'link already exists and is a directory';
+        continue;
+    }
+    if (is_file($fullLink)) {
+        $res[$target] = 'link already exists and is a file';
+        continue;
+    }
     if (!file_exists($fullTarget)) {
         $res[$target] = 'target is not a file or directory';
         continue;

@@ -99,4 +99,20 @@ class ViewHelper {
 
         return $object;
     }
+
+    public function img($path, $attrs = [], $fullPath = null, $secure = null)
+    {
+        $atts = [];
+        foreach ($attrs as $atr => $val) {
+            $atts[] = $atr . '="' . $val . '"';
+        }
+
+        $is = getimagesize(is_null($fullPath) ? public_path($path) : $fullPath);
+
+        $attributes = implode(' ', $atts);
+
+        $o = '<img src="' . app('url')->asset($path, $secure) . '" ' . $is[3] . ' ' . $attributes . '>';
+
+        return $o;
+    }
 }

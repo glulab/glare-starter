@@ -64,7 +64,8 @@ class SupportServiceProvider extends ServiceProvider
     {
         // Glare/Boot is called earlier than Support/Boot so we need to share views in a global middleware
         // $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->pushMiddleware(\Glare\Support\Middleware\ShareViews::class);
-        $this->app->make('router')->pushMiddlewareToGroup('web', \Glare\Support\Middleware\ShareViews::class);
+        $this->app->make(\Illuminate\Contracts\Http\Kernel::class)->appendMiddlewareToGroup('web', \Glare\Support\Middleware\ShareViews::class);
+        // $this->app->make('router')->pushMiddlewareToGroup('web', \Glare\Support\Middleware\ShareViews::class);
 
         // $this->app['router']->prependMiddlewareToGroup('web', \Glare\Http\Middleware\Glare::class);
         // $this->app['router']->pushMiddlewareToGroup('web', \Glare\Http\Middleware\Glare::class);

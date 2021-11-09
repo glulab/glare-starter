@@ -25,6 +25,13 @@ class GlareServiceProvider extends ServiceProvider
      */
     protected $aliases = [
         'Glare' => \Facades\Glare\Glare::class,
+
+        'Ignite\Crud\Models\Traits\HasMedia' => \Glare\Vendor\Ignite\Crud\Models\Traits\HasMedia::class,
+        'Ignite\Crud\Fields\Media\MediaField' => \Glare\Vendor\Ignite\Crud\Fields\Media\MediaField::class,
+        'Spatie\Image\Manipulations' => \Glare\Vendor\Spatie\Image\Manipulations::class,
+        'Spatie\MediaLibrary\ResponsiveImages\ResponsiveImage' => \Glare\Vendor\Spatie\MediaLibrary\ResponsiveImages\ResponsiveImage::class,
+        'Spatie\MediaLibrary\Conversions\ImageGenerators\Image' =>  \Glare\Vendor\Spatie\MediaLibrary\Conversions\ImageGenerators\Image::class,
+        'Spatie\MediaLibrary\MediaCollections\Commands\CleanCommand' => \Glare\Vendor\Spatie\MediaLibrary\MediaCollections\Commands\CleanCommand::class,
     ];
 
     /**
@@ -37,6 +44,12 @@ class GlareServiceProvider extends ServiceProvider
         $this->doMergeConfig();
         $this->alias();
         $this->providers();
+        
+        // If not manually loaded queued job gives error
+        AliasLoader::getInstance()->load('Ignite\Crud\Models\Traits\HasMedia');
+        AliasLoader::getInstance()->load('Ignite\Crud\Fields\Media\MediaField');
+        AliasLoader::getInstance()->load('Spatie\Image\Manipulations');
+        // class_alias(\Glare\Vendor\Spatie\Image\Manipulations::class, 'Spatie\Image\Manipulations');
     }
 
     /**
@@ -202,6 +215,17 @@ class GlareServiceProvider extends ServiceProvider
     public function addListeners()
     {
         \Illuminate\Support\Facades\Event::listen(\Glare\Events\PageHasBeenSaved::class, [\Glare\Listeners\CreateSitemap::class, 'handle']);
+
+        \Illuminate\Support\Facades\Event::listen(\Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAdded::class, [\Glare\Listeners\SetMaxMediaDimensions::class, 'handle']);
+        
+        \Illuminate\Support\Facades\Event::listen(\Spatie\MediaLibrary\MediaCollections\Events\MediaHasBeenAdded::class, [\Glare\Listeners\AddWebpToMedia::class, 'handle']);
+        
+        // ::: glare\vendor\Ignite\Crud\Models\Traits\HasMedia.php ::: \Illuminate\Support\Facades\Event::listen(\Spatie\MediaLibrary\Conversions\Events\ConversionWillStart::class, [\Glare\Listeners\AddResponsiveImagesToConversion::class, 'handle']);
+        
+        \Illuminate\Support\Facades\Event::listen(\Spatie\MediaLibrary\Conversions\Events\ConversionHasBeenCompleted::class, [\Glare\Listeners\AddWebpToConversion::class, 'handle']);
+
+        // // ResponsiveImagesGenerated doesnt fire
+        // \Illuminate\Support\Facades\Event::listen(\Spatie\MediaLibrary\ResponsiveImages\Events\ResponsiveImagesGenerated::class, [\Glare\Listeners\AddWebpToResponsiveImages::class, 'handle']);
     }
 
     /**

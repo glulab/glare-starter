@@ -145,7 +145,7 @@ return [
 
     'assets' => [
         // Set path to the main app.js file.
-        'app_js' => null,
+        'app_js' => '/lit/js/app.js',
 
         'scripts' => [
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js',
@@ -174,12 +174,14 @@ return [
 
     'mediaconversions' => [
         'default' => [
-			'thumb' => [env('SITE_MEDIACONVERSIONS_THUMB_WIDTH', 100), env('SITE_MEDIACONVERSIONS_THUMB_HEIGHT', 100), 8],
+            'preview' => [env('SITE_MEDIACONVERSIONS_PREVIEW_WIDTH', 1920), env('SITE_MEDIACONVERSIONS_PREVIEW_HEIGHT', 1080), 0],
+            'thumb' => [env('SITE_MEDIACONVERSIONS_THUMB_WIDTH', 100), env('SITE_MEDIACONVERSIONS_THUMB_HEIGHT', 100), 8],
             'miniature' => [env('SITE_MEDIACONVERSIONS_MINIATURE_WIDTH', 480), env('SITE_MEDIACONVERSIONS_MINIATURE_HEIGHT', 270), 8],
-            'sm' => [300, 300, 8],
-            'md' => [500, 500, 3],
-            'lg' => [900, 900, 2],
-            'xl' => [1400, 1400, 1],
+            'media_library_original' => [0, 0, 0],
+            // 'sm' => [300, 300, 8],
+            // 'md' => [500, 500, 3],
+            // 'lg' => [900, 900, 2],
+            // 'xl' => [1400, 1400, 1],
         ],
         'none' => [
             // override default lit conversions for models: $this->setConversionsKey('none');
@@ -203,6 +205,10 @@ return [
              */
             'default_device' => 'desktop',
         ],
+
+        // Indicates how long forms are cached (in minutes). The form cache
+        // cleared everytime a form gets updated.
+        'form_ttl' => 60 * 24,
     ],
 
     /*
@@ -244,5 +250,19 @@ return [
              */
             'colors' => ['#4951f2', '#f67693', '#f6ed76', '#9ff2ae', '#83c2ff', '#70859c'],
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lit Migrations path
+    |--------------------------------------------------------------------------
+    |
+    | You may configure a special path from which your Litstack migrations
+    | are loaded, for example when recreating user permissions.
+    |
+    */
+
+    'migrations' => [
+        'path' => database_path('migrations'),
     ],
 ];

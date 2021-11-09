@@ -1,4 +1,4 @@
-<div class="page">
+<div class="content">
 
     @hasSection('top-fluid')
     <div class="top-fluid container-fluid px-0">

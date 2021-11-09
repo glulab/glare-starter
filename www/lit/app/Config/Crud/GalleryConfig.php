@@ -65,7 +65,10 @@ class GalleryConfig extends CrudConfig
 
         $page->table(function ($table) {
 
-            LitConfigIndexTable::default($this, $table, '{images.0.conversion_urls.thumb}', ['id', 'title', /*'slug',*/ 'active']);
+            // LitConfigIndexTable::default($this, $table, '{images.0.conversion_urls.thumb}', ['id', 'title', /*'slug',*/ 'active']);
+            
+            LitConfigIndexTable::base($this, $table, '{images.0.conversion_urls.thumb}', ['id', 'title', /*'slug',*/ /* 'active' */]);
+            LitConfigIndexTable::toggles($this, $table, ['show', 'active']);
 
         })
         ->sortByDefault('id.desc')
@@ -93,13 +96,13 @@ class GalleryConfig extends CrudConfig
             ->text('Edycja')
         ;
 
-        $page->card(function($form) {
+        $page->card(function ($form) {
 
             $form->boolean('active')->title('Aktywna')->hint('Aktywna')->width(1/2);
 
         })->title('OPCJE');
 
-        $page->card(function($form) {
+        $page->card(function ($form) {
 
             $form->input('title')->title('Tytuł')->creationRules(['required'])->width(12);
             $form->input('slug')->title('Adres URL')->width(12);
@@ -107,6 +110,6 @@ class GalleryConfig extends CrudConfig
 
         })->title('ZAWARTOŚĆ');
 
-        LitConfigShow::galleryImages($page, 'images');
+        LitConfigShow::galleryImages($page, $name = 'images', $maxFiles = 1000, $ratio = null, $hint = null, $help = false, $zipUpload = true);
     }
 }

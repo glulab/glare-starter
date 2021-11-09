@@ -17,14 +17,40 @@ composer require doctrine/dbal --dev
 composer require barryvdh/laravel-debugbar --dev
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
+    'collectors' => [
+        'phpinfo'         => true,  // Php version
+        'messages'        => true,  // Messages
+        'time'            => true,  // Time Datalogger
+        'memory'          => true,  // Memory usage
+        'exceptions'      => true,  // Exception displayer
+        'log'             => true,  // Logs from Monolog (merged in messages if enabled)
+        'db'              => true,  // Show database (PDO) queries and bindings
+        'views'           => true,  // Views with their data
+        'route'           => true,  // Current route information
+        'auth'            => true, // Display Laravel authentication status
+        'gate'            => true,  // Display Laravel Gate checks
+        'session'         => true,  // Display session data
+        'symfony_request' => true,  // Only one can be enabled..
+        'mail'            => true,  // Catch mail messages
+        'laravel'         => true, // Laravel version and environment
+        'events'          => true, // All events fired
+        'default_request' => false, // Regular or special Symfony request logger
+        'logs'            => false, // Add the latest log messages
+        'files'           => false, // Show the included files
+        'config'          => false, // Display config settings
+        'cache'           => false, // Display cache events
+        'models'          => true,  // Display models
+        'livewire'        => true,  // Display Livewire (when available)
+    ],
+
 #######################################################################################################################
-# :: FIRST STEPS
+# :: FIRST STEPS :: SUMMARY #
 composer self-update; `
 composer global update; `
 laravel new www; `
 cd www; `
 composer require doctrine/dbal --dev; `
-composer require barryvdh/laravel-debugbar --dev; `
+composer require barryvdh/laravel-debugbar --dev;
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"; `
 #######################################################################################################################
 
@@ -63,7 +89,9 @@ composer require laravel-lang/lang
 php artisan queue:table; `
 php artisan queue:batches-table; `
 php artisan cache:table; `
-php artisan session:table; `
+php artisan session:table;
+
+>>>>> php artisan queue:table; php artisan queue:batches-table; php artisan cache:table; php artisan session:table;
 
 # :: CHANGE DATES OF MIGRATIONS TO 2019 ?
 # :: 2019_08_20_000000_create_jobs_table.php
@@ -103,6 +131,12 @@ php artisan lit:admin
 
 composer require litstack/lang
 
+for litstack backend:
+yarn add --dev apexcharts bootstrap-vue cropperjs i18n-js alpinejs numeral placeholder-loading tiptap tiptap-extensions v-calendar vue vue-apexcharts vue-i18n vue-lodash vue-select vue2-dropzone vuedraggable vuex
+worked only with this version of vue-loader: vue-loader@^15.9.8
+#######################################################################################################################
+# :: COPY FROM GLARE STARTER :: #######################################################################################
+#######################################################################################################################
 #######################################################################################################################
 # :: GLARE :: #########################################################################################################
 #######################################################################################################################
@@ -116,6 +150,7 @@ php artisan glare:switch dev [dev, vcs, prod]
 composer update
 yarn install
 yarn upgrade-interactive
+yarn run watch | dev | prod
 
 #######################################################################################################################
 # :: COMPARE WITH STARTER :: ##########################################################################################

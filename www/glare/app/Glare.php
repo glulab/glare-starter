@@ -44,7 +44,7 @@ class Glare
 
     public function pageRoute()
     {
-        Route::prefix(\Locator::langPrefix())->get('/{slug}.html', 'App\Http\Controllers\PageController@show')->name('page.show')->where(['slug' => '^(?:(?!admin).)*$',]);
+        Route::prefix(\Locator::langPrefix())->get('/{slug}.html', [\App\Http\Controllers\PageController::class, 'show'])->name('page.show')->where(['slug' => '^(?:(?!admin).)*$',]);
     }
 
     // public function cookieRoutes()

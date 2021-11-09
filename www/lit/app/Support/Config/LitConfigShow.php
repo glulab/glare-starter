@@ -71,14 +71,19 @@ class LitConfigShow
         })->title('BANNER');
     }
 
-    public function images(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = null, $hint = null, $help = null)
+    public function images(CrudShow $page, $name = 'images', $maxFiles = 1000, $ratio = null, $hint = null, $help = null, $zipUpload = false)
     {
-        $page->card(function($form) use ($name, $maxFiles, $ratio, $hint, $help) {
+        $page->card(function($form) use ($name, $maxFiles, $ratio, $hint, $help, $zipUpload) {
+
+            $maxFileSize = config('media-library.max_file_size') / 1024 / 1024;
 
             if (is_null($ratio)) {
-                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
+                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->maxFileSize($maxFileSize)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
             } else {
-                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->crop($ratio)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
+                $form->image($name)->title('Zdjęcia')->maxFiles($maxFiles)->maxFileSize($maxFileSize)->crop($ratio)->hint($hint ?? 'Zdjęcia'); // /*->expand()*//*->firstBig()*/
+            }
+            if ($zipUpload !== false) {
+                $form->zipImage('zip_' . $name)->title('Spakowane zdjęcia: *.zip')->width(12);
             }
             if ($help !== false) {
                 $form->view('lit::forms.collapse', LitPageHelper::imagesHelp());
@@ -87,9 +92,9 @@ class LitConfigShow
         })->title('ZDJĘCIA');
     }
 
-    public function galleryImages(CrudShow $page, $name = 'images', $maxFiles = 150, $ratio = null, $hint = null, $help = false)
+    public function galleryImages(CrudShow $page, $name = 'images', $maxFiles = 1000, $ratio = null, $hint = null, $help = false, $zipUpload = false)
     {
-        $this->images($page, $name, $maxFiles, $ratio, $hint, $help);
+        $this->images($page, $name, $maxFiles, $ratio, $hint, $help, $zipUpload);
     }
 
     public function blockPhotoLinks(CrudShow $page)

@@ -16,22 +16,22 @@ class Logger
         static::$PREFIX = $prefix;
     }
 
-    public function log($message)
+    public function log($message, $prefix = null)
     {
         $this->dumpIfInConsole($message);
         $messageToSave = (!is_string($message) || is_numeric($message)) ? json_encode($message) : $message;
-        $message = static::$PREFIX . $messageToSave;
+        $message = (!is_null($prefix) ? $prefix : static::$PREFIX) . $messageToSave;
         Log::info($message);
         static::$LAST_LOG = 'log';
     }
 
-    public function logStart($message)
+    public function logStart($message, $prefix = null)
     {
         $this->dumpIfInConsole('======================================================================');
         $this->dumpIfInConsole($message);
         $this->dumpIfInConsole('----------------------------------------------------------------------');
         $messageToSave = (!is_string($message) || is_numeric($message)) ? json_encode($message) : $message;
-        $message = static::$PREFIX . $messageToSave;
+        $message = (!is_null($prefix) ? $prefix : static::$PREFIX) . $messageToSave;
         Log::info('======================================================================');
         Log::info($message);
         Log::info('----------------------------------------------------------------------');
@@ -39,7 +39,7 @@ class Logger
         static::$LAST_LOG = 'logStart';
     }
 
-    public function logSeparator($message)
+    public function logSeparator($message, $prefix = null)
     {
         if (static::$LAST_LOG === 'logStart') {
             return $this->log($message);
@@ -51,20 +51,20 @@ class Logger
         $this->dumpIfInConsole($message);
         $this->dumpIfInConsole('----------------------------------------------------------------------');
         $messageToSave = (!is_string($message) || is_numeric($message)) ? json_encode($message) : $message;
-        $message = static::$PREFIX . $messageToSave;
+        $message = (!is_null($prefix) ? $prefix : static::$PREFIX) . $messageToSave;
         Log::info('----------------------------------------------------------------------');
         Log::info($message);
         Log::info('----------------------------------------------------------------------');
         static::$LAST_LOG = 'logSeparator';
     }
 
-    public function logEnd($message)
+    public function logEnd($message, $prefix = null)
     {
         $this->dumpIfInConsole('----------------------------------------------------------------------');
         $this->dumpIfInConsole($message);
         $this->dumpIfInConsole('======================================================================');
         $messageToSave = (!is_string($message) || is_numeric($message)) ? json_encode($message) : $message;
-        $message = static::$PREFIX . $messageToSave;
+        $message = (!is_null($prefix) ? $prefix : static::$PREFIX) . $messageToSave;
         Log::info('----------------------------------------------------------------------');
         Log::info($message);
         Log::info('======================================================================');

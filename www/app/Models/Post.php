@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia as HasMediaContract;
+use Spatie\Image\Manipulations;
 use Ignite\Crud\Models\Traits\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Ignite\Crud\Models\Traits\Sluggable;
+use Spatie\MediaLibrary\HasMedia as HasMediaContract;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 class Post extends Model implements HasMediaContract
 {
@@ -93,13 +95,13 @@ class Post extends Model implements HasMediaContract
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')
-            ->withResponsiveImages()
-            ->registerMediaConversions(function (SpatieMedia $media) {
-                $this->setConversionsKey('none'); // override default lit conversions
-                // $this->addMediaConversion('main')->width(1280)->height(720)->queued()/*->withResponsiveImages()*/;
-                $this->addMediaConversion('miniature')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.miniature.0'), config('lit.mediaconversions.default.miniature.1'))->nonQueued();
-                $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
-            })
+            // ->withResponsiveImages()
+            // ->registerMediaConversions(function (SpatieMedia $media) {
+            //     $this->setConversionsKey('none'); // override default lit conversions
+            //     // $this->addMediaConversion('main')->width(1280)->height(720)->queued()/*->withResponsiveImages()*/;
+            //     $this->addMediaConversion('miniature')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.miniature.0'), config('lit.mediaconversions.default.miniature.1'))->nonQueued();
+            //     $this->addMediaConversion('thumb')->fit(Manipulations::FIT_CROP, config('lit.mediaconversions.default.thumb.0'), config('lit.mediaconversions.default.thumb.1'))->nonQueued();
+            // })
         ;
     }
 
